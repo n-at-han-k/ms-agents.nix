@@ -1,3 +1,5 @@
 /agents/
 /.direnv/
 *.acs
+__pycache__/
+*.pyc
