@@ -1,25 +1,22 @@
 #!/usr/bin/env python3
-"""Mirror one shard of agents.yaml to GitHub releases and ghcr.io packages.
+"""Mirror one shard of agents.yaml: one GitHub release per agent.
 
-Two destinations, because neither alone does both jobs:
+Each agent gets its own release, tagged with its id, holding two assets -- the
+character file and a thumbnail rendered from its first frame. Two assets per
+release sidesteps GitHub's cap of 1000 assets per release, which a release per
+source directory cannot (`char` alone holds over 13,000 characters).
 
-  releases  One per source directory, tagged `char`, `ms-agent-hosting-7`, ...
-            Assets use the name agents.yaml decided, which is built from
-            [A-Za-z0-9._-] only so GitHub has nothing left to rewrite. Gives a
-            plain anonymous URL that Nix's fetchurl takes as-is.
-  ghcr.io   One package per directory, one tag per agent. ORAS records the
-            exact original filename -- spaces, parens, non-Latin and all -- in
-            the layer's title annotation, so `oras pull` restores it byte-exact.
-            Browsable and correctly named, but blobs are digest-addressed
-            behind a bearer token, so it is the front door, not the fetcher.
+Names come from agents.yaml and nothing here is derived: `name` is upstream's
+filename, `file` the published character file, `image` the thumbnail, `id` the
+release tag. The only values this stage produces are each file's sha256, which
+must be measured, and the thumbnail, which must be decoded.
 
-Each agent streams through one temp file -- download, validate, push, upload,
-delete -- so a shard needs megabytes of disk rather than gigabytes. Both
-destinations are checked before writing, so a timed-out shard is simply
-re-dispatched and resumes.
+Optionally also pushes to ghcr.io, where ORAS records the exact upstream
+filename in the layer annotation -- punctuation and all -- which a release
+asset name cannot carry.
 
   mirror-agents --shard 0 --shards 40
-  mirror-agents --shard 0 --shards 40 --skip-ghcr --dry-run
+  mirror-agents --shard 0 --shards 40 --skip-ghcr --limit 20 --dry-run
 """
 
 from __future__ import annotations
@@ -28,7 +25,6 @@ import argparse
 import hashlib
 import json
 import os
-import re
 import shutil
 import subprocess
 import sys
@@ -39,41 +35,35 @@ import urllib.request
 from collections import Counter
 from pathlib import Path
 
-import yaml
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "lib"))
+
+import yaml  # noqa: E402
+
+from acs import AcsError, first_frame, thumbnail, to_rgba, write_png  # noqa: E402
 
 UA = "ms-agents.nix/1.0 (+https://github.com/n-at-han-k/ms-agents.nix)"
 
-# See bin/download-agent-links: tmafe.com serves a fixed 2175-byte HTML page
-# under HTTP 200 for anything missing, and its indexes do list such files.
+# tmafe.com answers a missing file with this fixed page under HTTP 200, and its
+# own indexes do list files that return it.
 SOFT404_SHA256 = "52b81c40b14d13fe09b4298ea6773a4ada82b3f49b81c96e8c988b77527731bb"
-ACS_MAGIC = bytes.fromhex("c3abcdab")
 
 PRIMARY_HOST = "https://tmafe.com"
 MIRROR_HOST = "https://tmafemirror.org"
-
-# How many characters each directory holds, for a release title that reads as
-# something other than "blobs-07".
-DIR_BLURB = {
-    "char": "ms-agent-hosting-10 / char",
-    "classic-ms-agents": "the original Microsoft-shipped characters",
-}
 
 
 def log(msg: str) -> None:
     print(msg, file=sys.stderr, flush=True)
 
 
-def run(cmd: list[str], check: bool = False,
-        cwd: Path | None = None) -> subprocess.CompletedProcess:
-    return subprocess.run(cmd, capture_output=True, text=True, check=check, cwd=cwd)
+def run(cmd: list, cwd: Path | None = None) -> subprocess.CompletedProcess:
+    return subprocess.run(cmd, capture_output=True, text=True, cwd=cwd)
 
 
 def gh(*args: str) -> subprocess.CompletedProcess:
     return run(["gh", *args])
 
 
-def fallback_urls(url: str) -> list[str]:
-    """Primary URL, then the same path on the other host."""
+def fallback_urls(url: str) -> list:
     if url.startswith(PRIMARY_HOST):
         return [url, MIRROR_HOST + url[len(PRIMARY_HOST):]]
     if url.startswith(MIRROR_HOST):
@@ -81,7 +71,7 @@ def fallback_urls(url: str) -> list[str]:
     return [url]
 
 
-def download(url: str, dest: Path, retries: int = 3) -> tuple[str, int] | None:
+def download(url: str, dest: Path, retries: int = 3):
     """Stream to dest, hashing as it goes. None if every host/attempt failed."""
     for candidate in fallback_urls(url):
         for attempt in range(1, retries + 1):
@@ -103,23 +93,16 @@ def download(url: str, dest: Path, retries: int = 3) -> tuple[str, int] | None:
     return None
 
 
-def why_invalid(path: Path, sha: str, size: int, filename: str) -> str | None:
-    """None if the bytes look like a real agent, else the reason they don't."""
+def why_invalid(path: Path, sha: str, size: int, filename: str):
     if sha == SOFT404_SHA256:
         return "soft-404 page"
     if size == 0:
         return "empty"
-    if filename.lower().endswith(".acs"):
-        with path.open("rb") as f:
-            if f.read(4) != ACS_MAGIC:
-                return "bad magic (not an .acs)"
     return None
 
 
-# --- releases ---------------------------------------------------------------
-
-def release_assets(tag: str) -> set[str] | None:
-    """Asset names already in the release; None if the release is absent."""
+def existing_assets(tag: str):
+    """Asset names already on the release; None if the release doesn't exist."""
     p = gh("release", "view", tag, "--json", "assets")
     if p.returncode != 0:
         return None
@@ -129,46 +112,9 @@ def release_assets(tag: str) -> set[str] | None:
         return set()
 
 
-def ensure_release(tag: str, count: int, dry_run: bool) -> set[str]:
-    have = release_assets(tag)
-    if have is not None:
-        return have
-    if dry_run:
-        log(f"  [dry-run] would create release {tag}")
-        return set()
-    blurb = DIR_BLURB.get(tag, f"/{tag}/")
-    gh("release", "create", tag,
-       "--title", f"{tag} — {count} characters",
-       "--notes",
-       f"Microsoft Agent character files from {blurb}, mirrored from "
-       f"tmafe.com.\n\nAsset names keep the upstream filename, with "
-       f"punctuation as underscores and a short digest of the source path to "
-       f"keep them unique. The exact original filename — spaces and all — is "
-       f"in `agents.yaml`, and is what the Nix package installs.\n\n"
-       f"For correctly-named, browsable copies see this repo's Packages "
-       f"(ghcr.io). This release exists to give Nix a plain fetchable URL.")
-    log(f"  created release {tag}")
-    return set()
-
-
-# --- ghcr -------------------------------------------------------------------
-
-def ghcr_ref(registry: str, directory: str, tag: str) -> str:
-    return f"{registry}/{directory}:{tag}"
-
-
-def ghcr_exists(ref: str) -> bool:
-    return run(["oras", "manifest", "fetch", "--descriptor", ref]).returncode == 0
-
-
-def ghcr_push(ref: str, path: Path, filename: str) -> tuple[bool, str]:
-    """Push one file, preserving its exact name.
-
-    ORAS derives the layer title from the path as given on the command line, so
-    it has to be a bare basename -- an absolute path would record the whole
-    thing. That means resolving it relative to the file's own directory rather
-    than wherever the script happens to be running.
-    """
+def ghcr_push(ref: str, path: Path, filename: str):
+    """ORAS reads the layer title from the path as given, so it must be a bare
+    basename resolved against the file's own directory."""
     p = run([
         "oras", "push", ref,
         "--annotation", f"org.opencontainers.image.title={filename}",
@@ -179,11 +125,9 @@ def ghcr_push(ref: str, path: Path, filename: str) -> tuple[bool, str]:
     return p.returncode == 0, (p.stderr or p.stdout).strip()[:160]
 
 
-# --- main -------------------------------------------------------------------
-
 def shard_of(agent: dict, shards: int) -> int:
-    """Stable shard, keyed on the agent's id so a re-harvest in a different
-    order still sends each agent to the same shard and the run resumes."""
+    """Stable shard keyed on the id, so a re-harvest in a different order still
+    sends each agent to the same shard and a re-run resumes."""
     return int.from_bytes(
         hashlib.sha256(agent["id"].encode()).digest()[:8], "big") % shards
 
@@ -198,121 +142,134 @@ def main() -> int:
     ap.add_argument("--repo", default=os.environ.get(
         "GITHUB_REPOSITORY", "n-at-han-k/ms-agents.nix"))
     ap.add_argument("--registry", help="default ghcr.io/<owner>/ms-agents")
+    ap.add_argument("--box", type=int, default=96, help="thumbnail longest side")
     ap.add_argument("--skip-ghcr", action="store_true")
-    ap.add_argument("--skip-releases", action="store_true")
-    ap.add_argument("--limit", type=int, help="stop after N agents (smoke test)")
+    ap.add_argument("--only", help="restrict to one source directory")
+    ap.add_argument("--limit", type=int)
     ap.add_argument("--dry-run", action="store_true",
-                    help="download and validate, but publish nothing")
+                    help="download, validate and render, but publish nothing")
     args = ap.parse_args()
 
     owner = args.repo.split("/")[0].lower()
     registry = args.registry or f"ghcr.io/{owner}/ms-agents"
-
     if not args.skip_ghcr and not shutil.which("oras"):
         log("oras not on PATH; continuing with releases only")
         args.skip_ghcr = True
 
     agents = yaml.safe_load(args.manifest.read_text())["agents"]
     shard = [a for a in agents if shard_of(a, args.shards) == args.shard]
+    if args.only:
+        shard = [a for a in shard if a["dir"] == args.only]
     if args.limit:
         shard = shard[: args.limit]
 
-    per_dir = Counter(a["dir"] for a in agents)
     log(f"shard {args.shard}/{args.shards}: {len(shard)} of {len(agents)} agents")
-    log(f"  releases: {'skipped' if args.skip_releases else 'on'}   "
-        f"ghcr: {'skipped' if args.skip_ghcr else registry}")
+    log(f"  one release per agent; ghcr: {'skipped' if args.skip_ghcr else registry}")
 
-    # One release per directory, created lazily so a shard only touches the
-    # directories it actually holds.
-    have: dict[str, set[str]] = {}
-
-    out: dict[str, dict] = {}
-    stats = Counter()
+    out: dict = {}
+    stats: Counter = Counter()
 
     with tempfile.TemporaryDirectory() as tmp:
         tmpdir = Path(tmp)
         for i, a in enumerate(shard, 1):
-            # agents.yaml settles both names: `name` is upstream's filename,
-            # which ORAS records as the layer title, and `file` is the
-            # published name. Nothing here is computed.
-            exact = tmpdir / a["name"]
-            got = download(a["url"], exact)
-            if got is None:
-                stats["failed"] += 1
-                continue
-            sha, size = got
+            tag = a["id"]
 
-            if reason := why_invalid(exact, sha, size, a["name"]):
-                log(f"  [{i}/{len(shard)}] {a['id']}: {reason}")
-                stats["invalid"] += 1
-                exact.unlink(missing_ok=True)
-                continue
-
+            have = existing_assets(tag)
             row = {
-                "name": a["name"],
-                "file": a["file"],
-                "dir": a["dir"],
-                "size": size,
-                "sha256": sha,
+                "name": a["name"], "file": a["file"], "image": a["image"],
+                "dir": a["dir"], "release": tag,
+                "url": f"https://github.com/{args.repo}/releases/download/{tag}/{a['file']}",
+                "image_url": f"https://github.com/{args.repo}/releases/download/{tag}/{a['image']}",
                 "upstream": a["url"],
             }
 
-            try:
-                if not args.skip_ghcr:
-                    ref = ghcr_ref(registry, a["dir"], a["id"])
-                    if args.dry_run:
-                        stats["ghcr_pushed"] += 1
-                    elif ghcr_exists(ref):
-                        stats["ghcr_skipped"] += 1
-                    else:
-                        ok, err = ghcr_push(ref, exact, a["name"])
-                        if ok:
-                            stats["ghcr_pushed"] += 1
-                        else:
-                            log(f"  [{i}/{len(shard)}] {a['id']}: ghcr push failed: {err}")
-                            stats["ghcr_failed"] += 1
-                    row["ghcr"] = ref
+            # Fully published already -- nothing to fetch or upload.
+            if have is not None and a["file"] in have and a["image"] in have:
+                stats["skipped"] += 1
+                out[a["id"]] = {**row, "sha256": None}
+                continue
 
-                if not args.skip_releases:
-                    tag = a["dir"]
-                    if tag not in have:
-                        have[tag] = ensure_release(tag, per_dir[tag], args.dry_run)
-                    asset = a["file"]
-                    # gh names the asset after the file's basename; `path#text`
-                    # sets only a display label. Rename into place so the
-                    # stored name is the one agents.yaml promised.
-                    named = tmpdir / asset
-                    exact.replace(named)
-                    exact = named
-                    if asset in have[tag]:
-                        stats["rel_skipped"] += 1
-                    elif args.dry_run:
-                        stats["rel_uploaded"] += 1
-                    else:
-                        p = gh("release", "upload", tag, str(named), "--clobber")
-                        if p.returncode != 0:
-                            log(f"  [{i}/{len(shard)}] {a['id']}: upload failed: "
-                                f"{p.stderr.strip()[:160]}")
+            # ORAS needs the upstream filename verbatim; the release needs the
+            # published one. Download under the upstream name, rename after.
+            exact = tmpdir / a["name"]
+            got = download(a["url"], exact)
+            if got is None:
+                stats["download_failed"] += 1
+                continue
+            sha, size = got
+            if reason := why_invalid(exact, sha, size, a["name"]):
+                log(f"  [{i}/{len(shard)}] {tag}: {reason}")
+                stats["invalid"] += 1
+                exact.unlink(missing_ok=True)
+                continue
+            row["sha256"] = sha
+            row["size"] = size
+
+            try:
+                if not args.skip_ghcr and not args.dry_run:
+                    ok, err = ghcr_push(f"{registry}/{a['dir']}:{tag}", exact, a["name"])
+                    stats["ghcr_pushed" if ok else "ghcr_failed"] += 1
+                    if not ok:
+                        log(f"  [{i}/{len(shard)}] {tag}: ghcr: {err}")
+                    row["ghcr"] = f"{registry}/{a['dir']}:{tag}"
+
+                # Thumbnail. A good share of the archive is mislabelled or an
+                # older container, so a failure here is expected and only
+                # costs the image, never the character file.
+                png = tmpdir / a["image"]
+                try:
+                    frame = first_frame(exact.read_bytes())
+                    rgba, w, h = thumbnail(
+                        to_rgba(frame), frame.width, frame.height, args.box)
+                    write_png(png, rgba, w, h)
+                    row["thumbnail"] = True
+                    stats["rendered"] += 1
+                except (AcsError, Exception) as e:  # noqa: BLE001
+                    row["thumbnail"] = False
+                    row["render_error"] = str(e)[:120]
+                    stats["unrenderable"] += 1
+
+                named = tmpdir / a["file"]
+                exact.replace(named)
+
+                if args.dry_run:
+                    stats["would_publish"] += 1
+                else:
+                    if have is None:
+                        c = gh("release", "create", tag,
+                               "--title", a["name"],
+                               "--notes",
+                               f"`{a['name']}` from "
+                               f"[/{a['dir']}/](https://tmafe.com/{a['dir']}/), "
+                               f"mirrored from tmafe.com.\n\n"
+                               f"```\nnix build github:{args.repo}#{tag}\n```")
+                        if c.returncode != 0 and "already exists" not in (c.stderr or ""):
+                            log(f"  [{i}/{len(shard)}] {tag}: create: "
+                                f"{c.stderr.strip()[:140]}")
                             stats["failed"] += 1
                             continue
-                        have[tag].add(asset)
-                        stats["rel_uploaded"] += 1
-                    row["url"] = (f"https://github.com/{args.repo}/releases/"
-                                  f"download/{tag}/{asset}")
+                    uploads = [named] + ([png] if row.get("thumbnail") else [])
+                    u = gh("release", "upload", tag, *[str(x) for x in uploads],
+                           "--clobber")
+                    if u.returncode != 0:
+                        log(f"  [{i}/{len(shard)}] {tag}: upload: "
+                            f"{u.stderr.strip()[:140]}")
+                        stats["failed"] += 1
+                        continue
+                    stats["published"] += 1
+
+                out[a["id"]] = row
             finally:
-                exact.unlink(missing_ok=True)
+                for f in tmpdir.iterdir():
+                    f.unlink(missing_ok=True)
 
-            stats["bytes"] += size
-            out[a["id"]] = row
-
-            if i % 50 == 0 or i == len(shard):
+            if i % 25 == 0 or i == len(shard):
                 log(f"  [{i}/{len(shard)}] " +
                     "  ".join(f"{k}={v}" for k, v in sorted(stats.items())))
 
     args.out.write_text(json.dumps(out, indent=2, sort_keys=True) + "\n")
     log(f"\nwrote {args.out}: {len(out)} agents  "
         + "  ".join(f"{k}={v}" for k, v in sorted(stats.items())))
-    # A shard that resolved nothing at all means something systemic broke.
     return 1 if shard and not out else 0
 
 

@@ -14,8 +14,9 @@ and unions the results:
 
 agents.yaml is the whole contract with the publishing stage, which reads it and
 calculates nothing: `name` is the upstream filename verbatim, `file` is the
-name the published file will carry, `id` is the nix attribute and OCI tag, and
-`url` is where to fetch it. Only each file's sha256 is left for later, since
+name the published character file will carry, `image` the thumbnail beside it,
+`id` is the release tag / nix attribute / OCI tag, and `url` is where to fetch
+the character from upstream. Only each file's sha256 is left for later, since
 that has to be measured rather than derived.
 
 No source is trustworthy alone: tmafe.com answers a missing file with a
@@ -170,7 +171,7 @@ def final_name(agent: dict) -> str:
 
 
 def assign_names(agents: list) -> None:
-    """Fill in the id and the final filename for every agent.
+    """Fill in the id, the final filename and the image filename.
 
     Both are settled here, once, so that the download stage reads them off the
     manifest and computes nothing. Ids are deduped against the directory and
@@ -188,6 +189,7 @@ def assign_names(agents: list) -> None:
         taken.add(a["id"])
     for a in agents:
         a["final"] = final_name(a)
+        a["image"] = a["final"].rsplit(".", 1)[0] + ".png"
 
 
 class Harvest:
@@ -363,6 +365,7 @@ def write_yaml(path: Path, agents: list, validated: bool) -> None:
         out.append(f"  - id: {yaml_str(a['id'])}")
         out.append(f"    name: {yaml_str(a['file'])}")
         out.append(f"    file: {yaml_str(a['final'])}")
+        out.append(f"    image: {yaml_str(a['image'])}")
         out.append(f"    dir: {yaml_str(a['dir'])}")
         out.append(f"    url: {yaml_str(a['url'])}")
         if a["size"] is not None:

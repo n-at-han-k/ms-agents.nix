@@ -3,8 +3,10 @@ name: download-agents
 # Mirrors every character file listed in agents.yaml to two places, then writes
 # the sha256s into agents.json for the flake to pin.
 #
-#   releases   one per source directory, assets keeping the upstream filename.
-#              A plain anonymous URL, which is what Nix's fetchurl needs.
+#   releases   one per agent, tagged with its id, holding the character file
+#              and its thumbnail. Two assets per release stays clear of
+#              GitHub's cap of 1000 assets per release, which a release per
+#              source directory cannot -- `char` alone holds over 13,000.
 #   ghcr.io    one package per directory, one tag per agent, with the exact
 #              original filename in the layer annotation. Browsable and
 #              correctly named, but token-gated, so it is the front door
@@ -24,8 +26,8 @@ on:
         description: "Download and validate, but upload nothing"
         type: boolean
         default: false
-      refresh_links:
-        description: "Re-harvest agents.yaml from tmafe.com first"
+      commit_links:
+        description: "Commit the re-harvested agents.yaml"
         type: boolean
         default: true
   schedule:
@@ -56,12 +58,13 @@ jobs:
 
       - run: pip install --quiet pyyaml
 
-      - name: refresh agents.yaml
-        if: ${{ github.event_name == 'schedule' || inputs.refresh_links }}
+      - name: harvest agents.yaml
+        # Always run: a shard handed a manifest from before a schema change
+        # fails on the missing field. Cheap enough not to gate.
         run: ./bin/download-agent-links -o agents.yaml
 
       - name: commit refreshed links
-        if: ${{ github.event_name == 'schedule' || inputs.refresh_links }}
+        if: ${{ github.event_name == 'schedule' || inputs.commit_links }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -93,6 +96,14 @@ jobs:
           print(f"{s['count']} agents, {s['total_human']} listed upstream")
           PY
 
+      # The shards check out the triggering commit, not the one plan just
+      # pushed, so hand them the manifest directly.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: manifest
+          path: agents.yaml
+          retention-days: 3
+
   mirror:
     needs: plan
     runs-on: ubuntu-latest
@@ -115,6 +126,10 @@ jobs:
 
       - run: pip install --quiet pyyaml
 
+      - uses: actions/download-artifact@v4
+        with:
+          name: manifest
+
       - name: install oras
         uses: oras-project/setup-oras@v1
 
@@ -125,7 +140,10 @@ jobs:
 
       - name: mirror shard ${{ matrix.shard }}
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # A release per agent is ~3 REST calls each. GITHUB_TOKEN is capped
+          # at 1000 requests/hour/repository, which would take days; a PAT
+          # gets 5000/hour. Falls back so the workflow still runs without one.
+          GH_TOKEN: ${{ secrets.MIRROR_TOKEN || secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           ./bin/mirror-agents \

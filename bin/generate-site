@@ -1,16 +1,20 @@
 #!/usr/bin/env python3
-"""Generate the gh-pages gallery from agents.yaml and the rendered thumbnails.
+"""Generate the gh-pages gallery from agents.json.
 
 Produces an index of the source directories and, for each, paginated pages of
 thumbnails with the nix command and download links. Pages are chunked and every
 image is lazily loaded, because `char` alone holds over 13,000 characters and a
 single page of that is unusable.
 
-Only agents with a thumbnail on disk are listed, so undecodable files (the
-archive carries mislabelled text files and older structured-storage characters)
-simply don't appear rather than showing a broken image.
+Images are not copied here. Each agent's release carries its own thumbnail, so
+the gallery points straight at that asset URL -- which keeps the published site
+a few megabytes of HTML instead of ~185 MB of duplicated PNGs.
 
-  generate-site --images images --out site
+Only agents whose thumbnail actually rendered are listed. A real share of the
+archive is mislabelled text or an older structured-storage container, and those
+are omitted rather than shown as a broken image.
+
+  generate-site --manifest agents.json --out site
 """
 
 from __future__ import annotations
@@ -20,8 +24,6 @@ import html
 import json
 from collections import defaultdict
 from pathlib import Path
-
-import yaml
 
 REPO = "n-at-han-k/ms-agents.nix"
 PER_PAGE = 500
@@ -80,33 +82,30 @@ def page(title: str, body: str, depth: int = 0) -> str:
 """
 
 
-def card(a: dict, img_rel: str) -> str:
+def card(agent_id: str, a: dict) -> str:
     name = html.escape(a["name"])
-    stem = a["file"].rsplit(".", 1)[0]
-    dl = f"https://github.com/{REPO}/releases/download/{a['dir']}/{a['file']}"
     return (f'<div class="card" data-n="{html.escape(a["name"].lower())}">'
-            f'<a href="{html.escape(dl)}"><img loading="lazy" '
-            f'src="{html.escape(img_rel)}" alt="{name}"></a>'
+            f'<a href="{html.escape(a["url"])}"><img loading="lazy" '
+            f'src="{html.escape(a["image_url"])}" alt="{name}"></a>'
             f'<div class="nm">{name}</div>'
-            f'<code>nix build .#{html.escape(a["id"])}</code></div>')
+            f'<code>nix build .#{html.escape(agent_id)}</code></div>')
 
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--manifest", type=Path, default=Path("agents.yaml"))
-    ap.add_argument("--images", type=Path, default=Path("images"))
+    ap.add_argument("--manifest", type=Path, default=Path("agents.json"))
     ap.add_argument("--out", type=Path, default=Path("site"))
     args = ap.parse_args()
 
-    agents = yaml.safe_load(args.manifest.read_text())["agents"]
+    agents = json.loads(args.manifest.read_text())
     by_dir: dict[str, list] = defaultdict(list)
     listed = 0
-    for a in agents:
-        stem = a["file"].rsplit(".", 1)[0]
-        if (args.images / a["dir"] / f"{stem}.png").exists():
-            by_dir[a["dir"]].append(a)
-            listed += 1
+    for agent_id, a in agents.items():
+        if not a.get("thumbnail") or not a.get("image_url"):
+            continue
+        by_dir[a["dir"]].append((agent_id, a))
+        listed += 1
 
     args.out.mkdir(parents=True, exist_ok=True)
 
@@ -124,7 +123,7 @@ def main() -> int:
     (args.out / "index.html").write_text(page("Microsoft Agent characters", index))
 
     for d, items in sorted(by_dir.items()):
-        items.sort(key=lambda a: a["name"].lower())
+        items.sort(key=lambda kv: kv[1]["name"].lower())
         pages = [items[i:i + PER_PAGE] for i in range(0, len(items), PER_PAGE)] or [[]]
         outdir = args.out / d
         outdir.mkdir(parents=True, exist_ok=True)
@@ -135,8 +134,7 @@ def main() -> int:
                 cls = ' class="cur"' if k == pi else ""
                 links.append(f'<a{cls} href="{fn}">{k + 1}</a>')
             pager = f'<div class="pager">{"".join(links)}</div>' if len(pages) > 1 else ""
-            cards = "".join(
-                card(a, f"../images/{d}/{a['file'].rsplit('.', 1)[0]}.png") for a in chunk)
+            cards = "".join(card(aid, a) for aid, a in chunk)
             body = (f'<p class="sub"><a href="../index.html">&larr; all directories</a></p>'
                     f"<h1>{html.escape(d)}</h1>"
                     f'<p class="sub">{len(items):,} characters'
