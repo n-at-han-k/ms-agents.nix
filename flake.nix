@@ -12,8 +12,20 @@
       inherit (nixpkgs) lib;
       eachSystem = lib.genAttrs (import systems);
       pkgsFor = eachSystem (system: nixpkgs.legacyPackages.${system});
+
+      # overlay.nix holds the package set; this flake only re-exports it.
+      overlay = import ./overlay.nix;
+      setFor = system: overlay pkgsFor.${system} pkgsFor.${system};
     in
     {
+      overlays.default = overlay;
+
+      # Every mirrored agent, by id. This lives in legacyPackages rather than
+      # packages so `nix flake show` doesn't try to enumerate ~40k derivations;
+      # `nix build .#<id>` resolves here all the same, and the attribute values
+      # are lazy, so building one agent fetches one file.
+      legacyPackages = eachSystem (system: (setFor system).ms-agents);
+
       devShells = eachSystem (
         system:
         let
@@ -54,6 +66,36 @@
           };
         }
       );
+
+      # Deliberately small: a flake-show-able handful plus the selection
+      # helper. The full set is in legacyPackages.
+      packages = eachSystem (
+        system:
+        let
+          set = setFor system;
+          classics = lib.filterAttrs (
+            id: _: lib.hasSuffix "-classic-ms-agents" id
+          ) set.ms-agents;
+        in
+        classics
+        // lib.optionalAttrs (classics != { }) {
+          default = set.ms-agentsWith (lib.attrNames classics);
+        }
+      );
+
+      # nix run .#update -- re-harvest agents.yaml from tmafe.com.
+      apps = eachSystem (system: {
+        update = {
+          type = "app";
+          program = lib.getExe (
+            pkgsFor.${system}.writeShellApplication {
+              name = "update";
+              runtimeInputs = [ (pkgsFor.${system}.python3.withPackages (ps: [ ps.pyyaml ])) ];
+              text = ''exec ./bin/download-agent-links "$@"'';
+            }
+          );
+        };
+      });
 
       formatter = eachSystem (system: pkgsFor.${system}.nixfmt-tree);
     };
