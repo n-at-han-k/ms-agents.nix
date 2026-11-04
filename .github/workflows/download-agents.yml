@@ -25,6 +25,9 @@ on:
       budget:
         description: "Max agents each shard publishes per run (API allowance)"
         default: "300"
+      only:
+        description: "Restrict to one source directory (blank = all)"
+        default: ""
       dry_run:
         description: "Download and validate, but upload nothing"
         type: boolean
@@ -149,10 +152,7 @@ jobs:
 
       - name: mirror shard ${{ matrix.shard }}
         env:
-          # A release per agent is ~3 REST calls each. GITHUB_TOKEN is capped
-          # at 1000 requests/hour/repository, which would take days; a PAT
-          # gets 5000/hour. Falls back so the workflow still runs without one.
-          GH_TOKEN: ${{ secrets.MIRROR_TOKEN || secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           ./bin/mirror-agents \
@@ -160,6 +160,7 @@ jobs:
             --shards "${{ matrix.shards }}" \
             --budget "${{ inputs.budget || '300' }}" \
             --out    "partial-${{ matrix.shard }}.json" \
+            ${{ inputs.only && format('--only {0}', inputs.only) || '' }} \
             ${{ inputs.dry_run == true && '--dry-run' || '' }}
 
       - uses: actions/upload-artifact@v4

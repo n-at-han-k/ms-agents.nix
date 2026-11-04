@@ -50,6 +50,9 @@ SOFT404_SHA256 = "52b81c40b14d13fe09b4298ea6773a4ada82b3f49b81c96e8c988b77527731
 PRIMARY_HOST = "https://tmafe.com"
 MIRROR_HOST = "https://tmafemirror.org"
 
+# Mirrored ahead of everything else.
+PRIORITY_DIRS = ("classic-ms-agents",)
+
 
 def log(msg: str) -> None:
     print(msg, file=sys.stderr, flush=True)
@@ -187,6 +190,11 @@ def main() -> int:
     shard = [a for a in agents if shard_of(a, args.shards) == args.shard]
     if args.only:
         shard = [a for a in shard if a["dir"] == args.only]
+    # The original Microsoft-shipped characters are the ones anyone actually
+    # comes looking for, and a budgeted run only gets through a slice, so they
+    # go first rather than waiting behind thousands of fan uploads.
+    shard.sort(key=lambda a: (0 if a["dir"] in PRIORITY_DIRS else 1,
+                              a["dir"], a["name"].lower()))
     if args.limit:
         shard = shard[: args.limit]
 
