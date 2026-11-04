@@ -21,6 +21,8 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  # reading partial manifests off the mirror run's artifacts
+  actions: read
 
 concurrency:
   group: publish-site
@@ -39,10 +41,30 @@ jobs:
         with:
           python-version: "3.12"
 
+      # agents.json is only committed once every shard has finished, so on its
+      # own the gallery would stay empty through a multi-hour mirror run. Each
+      # shard uploads its partial as it completes, so fold those in and the
+      # site reflects whatever has been mirrored so far.
+      - name: fold in in-flight shard results
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          run_id=$(gh run list --workflow=download-agents --limit 1 \
+            --json databaseId -q '.[0].databaseId' 2>/dev/null || true)
+          if [ -n "$run_id" ]; then
+            echo "folding in partials from run $run_id"
+            gh run download "$run_id" --pattern 'partial-*' --dir partials 2>/dev/null || true
+          fi
+          if [ -d partials ] && [ -n "$(find partials -name '*.json' -print -quit)" ]; then
+            ./bin/merge-manifests partials -o agents.json --keep-existing
+          else
+            echo "no partials available; using committed agents.json"
+          fi
+
       - name: generate site
         run: |
-          if [ ! -s agents.json ]; then
-            echo "agents.json is empty -- run download-agents first" >&2
+          if [ "$(python3 -c 'import json;print(len(json.load(open("agents.json"))))')" = "0" ]; then
+            echo "no agents mirrored yet -- nothing to publish" >&2
             exit 1
           fi
           ./bin/generate-site --manifest agents.json --out site
