@@ -48,11 +48,11 @@ jobs:
       - run: pip install --quiet pyyaml
 
       - name: refresh agents.yaml
-        if: inputs.refresh_links != 'false'
+        if: ${{ github.event_name == 'schedule' || inputs.refresh_links }}
         run: ./bin/download-agent-links -o agents.yaml
 
       - name: commit refreshed links
-        if: inputs.refresh_links != 'false'
+        if: ${{ github.event_name == 'schedule' || inputs.refresh_links }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
