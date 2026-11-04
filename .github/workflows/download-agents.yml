@@ -21,7 +21,10 @@ on:
     inputs:
       shards:
         description: "Parallel shards to split the corpus across"
-        default: "40"
+        default: "4"
+      budget:
+        description: "Max agents each shard publishes per run (API allowance)"
+        default: "300"
       dry_run:
         description: "Download and validate, but upload nothing"
         type: boolean
@@ -31,8 +34,12 @@ on:
         type: boolean
         default: true
   schedule:
-    # Monthly: the upstream site adds characters steadily but not quickly.
-    - cron: "23 4 1 * *"
+    # Hourly. A release per agent costs ~2 API writes, and the hourly
+    # allowance is a few thousand requests shared across the whole account, so
+    # the mirror cannot be done in one pass -- it chips away instead. Every run
+    # resumes: already-published agents are established from a single paginated
+    # sweep and cost nothing.
+    - cron: "17 * * * *"
 
 permissions:
   contents: write
@@ -64,7 +71,9 @@ jobs:
         run: ./bin/download-agent-links -o agents.yaml
 
       - name: commit refreshed links
-        if: ${{ github.event_name == 'schedule' || inputs.commit_links }}
+        # Not on the hourly schedule: that would be a commit an hour for a
+        # manifest that rarely changes.
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.commit_links }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -76,11 +85,11 @@ jobs:
       - name: build shard matrix
         id: matrix
         env:
-          SHARDS: ${{ inputs.shards || '40' }}
+          SHARDS: ${{ inputs.shards || '4' }}
         run: |
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import json, os
-          n = int(os.environ.get("SHARDS") or 40)
+          n = int(os.environ.get("SHARDS") or 4)
           # Releases are per source directory, not per shard, so a shard
           # only needs to know which slice of the manifest it owns.
           print("matrix=" + json.dumps([{"shard": i, "shards": n}
@@ -111,7 +120,7 @@ jobs:
       fail-fast: false
       # The upstream host is a hobby server; this is as much politeness as it
       # is staying inside the runner concurrency we actually have.
-      max-parallel: 8
+      max-parallel: 4
       matrix:
         include: ${{ fromJSON(needs.plan.outputs.matrix) }}
     # Each shard streams one file at a time, but a slow upstream plus ~860 MB
@@ -149,6 +158,7 @@ jobs:
           ./bin/mirror-agents \
             --shard  "${{ matrix.shard }}" \
             --shards "${{ matrix.shards }}" \
+            --budget "${{ inputs.budget || '300' }}" \
             --out    "partial-${{ matrix.shard }}.json" \
             ${{ inputs.dry_run == true && '--dry-run' || '' }}
 

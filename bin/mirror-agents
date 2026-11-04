@@ -59,8 +59,32 @@ def run(cmd: list, cwd: Path | None = None) -> subprocess.CompletedProcess:
     return subprocess.run(cmd, capture_output=True, text=True, cwd=cwd)
 
 
+class RateLimited(Exception):
+    """GitHub refused the write because the hourly budget is spent."""
+
+
 def gh(*args: str) -> subprocess.CompletedProcess:
-    return run(["gh", *args])
+    p = run(["gh", *args])
+    if p.returncode != 0 and "rate limit" in (p.stderr or "").lower():
+        raise RateLimited((p.stderr or "").strip()[:160])
+    return p
+
+
+def existing_tags(repo: str) -> set:
+    """Every release tag already published, fetched once.
+
+    Asking per agent costs one request each, so as the mirror fills up most of
+    the hourly budget goes on discovering work that is already done. One
+    paginated sweep is ~1 request per 100 releases instead, which leaves the
+    budget for actual writes.
+    """
+    p = run(["gh", "api", "--paginate", f"/repos/{repo}/releases",
+             "--jq", ".[].tag_name"])
+    if p.returncode != 0:
+        log(f"  could not list releases ({(p.stderr or '').strip()[:100]}); "
+            f"falling back to per-agent checks")
+        return set()
+    return {ln.strip() for ln in p.stdout.splitlines() if ln.strip()}
 
 
 def fallback_urls(url: str) -> list:
@@ -146,6 +170,9 @@ def main() -> int:
     ap.add_argument("--skip-ghcr", action="store_true")
     ap.add_argument("--only", help="restrict to one source directory")
     ap.add_argument("--limit", type=int)
+    ap.add_argument("--budget", type=int,
+                    help="stop after publishing this many, to stay inside the "
+                         "hourly API allowance")
     ap.add_argument("--dry-run", action="store_true",
                     help="download, validate and render, but publish nothing")
     args = ap.parse_args()
@@ -166,15 +193,20 @@ def main() -> int:
     log(f"shard {args.shard}/{args.shards}: {len(shard)} of {len(agents)} agents")
     log(f"  one release per agent; ghcr: {'skipped' if args.skip_ghcr else registry}")
 
+    skip_ghcr = args.skip_ghcr
+    budget = args.budget
+    published = existing_tags(args.repo)
+    log(f"  {len(published)} releases already published")
+
     out: dict = {}
     stats: Counter = Counter()
 
     with tempfile.TemporaryDirectory() as tmp:
-        tmpdir = Path(tmp)
+      tmpdir = Path(tmp)
+      try:
         for i, a in enumerate(shard, 1):
             tag = a["id"]
 
-            have = existing_assets(tag)
             row = {
                 "name": a["name"], "file": a["file"], "image": a["image"],
                 "dir": a["dir"], "release": tag,
@@ -183,11 +215,15 @@ def main() -> int:
                 "upstream": a["url"],
             }
 
-            # Fully published already -- nothing to fetch or upload.
-            if have is not None and a["file"] in have and a["image"] in have:
+            # Already published -- costs nothing to establish, so a resumed
+            # run spends its budget only on what is actually missing.
+            if tag in published:
                 stats["skipped"] += 1
-                out[a["id"]] = {**row, "sha256": None}
                 continue
+
+            if budget is not None and stats["published"] >= budget:
+                log(f"  budget of {budget} reached; stopping cleanly")
+                break
 
             # ORAS needs the upstream filename verbatim; the release needs the
             # published one. Download under the upstream name, rename after.
@@ -206,12 +242,20 @@ def main() -> int:
             row["size"] = size
 
             try:
-                if not args.skip_ghcr and not args.dry_run:
+                if not skip_ghcr and not args.dry_run:
                     ok, err = ghcr_push(f"{registry}/{a['dir']}:{tag}", exact, a["name"])
                     stats["ghcr_pushed" if ok else "ghcr_failed"] += 1
-                    if not ok:
-                        log(f"  [{i}/{len(shard)}] {tag}: ghcr: {err}")
-                    row["ghcr"] = f"{registry}/{a['dir']}:{tag}"
+                    if ok:
+                        row["ghcr"] = f"{registry}/{a['dir']}:{tag}"
+                    else:
+                        # A missing write:packages scope fails identically for
+                        # every agent, so report it once and stop trying rather
+                        # than logging it 39,599 times.
+                        if "permission_denied" in err or "denied" in err:
+                            log(f"  ghcr disabled for this run: {err}")
+                            skip_ghcr = True
+                        else:
+                            log(f"  [{i}/{len(shard)}] {tag}: ghcr: {err}")
 
                 # Thumbnail. A good share of the archive is mislabelled or an
                 # older container, so a failure here is expected and only
@@ -235,7 +279,7 @@ def main() -> int:
                 if args.dry_run:
                     stats["would_publish"] += 1
                 else:
-                    if have is None:
+                    if True:
                         c = gh("release", "create", tag,
                                "--title", a["name"],
                                "--notes",
@@ -257,6 +301,7 @@ def main() -> int:
                         stats["failed"] += 1
                         continue
                     stats["published"] += 1
+                    published.add(tag)
 
                 out[a["id"]] = row
             finally:
@@ -266,6 +311,11 @@ def main() -> int:
             if i % 25 == 0 or i == len(shard):
                 log(f"  [{i}/{len(shard)}] " +
                     "  ".join(f"{k}={v}" for k, v in sorted(stats.items())))
+      except RateLimited as e:
+        # Every further write would fail the same way, and a failed write still
+        # costs a request. Stop and let the next scheduled run resume.
+        log(f"\n  rate limited, stopping: {e}")
+        stats["rate_limited"] = 1
 
     args.out.write_text(json.dumps(out, indent=2, sort_keys=True) + "\n")
     log(f"\nwrote {args.out}: {len(out)} agents  "
