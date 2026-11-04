@@ -1,11 +1,18 @@
 name: download-agents
 
-# Mirrors every character file listed in agents.yaml into content-addressed
-# release assets, then writes the sha256s into agents.json for the flake to pin.
+# Mirrors every character file listed in agents.yaml to two places, then writes
+# the sha256s into agents.json for the flake to pin.
 #
-# Nothing is committed to the repo but manifests -- the ~34 GB of agents lives
-# in releases, so cloning this repo (or using it as a flake input) stays cheap
-# and `nix build .#<agent>` fetches exactly one file.
+#   releases   one per source directory, assets keeping the upstream filename.
+#              A plain anonymous URL, which is what Nix's fetchurl needs.
+#   ghcr.io    one package per directory, one tag per agent, with the exact
+#              original filename in the layer annotation. Browsable and
+#              correctly named, but token-gated, so it is the front door
+#              rather than the fetcher.
+#
+# Nothing is committed to the repo but manifests -- the ~52 GB of characters
+# lives in releases and packages, so cloning this repo (or using it as a flake
+# input) stays cheap and `nix build .#<agent>` fetches exactly one file.
 
 on:
   workflow_dispatch:
@@ -27,6 +34,8 @@ on:
 
 permissions:
   contents: write
+  # ghcr.io pushes; the default token can publish packages only if asked.
+  packages: write
 
 concurrency:
   # Two of these running at once would fight over the same release assets.
@@ -69,8 +78,9 @@ jobs:
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import json, os
           n = int(os.environ.get("SHARDS") or 40)
-          print("matrix=" + json.dumps([{"shard": i, "shards": n,
-                                         "release": f"blobs-{i:02d}"}
+          # Releases are per source directory, not per shard, so a shard
+          # only needs to know which slice of the manifest it owns.
+          print("matrix=" + json.dumps([{"shard": i, "shards": n}
                                         for i in range(n)]))
           PY
 
@@ -105,16 +115,23 @@ jobs:
 
       - run: pip install --quiet pyyaml
 
+      - name: install oras
+        uses: oras-project/setup-oras@v1
+
+      - name: log in to ghcr.io
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" \
+            | oras login ghcr.io -u "${{ github.actor }}" --password-stdin
+
       - name: mirror shard ${{ matrix.shard }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           ./bin/mirror-agents \
-            --release "${{ matrix.release }}" \
-            --shard   "${{ matrix.shard }}" \
-            --shards  "${{ matrix.shards }}" \
-            --out     "partial-${{ matrix.shard }}.json" \
+            --shard  "${{ matrix.shard }}" \
+            --shards "${{ matrix.shards }}" \
+            --out    "partial-${{ matrix.shard }}.json" \
             ${{ inputs.dry_run == true && '--dry-run' || '' }}
 
       - uses: actions/upload-artifact@v4

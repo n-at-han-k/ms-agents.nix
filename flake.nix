@@ -44,6 +44,7 @@
               pkgs.playwright-driver.browsers
               pkgs.curl
               pkgs.gh
+              pkgs.oras
               pkgs.git
               pkgs.git-lfs
               pkgs.yq-go
