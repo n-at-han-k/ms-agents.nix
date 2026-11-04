@@ -73,21 +73,31 @@ def gh(*args: str) -> subprocess.CompletedProcess:
     return p
 
 
-def existing_tags(repo: str) -> set:
-    """Every release tag already published, fetched once.
+def published_assets(repo: str) -> dict:
+    """Map every existing release tag to the asset names it holds.
 
-    Asking per agent costs one request each, so as the mirror fills up most of
-    the hourly budget goes on discovering work that is already done. One
-    paginated sweep is ~1 request per 100 releases instead, which leaves the
-    budget for actual writes.
+    Fetched in one paginated sweep rather than a request per agent: as the
+    mirror fills up, asking individually spends most of the hourly allowance
+    discovering work that is already done.
+
+    The listing already carries each release's assets, so recording them costs
+    nothing extra -- and the tag alone is not enough to call an agent done. A
+    budget exhausted between `create` and `upload` leaves an empty release, and
+    keying resume on the tag would skip it forever.
     """
-    p = run(["gh", "api", "--paginate", f"/repos/{repo}/releases",
-             "--jq", ".[].tag_name"])
+    p = run(["gh", "api", "--paginate", f"/repos/{repo}/releases", "--jq",
+             '.[] | .tag_name + "\t" + ([.assets[].name] | join(","))'])
     if p.returncode != 0:
         log(f"  could not list releases ({(p.stderr or '').strip()[:100]}); "
-            f"falling back to per-agent checks")
-        return set()
-    return {ln.strip() for ln in p.stdout.splitlines() if ln.strip()}
+            f"treating everything as unpublished")
+        return {}
+    out = {}
+    for line in p.stdout.splitlines():
+        if not line.strip():
+            continue
+        tag, _, assets = line.partition("\t")
+        out[tag] = {a for a in assets.split(",") if a}
+    return out
 
 
 def fallback_urls(url: str) -> list:
@@ -203,8 +213,9 @@ def main() -> int:
 
     skip_ghcr = args.skip_ghcr
     budget = args.budget
-    published = existing_tags(args.repo)
-    log(f"  {len(published)} releases already published")
+    published = published_assets(args.repo)
+    complete = sum(1 for v in published.values() if v)
+    log(f"  {len(published)} releases exist, {complete} holding assets")
 
     out: dict = {}
     stats: Counter = Counter()
@@ -223,9 +234,11 @@ def main() -> int:
                 "upstream": a["url"],
             }
 
-            # Already published -- costs nothing to establish, so a resumed
-            # run spends its budget only on what is actually missing.
-            if tag in published:
+            # Done means the character file is actually on the release, not
+            # merely that the tag exists. A thumbnail may legitimately be
+            # absent -- a good share of the archive cannot be decoded -- so
+            # only the character file gates this.
+            if a["file"] in published.get(tag, ()):
                 stats["skipped"] += 1
                 continue
 
@@ -309,7 +322,8 @@ def main() -> int:
                         stats["failed"] += 1
                         continue
                     stats["published"] += 1
-                    published.add(tag)
+                    published[tag] = {a["file"]} | (
+                        {a["image"]} if row.get("thumbnail") else set())
 
                 out[a["id"]] = row
             finally:
