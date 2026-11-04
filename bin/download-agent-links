@@ -12,6 +12,11 @@ and unions the results:
   3. /search            - every directory in one page. Carries stale entries the
      live indexes have dropped, so it is a supplement, never the sole source.
 
+This script only records what the site states -- name, filename, directory,
+download URL, and the size/date the indexes carry. Every derived value (nix
+attribute names, release asset names, hashes) belongs to the packaging stage,
+which is the only place that can know them.
+
 No source is trustworthy alone: tmafe.com answers a missing file with a
 2175-byte HTML "Error 404" page under HTTP 200, and the indexes do list files
 that return exactly that. `--validate` HEADs each URL to sort live from dead
@@ -127,46 +132,6 @@ def agent_url(directory: str, filename: str, host: str = PRIMARY) -> str:
     return f"{host}/{directory}/{quote(filename, safe='')}"
 
 
-# An OCI tag is capped at 128 chars, and some uploads here have 245-character
-# names, so slugs are truncated well short of it to leave room for suffixes.
-SLUG_MAX = 100
-
-
-def slug(name: str) -> str:
-    """Filename -> nix-attribute-safe name. Lossy, so callers must dedupe."""
-    stem = re.sub(r"\.(%s)$" % "|".join(EXTS), "", name, flags=re.I)
-    s = re.sub(r"[^a-zA-Z0-9]+", "-", stem).strip("-").lower()
-    return (s[:SLUG_MAX].rstrip("-") or "agent")
-
-
-def gh_asset_name(filename: str, digest: str) -> str:
-    """Filename -> release asset name: readable, and unique by construction.
-
-    GitHub only preserves [A-Za-z0-9._-] in an asset name and rewrites any
-    other run to a dot, which both mangles names and collides them (`Merlin
-    (1).acs` and `Merlin.1.acs` land on the same asset). Substituting
-    underscores ourselves keeps the name legible and means GitHub has nothing
-    left to rewrite, so what we record is what the download URL carries.
-
-    The short digest is over `dir/filename`, which is already unique, so this
-    needs no collision pass and a name never shifts between runs.
-    """
-    stem, dot, ext = filename.rpartition(".")
-    if not dot:
-        stem, ext = filename, "acs"
-    stem = re.sub(r"_{2,}", "_", re.sub(r"[^A-Za-z0-9._-]+", "_", stem))
-    stem = stem.strip("._-")[:120].strip("._-")
-    ext = re.sub(r"[^A-Za-z0-9]+", "", ext).lower() or "acs"
-    return f"{stem or 'agent'}-{digest}.{ext}"
-
-
-def assign_assets(agents: list) -> None:
-    """Give every agent its release asset name."""
-    for a in agents:
-        digest = hashlib.sha256(f"{a['dir']}/{a['file']}".encode()).hexdigest()[:8]
-        a["asset"] = gh_asset_name(a["file"], digest)
-
-
 class Harvest:
     """Accumulates agents keyed by (dir, filename)."""
 
@@ -188,6 +153,10 @@ class Harvest:
             entry = {
                 "dir": directory,
                 "file": filename,
+                # The character's name as listed, i.e. the filename without
+                # its extension. The packaging stage derives everything else.
+                "name": re.sub(r"\.(%s)$" % "|".join(EXTS), "", filename,
+                               flags=re.I),
                 "url": agent_url(directory, filename, host),
                 "size": None,
                 "date": None,
@@ -309,26 +278,6 @@ def yaml_str(s: str) -> str:
     return json.dumps(s, ensure_ascii=False)
 
 
-def assign_ids(agents: list) -> None:
-    """Stable, collision-free nix attribute names.
-
-    Filenames repeat across directories and often differ only by punctuation, so
-    a bare slug collides a lot. Disambiguate with the directory, then with a
-    hash of the full path -- never an ordinal, which would churn between runs.
-    """
-    taken: set = set()
-    for a in sorted(agents, key=lambda x: (x["dir"], x["file"])):
-        base = slug(a["file"])
-        for cand in (base, f"{base}-{slug(a['dir'])}"):
-            if cand not in taken:
-                a["id"] = cand
-                break
-        else:
-            digest = hashlib.sha256(f"{a['dir']}/{a['file']}".encode()).hexdigest()[:8]
-            a["id"] = f"{base}-{digest}"
-        taken.add(a["id"])
-
-
 def write_yaml(path: Path, agents: list, validated: bool) -> None:
     total = sum(a["size"] or 0 for a in agents)
     sized = [a for a in agents if a["size"]]
@@ -355,11 +304,10 @@ def write_yaml(path: Path, agents: list, validated: bool) -> None:
         out.append(f"    {yaml_str(d)}: {by_dir[d]}")
     out.append("agents:")
     for a in agents:
-        out.append(f"  - id: {yaml_str(a['id'])}")
+        out.append(f"  - name: {yaml_str(a['name'])}")
         out.append(f"    file: {yaml_str(a['file'])}")
         out.append(f"    dir: {yaml_str(a['dir'])}")
         out.append(f"    url: {yaml_str(a['url'])}")
-        out.append(f"    asset: {yaml_str(a['asset'])}")
         if a["size"] is not None:
             out.append(f"    size: {a['size']}")
         if a["date"]:
@@ -407,8 +355,6 @@ def main() -> int:
         log("\nno agents found -- site layout probably changed")
         return 1
 
-    assign_ids(agents)
-    assign_assets(agents)
 
     if args.validate:
         validate(agents, args.jobs)

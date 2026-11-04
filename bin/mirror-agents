@@ -28,6 +28,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -180,6 +181,71 @@ def ghcr_push(ref: str, path: Path, filename: str) -> tuple[bool, str]:
 
 # --- main -------------------------------------------------------------------
 
+# --- derived names ----------------------------------------------------------
+#
+# agents.yaml records only what tmafe.com states. Everything below is this
+# stage's to invent, and is computed over the whole manifest before sharding so
+# that a name never depends on which shard happens to see it.
+
+# An OCI tag is capped at 128 characters and some uploads here have 245-char
+# names, so slugs stop well short to leave room for a suffix.
+SLUG_MAX = 100
+
+EXT_RE = re.compile(r"\.(acs|acd|acf)$", re.I)
+
+
+def slug(filename: str) -> str:
+    """Filename -> nix-attribute-safe name. Lossy, so callers must dedupe."""
+    stem = EXT_RE.sub("", filename)
+    s = re.sub(r"[^a-zA-Z0-9]+", "-", stem).strip("-").lower()
+    return s[:SLUG_MAX].rstrip("-") or "agent"
+
+
+def assign_ids(agents: list) -> None:
+    """Stable, collision-free nix attribute names and OCI tags.
+
+    Filenames repeat across directories and often differ only in punctuation,
+    so a bare slug collides often. Disambiguate with the directory, then with a
+    digest of the source path -- never an ordinal, which would churn between
+    runs.
+    """
+    taken: set = set()
+    for a in sorted(agents, key=lambda x: (x["dir"], x["file"])):
+        base = slug(a["file"])
+        for cand in (base, f"{base}-{slug(a['dir'])}"):
+            if cand not in taken:
+                a["id"] = cand
+                break
+        else:
+            a["id"] = f"{base}-{path_digest(a)}"
+        taken.add(a["id"])
+
+
+def path_digest(agent: dict) -> str:
+    return hashlib.sha256(
+        f"{agent['dir']}/{agent['file']}".encode()).hexdigest()[:8]
+
+
+def assign_assets(agents: list) -> None:
+    """Release asset names: readable, and unique by construction.
+
+    GitHub preserves only [A-Za-z0-9._-] in an asset name and rewrites any
+    other run to a dot, which both mangles names and collides them (`Merlin
+    (1).acs` and `Merlin.1.acs` would land on one asset). Substituting
+    underscores here leaves GitHub nothing to rewrite, so the recorded name is
+    the one the download URL carries. The digest is over the already-unique
+    source path, so no collision pass is needed.
+    """
+    for a in agents:
+        stem, dot, ext = a["file"].rpartition(".")
+        if not dot:
+            stem, ext = a["file"], "acs"
+        stem = re.sub(r"_{2,}", "_", re.sub(r"[^A-Za-z0-9._-]+", "_", stem))
+        stem = stem.strip("._-")[:120].strip("._-") or "agent"
+        ext = re.sub(r"[^A-Za-z0-9]+", "", ext).lower() or "acs"
+        a["asset"] = f"{stem}-{path_digest(a)}.{ext}"
+
+
 def shard_of(agent: dict, shards: int) -> int:
     """Stable shard, keyed on the source path so a re-harvest in a different
     order still sends each agent to the same shard and the run resumes."""
@@ -212,6 +278,10 @@ def main() -> int:
         args.skip_ghcr = True
 
     agents = yaml.safe_load(args.manifest.read_text())["agents"]
+    # Derive over the full manifest first: ids must be unique across every
+    # shard, not merely within this one.
+    assign_ids(agents)
+    assign_assets(agents)
     shard = [a for a in agents if shard_of(a, args.shards) == args.shard]
     if args.limit:
         shard = shard[: args.limit]
