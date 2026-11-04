@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+"""Fold the mirror shards' partial manifests into agents.json.
+
+agents.json is what the flake reads: one entry per agent, carrying the sha256
+that `fetchurl` pins and the release asset to pull it from. Shards are merged
+rather than concatenated so a re-run of a single failed shard updates only its
+own agents and leaves the rest of the manifest intact.
+
+  merge-manifests artifacts/ -o agents.json
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from pathlib import Path
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("inputs", nargs="+", type=Path,
+                    help="partial manifests, or directories holding them")
+    ap.add_argument("-o", "--out", type=Path, default=Path("agents.json"))
+    ap.add_argument("--keep-existing", action="store_true",
+                    help="start from the committed agents.json instead of empty, "
+                         "so a partial re-run doesn't drop untouched agents")
+    args = ap.parse_args()
+
+    merged: dict[str, dict] = {}
+    if args.keep_existing and args.out.exists():
+        merged = json.loads(args.out.read_text())
+        print(f"starting from {len(merged)} existing agents", file=sys.stderr)
+
+    files: list[Path] = []
+    for src in args.inputs:
+        files.extend(sorted(src.rglob("*.json")) if src.is_dir() else [src])
+
+    added = 0
+    for f in files:
+        try:
+            part = json.loads(f.read_text())
+        except json.JSONDecodeError as e:
+            print(f"  ! {f}: {e}", file=sys.stderr)
+            continue
+        added += len(part)
+        merged.update(part)
+        print(f"  {f}: {len(part)} agents", file=sys.stderr)
+
+    if not merged:
+        print("nothing merged -- every shard must have failed", file=sys.stderr)
+        return 1
+
+    args.out.write_text(json.dumps(merged, indent=2, sort_keys=True) + "\n")
+    total = sum(a.get("size", 0) for a in merged.values())
+    blobs = {a["sha256"] for a in merged.values()}
+    print(f"\nwrote {args.out}: {len(merged)} agents from {len(files)} shards "
+          f"({added} rows), {len(blobs)} distinct blobs, {total / 1e9:.1f} GB",
+          file=sys.stderr)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

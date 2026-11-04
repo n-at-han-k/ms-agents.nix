@@ -1,0 +1,152 @@
+name: download-agents
+
+# Mirrors every character file listed in agents.yaml into content-addressed
+# release assets, then writes the sha256s into agents.json for the flake to pin.
+#
+# Nothing is committed to the repo but manifests -- the ~34 GB of agents lives
+# in releases, so cloning this repo (or using it as a flake input) stays cheap
+# and `nix build .#<agent>` fetches exactly one file.
+
+on:
+  workflow_dispatch:
+    inputs:
+      shards:
+        description: "Parallel shards to split the corpus across"
+        default: "40"
+      dry_run:
+        description: "Download and validate, but upload nothing"
+        type: boolean
+        default: false
+      refresh_links:
+        description: "Re-harvest agents.yaml from tmafe.com first"
+        type: boolean
+        default: true
+  schedule:
+    # Monthly: the upstream site adds characters steadily but not quickly.
+    - cron: "23 4 1 * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  # Two of these running at once would fight over the same release assets.
+  group: download-agents
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install --quiet pyyaml
+
+      - name: refresh agents.yaml
+        if: inputs.refresh_links != 'false'
+        run: ./bin/download-agent-links -o agents.yaml
+
+      - name: commit refreshed links
+        if: inputs.refresh_links != 'false'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add agents.yaml
+          git diff --cached --quiet && echo "no link changes" && exit 0
+          git commit -m "agents.yaml: refresh links from tmafe.com"
+          git push
+
+      - name: build shard matrix
+        id: matrix
+        env:
+          SHARDS: ${{ inputs.shards || '40' }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+          n = int(os.environ.get("SHARDS") or 40)
+          print("matrix=" + json.dumps([{"shard": i, "shards": n,
+                                         "release": f"blobs-{i:02d}"}
+                                        for i in range(n)]))
+          PY
+
+      - name: report plan
+        run: |
+          python3 - <<'PY'
+          import yaml
+          d = yaml.safe_load(open("agents.yaml"))
+          s = d["stats"]
+          print(f"{s['count']} agents, {s['total_human']} listed upstream")
+          PY
+
+  mirror:
+    needs: plan
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      # The upstream host is a hobby server; this is as much politeness as it
+      # is staying inside the runner concurrency we actually have.
+      max-parallel: 8
+      matrix:
+        include: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    # Each shard streams one file at a time, but a slow upstream plus ~860 MB
+    # of uploads still wants room.
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install --quiet pyyaml
+
+      - name: mirror shard ${{ matrix.shard }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          ./bin/mirror-agents \
+            --release "${{ matrix.release }}" \
+            --shard   "${{ matrix.shard }}" \
+            --shards  "${{ matrix.shards }}" \
+            --out     "partial-${{ matrix.shard }}.json" \
+            ${{ inputs.dry_run == true && '--dry-run' || '' }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: partial-${{ matrix.shard }}
+          path: partial-${{ matrix.shard }}.json
+          retention-days: 7
+
+  manifest:
+    needs: mirror
+    # Fold in whatever shards did succeed; a single flaky shard shouldn't cost
+    # us the whole run's hashes.
+    if: ${{ always() && inputs.dry_run != true }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: partials
+          pattern: partial-*
+          merge-multiple: true
+
+      - name: merge into agents.json
+        run: ./bin/merge-manifests partials -o agents.json --keep-existing
+
+      - name: commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash
+          git add agents.json
+          git diff --cached --quiet && echo "no manifest changes" && exit 0
+          git commit -m "agents.json: mirror $(python3 -c 'import json;print(len(json.load(open("agents.json"))))') agents"
+          git push

@@ -1,0 +1,231 @@
+#!/usr/bin/env python3
+"""Mirror one shard of agents.yaml into a GitHub release, content-addressed.
+
+Streams each agent through a temp file -- download, validate, hash, upload,
+delete -- so a shard needs megabytes of disk, not gigabytes. Assets are named
+`<sha256>.acs`, which makes the whole thing idempotent: an asset already in the
+release is never re-uploaded, so a timed-out job just gets re-run.
+
+Writes a partial manifest (id -> sha256 + asset url + size) that the workflow's
+merge step folds into agents.json, which is what the flake actually reads.
+
+  mirror-agents --shard 0 --shards 20 --release blobs-00
+  mirror-agents --shard 0 --shards 20 --release blobs-00 --dry-run
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+import subprocess
+import sys
+import tempfile
+import time
+import urllib.error
+import urllib.request
+from pathlib import Path
+
+import yaml
+
+UA = "ms-agents.nix/1.0 (+https://github.com/n-at-han-k/ms-agents.nix)"
+
+# See bin/download-agent-links: tmafe.com serves a fixed 2175-byte HTML page
+# under HTTP 200 for anything missing.
+SOFT404_SHA256 = "52b81c40b14d13fe09b4298ea6773a4ada82b3f49b81c96e8c988b77527731bb"
+ACS_MAGIC = bytes.fromhex("c3abcdab")
+
+MIRROR_HOST = "https://tmafemirror.org"
+PRIMARY_HOST = "https://tmafe.com"
+
+
+def log(msg: str) -> None:
+    print(msg, file=sys.stderr, flush=True)
+
+
+def gh(*args: str, check: bool = True) -> subprocess.CompletedProcess:
+    return subprocess.run(["gh", *args], capture_output=True, text=True, check=check)
+
+
+def fallback_urls(url: str) -> list[str]:
+    """Primary URL, then the same path on the other host."""
+    urls = [url]
+    if url.startswith(PRIMARY_HOST):
+        urls.append(MIRROR_HOST + url[len(PRIMARY_HOST):])
+    elif url.startswith(MIRROR_HOST):
+        urls.append(PRIMARY_HOST + url[len(MIRROR_HOST):])
+    return urls
+
+
+def download(url: str, dest: Path, *, retries: int = 3) -> tuple[str, int] | None:
+    """Fetch to dest, hashing as we stream. None if every host/attempt failed."""
+    for candidate in fallback_urls(url):
+        for attempt in range(1, retries + 1):
+            digest = hashlib.sha256()
+            size = 0
+            req = urllib.request.Request(candidate, headers={"User-Agent": UA})
+            try:
+                with urllib.request.urlopen(req, timeout=300) as r, dest.open("wb") as f:
+                    while chunk := r.read(1 << 20):
+                        digest.update(chunk)
+                        size += len(chunk)
+                        f.write(chunk)
+            except (urllib.error.URLError, OSError, EOFError) as e:
+                if attempt == retries:
+                    log(f"      ! {candidate}: {e}")
+                else:
+                    time.sleep(2 * attempt)
+                continue
+            return digest.hexdigest(), size
+    return None
+
+
+def validate(path: Path, sha: str, size: int, filename: str) -> str | None:
+    """None if the bytes look like a real agent, else why they don't."""
+    if sha == SOFT404_SHA256:
+        return "soft-404 page"
+    if size == 0:
+        return "empty"
+    if filename.lower().endswith(".acs"):
+        with path.open("rb") as f:
+            if f.read(4) != ACS_MAGIC:
+                return "bad magic (not an .acs)"
+    return None
+
+
+def existing_assets(release: str) -> set[str]:
+    """Asset names already in the release; empty set if it doesn't exist yet."""
+    p = gh("release", "view", release, "--json", "assets", check=False)
+    if p.returncode != 0:
+        return set()
+    try:
+        return {a["name"] for a in json.loads(p.stdout).get("assets") or []}
+    except (json.JSONDecodeError, KeyError):
+        return set()
+
+
+def ensure_release(release: str, dry_run: bool) -> None:
+    if gh("release", "view", release, check=False).returncode == 0:
+        return
+    if dry_run:
+        log(f"  [dry-run] would create release {release}")
+        return
+    gh("release", "create", release,
+       "--title", f"Agent blobs ({release})",
+       "--notes", "Content-addressed Microsoft Agent character files mirrored "
+                  "from tmafe.com. Asset names are the file's sha256. "
+                  "Consumed by this repo's flake; not meant to be browsed.")
+    log(f"  created release {release}")
+
+
+def asset_url(repo: str, release: str, name: str) -> str:
+    return f"https://github.com/{repo}/releases/download/{release}/{name}"
+
+
+def shard_of(agent: dict, shards: int) -> int:
+    """Stable shard for an agent, keyed on filename + size rather than position.
+
+    Two things fall out of this. Duplicate content -- the same character listed
+    under several directories, which is most of the corpus -- shares a filename
+    and size, so it lands in one shard and the content-addressed skip actually
+    collapses it instead of uploading the same bytes to several releases. And
+    the assignment survives agents.yaml being re-harvested in a different
+    order, so a re-run resumes rather than reshuffling every asset.
+    """
+    key = f"{agent['file']}:{agent.get('size') or 0}".encode()
+    return int.from_bytes(hashlib.sha256(key).digest()[:8], "big") % shards
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--manifest", type=Path, default=Path("agents.yaml"))
+    ap.add_argument("--release", required=True, help="release tag to upload into")
+    ap.add_argument("--shard", type=int, default=0)
+    ap.add_argument("--shards", type=int, default=1)
+    ap.add_argument("--out", type=Path, default=Path("partial.json"))
+    ap.add_argument("--repo", default=os.environ.get("GITHUB_REPOSITORY",
+                                                     "n-at-han-k/ms-agents.nix"))
+    ap.add_argument("--limit", type=int, help="stop after N agents (smoke test)")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="download and validate, but never upload")
+    args = ap.parse_args()
+
+    data = yaml.safe_load(args.manifest.read_text())
+    agents = data["agents"]
+    shard = [a for a in agents if shard_of(a, args.shards) == args.shard]
+    if args.limit:
+        shard = shard[: args.limit]
+
+    log(f"shard {args.shard}/{args.shards}: {len(shard)} of {len(agents)} agents "
+        f"-> release {args.release}")
+
+    ensure_release(args.release, args.dry_run)
+    have = existing_assets(args.release)
+    log(f"  release already holds {len(have)} assets")
+
+    out: dict[str, dict] = {}
+    stats = {"uploaded": 0, "skipped": 0, "failed": 0, "invalid": 0, "bytes": 0}
+
+    with tempfile.TemporaryDirectory() as tmp:
+        scratch = Path(tmp) / "blob"
+        for i, a in enumerate(shard, 1):
+            got = download(a["url"], scratch)
+            if got is None:
+                stats["failed"] += 1
+                continue
+            sha, size = got
+
+            why = validate(scratch, sha, size, a["file"])
+            if why:
+                log(f"  [{i}/{len(shard)}] {a['id']}: {why}")
+                stats["invalid"] += 1
+                scratch.unlink(missing_ok=True)
+                continue
+
+            name = f"{sha}.acs"
+            if name in have:
+                stats["skipped"] += 1
+            elif args.dry_run:
+                stats["uploaded"] += 1
+            else:
+                # --clobber keeps a half-finished upload from a killed job from
+                # wedging the retry.
+                p = gh("release", "upload", args.release,
+                       f"{scratch}#{name}", "--clobber", check=False)
+                if p.returncode != 0:
+                    log(f"  [{i}/{len(shard)}] {a['id']}: upload failed: "
+                        f"{p.stderr.strip()[:160]}")
+                    stats["failed"] += 1
+                    scratch.unlink(missing_ok=True)
+                    continue
+                have.add(name)
+                stats["uploaded"] += 1
+
+            stats["bytes"] += size
+            out[a["id"]] = {
+                "file": a["file"],
+                "dir": a["dir"],
+                "size": size,
+                "sha256": sha,
+                "release": args.release,
+                "asset": name,
+                "url": asset_url(args.repo, args.release, name),
+                "upstream": a["url"],
+            }
+            scratch.unlink(missing_ok=True)
+
+            if i % 50 == 0 or i == len(shard):
+                log(f"  [{i}/{len(shard)}] " +
+                    "  ".join(f"{k}={v}" for k, v in stats.items()))
+
+    args.out.write_text(json.dumps(out, indent=2, sort_keys=True) + "\n")
+    log(f"\nwrote {args.out}: {len(out)} agents  "
+        + "  ".join(f"{k}={v}" for k, v in stats.items()))
+    # A shard that resolved nothing means something systemic broke.
+    return 1 if not out and shard else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
