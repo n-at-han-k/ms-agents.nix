@@ -1,0 +1,396 @@
+#!/usr/bin/env python3
+"""Harvest every Microsoft Agent download link from tmafe.com into agents.yaml.
+
+The site exposes its directories three different ways, so this walks all of them
+and unions the results:
+
+  1. `_f(...)` indexes  - the real listings. index.php ships the whole directory
+     as one JS call per file, `_f(name, size, date, url, rdate)`, and renders the
+     table client-side. Authoritative, and the only source carrying sizes.
+  2. `find-*.php`       - flat <a href> listings on the mirror, for the four
+     directories whose index.php isn't an `_f` page.
+  3. /search            - every directory in one page. Carries stale entries the
+     live indexes have dropped, so it is a supplement, never the sole source.
+
+No source is trustworthy alone: tmafe.com answers a missing file with a
+2175-byte HTML "Error 404" page under HTTP 200, and the indexes do list files
+that return exactly that. `--validate` HEADs each URL to sort live from dead
+without downloading 56GB.
+
+  download-agent-links                 # harvest -> agents.yaml
+  download-agent-links --validate      # ... and HEAD every URL (slow)
+  download-agent-links --validate -j32 # ... faster, less polite
+"""
+
+from __future__ import annotations
+
+import argparse
+import concurrent.futures as cf
+import datetime as dt
+import gzip
+import hashlib
+import json
+import re
+import sys
+import urllib.error
+import urllib.request
+from collections import Counter
+from pathlib import Path
+from urllib.parse import quote, unquote, urljoin
+
+UA = "ms-agents.nix/1.0 (+https://github.com/n-at-han-k/ms-agents.nix)"
+
+PRIMARY, MIRROR = "https://tmafe.com", "https://tmafemirror.org"
+
+# The 404-under-200 page. Fixed bytes, so the hash is the surest tell; the
+# length is what a HEAD can see without pulling a body.
+SOFT404_SHA256 = "52b81c40b14d13fe09b4298ea6773a4ada82b3f49b81c96e8c988b77527731bb"
+SOFT404_LEN = 2175
+
+# Every real .acs opens with this (0xABCDABC3 LE); an HTML error page does not.
+ACS_MAGIC = bytes.fromhex("c3abcdab")
+
+# Directory -> hosts to try in order. classic-ms-agents only indexes on the
+# mirror; the rest answer on the apex and soft-404 on the mirror.
+INDEX_DIRS = [
+    ("classic-ms-agents", [MIRROR, PRIMARY]),
+    ("ms-agent-hosting", [PRIMARY, MIRROR]),
+    ("ms-agent-hosting-2", [PRIMARY, MIRROR]),
+    ("ms-agent-hosting-3", [PRIMARY, MIRROR]),
+    ("ms-agent-hosting-4", [PRIMARY, MIRROR]),
+    ("ms-agent-hosting-5", [PRIMARY, MIRROR]),
+    ("ms-agent-hosting-6", [PRIMARY, MIRROR]),
+    ("ms-agent-hosting-7", [PRIMARY, MIRROR]),
+    ("ms-agent-hosting-8", [PRIMARY, MIRROR]),
+    ("ms-agent-hosting-9", [PRIMARY, MIRROR]),
+    ("char", [PRIMARY, MIRROR]),
+]
+
+# Flat <a href> listings, for the directories index.php won't enumerate.
+FIND_PAGES = [f"{MIRROR}/find-ms-agent-hosting{n}.php" for n in ("", "-2", "-3", "-4")]
+
+SEARCH_PAGE = f"{PRIMARY}/search"
+
+# Only these hosts serve agents; anything else is a link that quotes a URL
+# (archive.org save links, ucsh-preview handlers) rather than hosting one.
+ALLOWED_HOSTS = {"tmafe.com", "www.tmafe.com", "tmafemirror.org"}
+
+EXTS = ("acs", "acd", "acf")
+
+# _f('name',size,'date','url',rdate) -- single-quoted JS, so \' and \\ occur.
+RE_F = re.compile(
+    r"_f\('((?:\\.|[^'\\])*)',\s*(\d+),\s*'((?:\\.|[^'\\])*)',"
+    r"\s*'((?:\\.|[^'\\])*)',\s*(\d+)\)"
+)
+RE_HREF = re.compile(r"""href\s*=\s*["']([^"']+?\.(?:%s))["']""" % "|".join(EXTS), re.I)
+
+
+def log(msg: str) -> None:
+    print(msg, file=sys.stderr, flush=True)
+
+
+def unescape_js(s: str) -> str:
+    return re.sub(r"\\(.)", r"\1", s)
+
+
+def human(n: float) -> str:
+    for unit in ("B", "KiB", "MiB", "GiB", "TiB"):
+        if n < 1024 or unit == "TiB":
+            return f"{n} B" if unit == "B" else f"{n:.1f} {unit}"
+        n /= 1024
+    return str(n)
+
+
+def get(url: str, timeout: int = 180, retries: int = 3) -> bytes | None:
+    """GET a page, transparently gunzipping. None on failure or soft-404."""
+    req = urllib.request.Request(
+        url, headers={"User-Agent": UA, "Accept-Encoding": "gzip"}
+    )
+    for attempt in range(1, retries + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                body = r.read()
+                if r.headers.get("Content-Encoding") == "gzip":
+                    body = gzip.decompress(body)
+        except (urllib.error.URLError, OSError, EOFError) as e:
+            if attempt == retries:
+                log(f"    ! {url}: {e}")
+                return None
+            continue
+        if hashlib.sha256(body).hexdigest() == SOFT404_SHA256:
+            return None
+        return body
+    return None
+
+
+def agent_url(directory: str, filename: str, host: str = PRIMARY) -> str:
+    return f"{host}/{directory}/{quote(filename, safe='')}"
+
+
+def slug(name: str) -> str:
+    """Filename -> nix-attribute-safe name. Lossy, so callers must dedupe."""
+    stem = re.sub(r"\.(%s)$" % "|".join(EXTS), "", name, flags=re.I)
+    s = re.sub(r"[^a-zA-Z0-9]+", "-", stem).strip("-").lower()
+    return s or "agent"
+
+
+class Harvest:
+    """Accumulates agents keyed by (dir, filename)."""
+
+    def __init__(self) -> None:
+        self.agents: dict[tuple[str, str], dict] = {}
+        self.sources: Counter = Counter()
+
+    def add(self, directory, filename, *, size=None, date=None,
+            mtime=None, host=PRIMARY, source="") -> None:
+        filename = filename.strip()
+        directory = directory.strip("/")
+        if not filename or filename.startswith("."):
+            return
+        if not filename.lower().endswith(EXTS):
+            return
+        key = (directory, filename)
+        entry = self.agents.get(key)
+        if entry is None:
+            entry = {
+                "dir": directory,
+                "file": filename,
+                "url": agent_url(directory, filename, host),
+                "size": None,
+                "date": None,
+                "mtime": None,
+            }
+            self.agents[key] = entry
+            self.sources[source] += 1
+        # An _f index knows the size; a flat href listing does not. Never let a
+        # later metadata-free sighting blank out what we already have.
+        if size is not None and entry["size"] is None:
+            entry["size"] = size
+        if date and not entry["date"]:
+            entry["date"] = date
+        if mtime is not None and entry["mtime"] is None:
+            entry["mtime"] = mtime
+
+    def scrape_index(self, directory: str, hosts: list) -> None:
+        """Pull an `_f(...)` index, falling back across hosts."""
+        for host in hosts:
+            url = f"{host}/{directory}/"
+            body = get(url)
+            if body is None:
+                continue
+            text = body.decode("utf-8", "replace")
+            rows = RE_F.findall(text)
+            if rows:
+                for raw_name, size, date, raw_href, mtime in rows:
+                    name = unescape_js(raw_name)
+                    href = unescape_js(raw_href)
+                    # `url` is normally the bare filename, but a few rows point
+                    # out of the directory -- trust it when it looks like a path.
+                    tgt_dir, fname = directory, name
+                    if "/" in href:
+                        tgt_dir, fname = href.rsplit("/", 1)
+                        fname = unquote(fname)
+                        tgt_dir = tgt_dir.split("://")[-1].split("/", 1)[-1]
+                    self.add(tgt_dir, fname, size=int(size), date=date,
+                             mtime=int(mtime), host=host, source=f"index:{directory}")
+                log(f"  {directory:22} {len(rows):>6} files  ({host})")
+                return
+            # Not an _f page (5/6/9 render a capped "latest" list) -- take the
+            # absolute links it does show.
+            n = self._scrape_hrefs(text, url, f"index:{directory}")
+            log(f"  {directory:22} {n:>6} links  ({host}, no _f index)")
+            return
+        log(f"  {directory:22} {'':>6}  UNREACHABLE")
+
+    def _scrape_hrefs(self, text: str, base: str, source: str) -> int:
+        """Harvest <a href> agent links, ignoring links that merely quote one.
+
+        The browse pages wrap each file in an archive.org `/save/<full url>`
+        link and a `ucsh-preview://agent/?url=<full url>` link. Both embed a
+        real agent URL, so a naive match yields a bogus directory like
+        `save/https://tmafe.com/char`. Only same-site hosts count, and a
+        nested scheme means the URL is an argument, not a target.
+        """
+        n = 0
+        for href in RE_HREF.findall(text):
+            absolute = urljoin(base, href)
+            m = re.match(r"https?://([^/]+)/(.+)/([^/]+)$", absolute)
+            if not m:
+                continue
+            host, directory, filename = m.groups()
+            if host not in ALLOWED_HOSTS:
+                continue
+            if "://" in directory or directory.startswith("save/"):
+                continue
+            self.add(directory, unquote(filename),
+                     host=f"https://{host}", source=source)
+            n += 1
+        return n
+
+    def scrape_page(self, url: str, label: str) -> None:
+        body = get(url)
+        if body is None:
+            log(f"  {label:22} {'':>6}  unavailable")
+            return
+        n = self._scrape_hrefs(body.decode("utf-8", "replace"), url, label)
+        log(f"  {label:22} {n:>6} links")
+
+
+def head(url: str, timeout: int = 60):
+    """HEAD -> (state, length, content_type). state: live|dead|error."""
+    req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": UA})
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            ctype = (r.headers.get("Content-Type") or "").split(";")[0].strip()
+            length = r.headers.get("Content-Length")
+            length = int(length) if length and length.isdigit() else None
+    except urllib.error.HTTPError as e:
+        return ("dead", None, f"HTTP {e.code}")
+    except (urllib.error.URLError, OSError) as e:
+        return ("error", None, str(e)[:60])
+    # The soft-404 is text/html at a fixed length; a real .acs is neither.
+    if ctype.startswith("text/html") or length == SOFT404_LEN:
+        return ("dead", length, ctype)
+    return ("live", length, ctype)
+
+
+def validate(agents: list, jobs: int) -> None:
+    log(f"\nvalidating {len(agents)} urls with HEAD ({jobs} workers)...")
+    done: Counter = Counter()
+    with cf.ThreadPoolExecutor(max_workers=jobs) as pool:
+        futures = {pool.submit(head, a["url"]): a for a in agents}
+        for i, fut in enumerate(cf.as_completed(futures), 1):
+            a = futures[fut]
+            state, length, _ = fut.result()
+            a["status"] = state
+            if state == "live" and length is not None:
+                a["size"] = length  # authoritative, beats the index
+            done[state] += 1
+            if i % 500 == 0 or i == len(agents):
+                log(f"  {i}/{len(agents)}  "
+                    + "  ".join(f"{k}={v}" for k, v in sorted(done.items())))
+
+
+def yaml_str(s: str) -> str:
+    """JSON strings are valid YAML 1.2 double-quoted scalars."""
+    return json.dumps(s, ensure_ascii=False)
+
+
+def assign_ids(agents: list) -> None:
+    """Stable, collision-free nix attribute names.
+
+    Filenames repeat across directories and often differ only by punctuation, so
+    a bare slug collides a lot. Disambiguate with the directory, then with a
+    hash of the full path -- never an ordinal, which would churn between runs.
+    """
+    taken: set = set()
+    for a in sorted(agents, key=lambda x: (x["dir"], x["file"])):
+        base = slug(a["file"])
+        for cand in (base, f"{base}-{slug(a['dir'])}"):
+            if cand not in taken:
+                a["id"] = cand
+                break
+        else:
+            digest = hashlib.sha256(f"{a['dir']}/{a['file']}".encode()).hexdigest()[:8]
+            a["id"] = f"{base}-{digest}"
+        taken.add(a["id"])
+
+
+def write_yaml(path: Path, agents: list, validated: bool) -> None:
+    total = sum(a["size"] or 0 for a in agents)
+    sized = [a for a in agents if a["size"]]
+    by_dir = Counter(a["dir"] for a in agents)
+
+    out = [
+        "# Generated by bin/download-agent-links -- do not edit by hand.",
+        "# Every Microsoft Agent character file published on tmafe.com.",
+        f"generated: {dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')}",
+        f"source: {SEARCH_PAGE}",
+        f"validated: {str(validated).lower()}",
+        "stats:",
+        f"  count: {len(agents)}",
+        f"  sized: {len(sized)}",
+        f"  total_bytes: {total}",
+        f"  total_human: {yaml_str(human(total))}",
+    ]
+    if validated:
+        st = Counter(a.get("status", "unknown") for a in agents)
+        for k in sorted(st):
+            out.append(f"  {k}: {st[k]}")
+    out.append("  by_dir:")
+    for d in sorted(by_dir):
+        out.append(f"    {yaml_str(d)}: {by_dir[d]}")
+    out.append("agents:")
+    for a in agents:
+        out.append(f"  - id: {yaml_str(a['id'])}")
+        out.append(f"    file: {yaml_str(a['file'])}")
+        out.append(f"    dir: {yaml_str(a['dir'])}")
+        out.append(f"    url: {yaml_str(a['url'])}")
+        if a["size"] is not None:
+            out.append(f"    size: {a['size']}")
+        if a["date"]:
+            out.append(f"    date: {yaml_str(a['date'])}")
+        if a["mtime"] is not None:
+            out.append(f"    mtime: {a['mtime']}")
+        if a.get("status"):
+            out.append(f"    status: {a['status']}")
+    path.write_text("\n".join(out) + "\n", encoding="utf-8")
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("-o", "--out", type=Path, default=Path("agents.yaml"))
+    ap.add_argument("--validate", action="store_true",
+                    help="HEAD every url to find stale index entries")
+    ap.add_argument("--drop-dead", action="store_true",
+                    help="with --validate, omit urls that 404")
+    ap.add_argument("-j", "--jobs", type=int, default=16,
+                    help="concurrent HEAD requests (default 16)")
+    ap.add_argument("--no-search", action="store_true",
+                    help="skip /search (it carries stale entries)")
+    ap.add_argument("--limit", type=int, help="cap agents, for smoke tests")
+    args = ap.parse_args()
+
+    h = Harvest()
+
+    log("scraping _f directory indexes...")
+    for directory, hosts in INDEX_DIRS:
+        h.scrape_index(directory, hosts)
+
+    log("\nscraping find-*.php listings...")
+    for url in FIND_PAGES:
+        h.scrape_page(url, url.rsplit("/", 1)[1])
+
+    if not args.no_search:
+        log("\nscraping /search (supplement)...")
+        h.scrape_page(SEARCH_PAGE, "search")
+
+    agents = sorted(h.agents.values(), key=lambda a: (a["dir"], a["file"].lower()))
+    if args.limit:
+        agents = agents[: args.limit]
+    if not agents:
+        log("\nno agents found -- site layout probably changed")
+        return 1
+
+    assign_ids(agents)
+
+    if args.validate:
+        validate(agents, args.jobs)
+        if args.drop_dead:
+            before = len(agents)
+            agents = [a for a in agents if a.get("status") == "live"]
+            log(f"dropped {before - len(agents)} dead urls")
+
+    write_yaml(args.out, agents, args.validate)
+
+    total = sum(a["size"] or 0 for a in agents)
+    log(f"\nwrote {args.out}: {len(agents)} agents, {human(total)}")
+    log("new entries by source:")
+    for src, n in h.sources.most_common():
+        log(f"  {src:28} {n:>6}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
