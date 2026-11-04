@@ -32,9 +32,14 @@ let
           inherit urls;
           inherit (agent) sha256;
         };
-        passthru = { inherit (agent) sha256; agentFile = agent.file; };
+        passthru = {
+          inherit (agent) sha256;
+          # The upstream filename, and the published one it is mirrored under.
+          agentFile = agent.name;
+          publishedFile = agent.file;
+        };
         meta = {
-          description = "Microsoft Agent character ${agent.file}";
+          description = "Microsoft Agent character ${agent.name}";
           homepage = "https://tmafe.com/${agent.dir}/";
           # Plain data: no platform or licence claim is ours to make. These are
           # third-party uploads mirrored from a community archive.
@@ -42,7 +47,11 @@ let
         };
       }
       ''
-        install -Dm444 "$src" "$out/share/ms-agents/${agent.file}"
+        # Installed under the upstream filename, not the published one: the
+        # mirror substitutes punctuation to survive GitHub, but what lands on
+        # disk should be what the character is actually called. Escaped
+        # because these names carry spaces, quotes, parens and brackets.
+        install -Dm444 "$src" "$out/share/ms-agents/"${lib.escapeShellArg agent.name}
       '';
 
   agents = lib.mapAttrs mkAgent index;

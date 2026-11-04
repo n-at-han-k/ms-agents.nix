@@ -1,42 +1,48 @@
 {
   "bonzi-classic-ms-agents": {
     "dir": "classic-ms-agents",
-    "file": "Bonzi.acs",
+    "file": "Bonzi-fe376fb5.acs",
+    "name": "Bonzi.acs",
     "sha256": "2c936d91ab4a1b28da673f3330e1f28cc15947825f20ae0a6d74a95271ca8a79",
     "size": 2274810,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Bonzi.acs"
   },
   "genie-classic-ms-agents": {
     "dir": "classic-ms-agents",
-    "file": "Genie.acs",
+    "file": "Genie-5c54d7bb.acs",
+    "name": "Genie.acs",
     "sha256": "87887195179efe07ad6ee7a44fafbc0fa6b96d0990ec604f5651951c647f8f9e",
     "size": 2004847,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Genie.acs"
   },
   "merlin-classic-ms-agents": {
     "dir": "classic-ms-agents",
-    "file": "Merlin.acs",
+    "file": "Merlin-675e9342.acs",
+    "name": "Merlin.acs",
     "sha256": "a88151f313bea60002c5e5cb8b4d7dc5e2d919ba8fe78db1a4d05279a9ad58d7",
     "size": 2180663,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Merlin.acs"
   },
   "peedy-classic-ms-agents": {
     "dir": "classic-ms-agents",
-    "file": "Peedy.acs",
+    "file": "Peedy-14425c11.acs",
+    "name": "Peedy.acs",
     "sha256": "b8112187525051bfade06cb678390d52c79555c960202cc5bbf5901fbc0853c5",
     "size": 4145462,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Peedy.acs"
   },
   "robby-classic-ms-agents": {
     "dir": "classic-ms-agents",
-    "file": "Robby.acs",
+    "file": "Robby-291941ac.acs",
+    "name": "Robby.acs",
     "sha256": "3506e26875f530c0eeaa0035a1ffa30d036da6143735793f8a9a7a0dd0c05858",
     "size": 2616477,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Robby.acs"
   },
   "rover-classic-ms-agents": {
     "dir": "classic-ms-agents",
-    "file": "rover.acs",
+    "file": "rover-d7f79b2a.acs",
+    "name": "rover.acs",
     "sha256": "1b2cd6df82cf583d6d8817c19f5154b221d33b00650d41359a917080b64327d2",
     "size": 1861820,
     "upstream": "https://tmafemirror.org/classic-ms-agents/rover.acs"
