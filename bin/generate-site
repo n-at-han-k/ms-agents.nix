@@ -1,0 +1,155 @@
+#!/usr/bin/env python3
+"""Generate the gh-pages gallery from agents.yaml and the rendered thumbnails.
+
+Produces an index of the source directories and, for each, paginated pages of
+thumbnails with the nix command and download links. Pages are chunked and every
+image is lazily loaded, because `char` alone holds over 13,000 characters and a
+single page of that is unusable.
+
+Only agents with a thumbnail on disk are listed, so undecodable files (the
+archive carries mislabelled text files and older structured-storage characters)
+simply don't appear rather than showing a broken image.
+
+  generate-site --images images --out site
+"""
+
+from __future__ import annotations
+
+import argparse
+import html
+import json
+from collections import defaultdict
+from pathlib import Path
+
+import yaml
+
+REPO = "n-at-han-k/ms-agents.nix"
+PER_PAGE = 500
+
+CSS = """
+:root{--bg:#faf9f7;--fg:#1a1a1a;--muted:#6b6b6b;--card:#fff;--line:#e4e1dc;--accent:#2f6f4f}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#121212;--fg:#ededed;
+--muted:#9a9a9a;--card:#1c1c1c;--line:#2e2e2e;--accent:#7fd1a6}}
+:root[data-theme=dark]{--bg:#121212;--fg:#ededed;--muted:#9a9a9a;--card:#1c1c1c;
+--line:#2e2e2e;--accent:#7fd1a6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 -apple-system,
+BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
+.wrap{max-width:1200px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:1.6rem;margin:0 0 4px}
+a{color:var(--accent)}
+.sub{color:var(--muted);margin:0 0 24px}
+.dirs{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.dir{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:14px 16px;text-decoration:none;color:inherit;display:block}
+.dir strong{display:block;font-size:1rem}
+.dir span{color:var(--muted);font-size:.85rem}
+.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:10px;text-align:center;overflow:hidden}
+.card img{width:96px;height:96px;object-fit:contain;image-rendering:auto}
+.card .nm{font-size:.8rem;word-break:break-word;margin-top:6px}
+.card code{display:block;font-size:.68rem;color:var(--muted);margin-top:4px;
+word-break:break-all}
+.pager{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}
+.pager a,.pager span{padding:5px 10px;border:1px solid var(--line);border-radius:6px;
+text-decoration:none;font-size:.85rem}
+.pager .cur{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+#q{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;
+background:var(--card);color:var(--fg);margin-bottom:16px;font-size:.95rem}
+"""
+
+SEARCH_JS = """
+const q=document.getElementById('q');
+if(q){q.addEventListener('input',()=>{
+  const v=q.value.toLowerCase();
+  for(const c of document.querySelectorAll('.card'))
+    c.style.display=!v||c.dataset.n.includes(v)?'':'none';
+});}
+"""
+
+
+def page(title: str, body: str, depth: int = 0) -> str:
+    up = "../" * depth
+    return f"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{html.escape(title)}</title>
+<style>{CSS}</style></head>
+<body><div class="wrap">{body}</div><script>{SEARCH_JS}</script></body></html>
+"""
+
+
+def card(a: dict, img_rel: str) -> str:
+    name = html.escape(a["name"])
+    stem = a["file"].rsplit(".", 1)[0]
+    dl = f"https://github.com/{REPO}/releases/download/{a['dir']}/{a['file']}"
+    return (f'<div class="card" data-n="{html.escape(a["name"].lower())}">'
+            f'<a href="{html.escape(dl)}"><img loading="lazy" '
+            f'src="{html.escape(img_rel)}" alt="{name}"></a>'
+            f'<div class="nm">{name}</div>'
+            f'<code>nix build .#{html.escape(a["id"])}</code></div>')
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--manifest", type=Path, default=Path("agents.yaml"))
+    ap.add_argument("--images", type=Path, default=Path("images"))
+    ap.add_argument("--out", type=Path, default=Path("site"))
+    args = ap.parse_args()
+
+    agents = yaml.safe_load(args.manifest.read_text())["agents"]
+    by_dir: dict[str, list] = defaultdict(list)
+    listed = 0
+    for a in agents:
+        stem = a["file"].rsplit(".", 1)[0]
+        if (args.images / a["dir"] / f"{stem}.png").exists():
+            by_dir[a["dir"]].append(a)
+            listed += 1
+
+    args.out.mkdir(parents=True, exist_ok=True)
+
+    total = len(agents)
+    rows = []
+    for d in sorted(by_dir):
+        n = len(by_dir[d])
+        rows.append(f'<a class="dir" href="{d}/index.html"><strong>{html.escape(d)}</strong>'
+                    f'<span>{n:,} characters</span></a>')
+    index = (f"<h1>Microsoft Agent characters</h1>"
+             f'<p class="sub">{listed:,} of {total:,} characters from '
+             f'<a href="https://tmafe.com">tmafe.com</a>, mirrored and packaged as a '
+             f'Nix flake. <a href="https://github.com/{REPO}">Repository</a>.</p>'
+             f'<div class="dirs">{"".join(rows)}</div>')
+    (args.out / "index.html").write_text(page("Microsoft Agent characters", index))
+
+    for d, items in sorted(by_dir.items()):
+        items.sort(key=lambda a: a["name"].lower())
+        pages = [items[i:i + PER_PAGE] for i in range(0, len(items), PER_PAGE)] or [[]]
+        outdir = args.out / d
+        outdir.mkdir(parents=True, exist_ok=True)
+        for pi, chunk in enumerate(pages):
+            links = []
+            for k in range(len(pages)):
+                fn = "index.html" if k == 0 else f"page-{k + 1}.html"
+                cls = ' class="cur"' if k == pi else ""
+                links.append(f'<a{cls} href="{fn}">{k + 1}</a>')
+            pager = f'<div class="pager">{"".join(links)}</div>' if len(pages) > 1 else ""
+            cards = "".join(
+                card(a, f"../images/{d}/{a['file'].rsplit('.', 1)[0]}.png") for a in chunk)
+            body = (f'<p class="sub"><a href="../index.html">&larr; all directories</a></p>'
+                    f"<h1>{html.escape(d)}</h1>"
+                    f'<p class="sub">{len(items):,} characters'
+                    f'{f" &middot; page {pi + 1} of {len(pages)}" if len(pages) > 1 else ""}</p>'
+                    f'<input id="q" type="search" placeholder="Filter this page by name">'
+                    f"{pager}<div class=\"grid\">{cards}</div>{pager}")
+            fn = "index.html" if pi == 0 else f"page-{pi + 1}.html"
+            (outdir / fn).write_text(page(f"{d} — Microsoft Agent characters", body, 1))
+
+    print(json.dumps({"listed": listed, "total": total,
+                      "dirs": {d: len(v) for d, v in sorted(by_dir.items())}}, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
