@@ -1707,6 +1707,19 @@
     "upstream": "https://tmafe.com/char/Algore.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/algore/Algore-d84e277d.acs"
   },
+  "alice": {
+    "dir": "classic-ms-agents",
+    "file": "alice-2f13a9c4.acs",
+    "image": "alice-2f13a9c4.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/alice/alice-2f13a9c4.png",
+    "name": "alice.acs",
+    "release": "alice",
+    "sha256": "a7e456a251a0641910e98131126d5fb48e461365d1b0560008914ee1ee3e1efa",
+    "size": 3273263,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/alice.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/alice/alice-2f13a9c4.acs"
+  },
   "alice-tv": {
     "dir": "char",
     "file": "Alice_TV-75604885.acs",
@@ -2269,6 +2282,19 @@
     "upstream": "https://tmafemirror.org/classic-ms-agents/AngBao.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/angbao/AngBao-074c27d3.acs"
   },
+  "angel": {
+    "dir": "classic-ms-agents",
+    "file": "Angel-2219e362.acs",
+    "image": "Angel-2219e362.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/angel/Angel-2219e362.png",
+    "name": "Angel.acs",
+    "release": "angel",
+    "sha256": "55ce36cffc2ce32377397cdf251102c4dddc1519e9bd25bce89da941653f7468",
+    "size": 76511,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Angel.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/angel/Angel-2219e362.acs"
+  },
   "angel-mateo-hernandez-aros-2024": {
     "dir": "char",
     "file": "Angel_Mateo_Hernandez_Aros_2024-0c07f048.acs",
@@ -2739,6 +2765,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/Annette.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/annette/Annette-e1e361b0.acs"
+  },
+  "annette-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Annette-40ed795d.acs",
+    "image": "Annette-40ed795d.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/annette-classic-ms-agents/Annette-40ed795d.png",
+    "name": "Annette.acs",
+    "release": "annette-classic-ms-agents",
+    "sha256": "0339cc88b26cbe0b9f511b32ebd41d1567bfc173d43e82b88ab7b1b49e54aad6",
+    "size": 59804,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Annette.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/annette-classic-ms-agents/Annette-40ed795d.acs"
   },
   "annie": {
     "dir": "char",
@@ -4037,6 +4076,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/ATT%20%281%29.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/att-1/ATT_1-7523466a.acs"
+  },
+  "attuneprevent-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "AttunePrevent-568b8992.acs",
+    "image": "AttunePrevent-568b8992.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/attuneprevent-classic-ms-agents/AttunePrevent-568b8992.png",
+    "name": "AttunePrevent.acs",
+    "release": "attuneprevent-classic-ms-agents",
+    "sha256": "ed956a00cd01bc9b78dcf49cd8dcbdc02b61fc4b0cbaba00d4914e6796d45c8f",
+    "size": 117429,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/AttunePrevent.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/attuneprevent-classic-ms-agents/AttunePrevent-568b8992.acs"
   },
   "attunepreventoldversion": {
     "dir": "char",
@@ -5498,6 +5550,19 @@
     "upstream": "https://tmafe.com/char/Banglis.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/banglis/Banglis-8277f0a9.acs"
   },
+  "banglis-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Banglis-cd00b547.acs",
+    "image": "Banglis-cd00b547.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/banglis-classic-ms-agents/Banglis-cd00b547.png",
+    "name": "Banglis.acs",
+    "release": "banglis-classic-ms-agents",
+    "sha256": "19f45c2d8abc5a673cbe5a0ce844608073c03a79b34d0209d7da4500b7c1c6f9",
+    "size": 3370600,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Banglis.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/banglis-classic-ms-agents/Banglis-cd00b547.acs"
+  },
   "banjo": {
     "dir": "classic-ms-agents",
     "file": "banjo-e91f8d63.acs",
@@ -5719,6 +5784,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/BaronOfHell.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/baronofhell/BaronOfHell-32267df7.acs"
+  },
+  "barry": {
+    "dir": "classic-ms-agents",
+    "file": "Barry-68f6b05e.acs",
+    "image": "Barry-68f6b05e.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/barry/Barry-68f6b05e.png",
+    "name": "Barry.acs",
+    "release": "barry",
+    "sha256": "5fe5cb6e89c6a001355a774d8ff0cd421d765bf23bb67fd150cbc6e8b52aea89",
+    "size": 659218,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Barry.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/barry/Barry-68f6b05e.acs"
   },
   "barry-bonds": {
     "dir": "char",
@@ -6548,6 +6626,19 @@
     "upstream": "https://tmafe.com/char/beckham.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/beckham/beckham-054054b2.acs"
   },
+  "beckham-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "beckham-276df369.acs",
+    "image": "beckham-276df369.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/beckham-classic-ms-agents/beckham-276df369.png",
+    "name": "beckham.acs",
+    "release": "beckham-classic-ms-agents",
+    "sha256": "7e631f0fb9e81a6fd65e836c8dd33052942cf203571a186306a0e9a97b5e325e",
+    "size": 166039,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/beckham.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/beckham-classic-ms-agents/beckham-276df369.acs"
+  },
   "bederaan": {
     "dir": "char",
     "file": "Bederaan-b6d5ba08.acs",
@@ -7033,6 +7124,19 @@
     "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/BenPetChicken.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/benpetchicken/BenPetChicken-ec304e76.acs"
+  },
+  "benpetcloud": {
+    "dir": "classic-ms-agents",
+    "file": "BenPetCloud-4770d148.acs",
+    "image": "BenPetCloud-4770d148.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/benpetcloud/BenPetCloud-4770d148.png",
+    "name": "BenPetCloud.acs",
+    "release": "benpetcloud",
+    "sha256": "9e46de3480ce2b309339792593c7b653458dd2c5967d06aeb72edd23ccaef847",
+    "size": 27187,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/BenPetCloud.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/benpetcloud/BenPetCloud-4770d148.acs"
   },
   "benpethelicopter": {
     "dir": "classic-ms-agents",
@@ -7750,6 +7854,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/Bigender.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/bigender/Bigender-ecab3ddf.acs"
+  },
+  "bigfoot": {
+    "dir": "classic-ms-agents",
+    "file": "bigfoot-e50991ec.acs",
+    "image": "bigfoot-e50991ec.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/bigfoot/bigfoot-e50991ec.png",
+    "name": "bigfoot.acs",
+    "release": "bigfoot",
+    "sha256": "9900eaa583a5289bebb26a7a6a7b4da13bb7896b6a1044e73dc40578492340a5",
+    "size": 3774654,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/bigfoot.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/bigfoot/bigfoot-e50991ec.acs"
   },
   "bigfoot-the-brontosaurus": {
     "dir": "char",
@@ -9259,6 +9376,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/Blondie.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/blondie/Blondie-8c8e6724.acs"
+  },
+  "blondie-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Blondie-4dcce7b8.acs",
+    "image": "Blondie-4dcce7b8.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/blondie-classic-ms-agents/Blondie-4dcce7b8.png",
+    "name": "Blondie.acs",
+    "release": "blondie-classic-ms-agents",
+    "sha256": "405a15e96d2a3b058ea99f4160f1c1f53dcfdd88ac3f4152af02986f8449d6cf",
+    "size": 74317,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Blondie.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/blondie-classic-ms-agents/Blondie-4dcce7b8.acs"
   },
   "bloo-from-foster-s-home-for-imaginary-friends": {
     "dir": "char",
@@ -14550,6 +14680,19 @@
     "upstream": "https://tmafe.com/char/bulqil%20tulem_.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/bulqil-tulem-char/bulqil_tulem-a794a0c8.acs"
   },
+  "bungae": {
+    "dir": "classic-ms-agents",
+    "file": "Bungae-ccc6b328.acs",
+    "image": "Bungae-ccc6b328.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/bungae/Bungae-ccc6b328.png",
+    "name": "Bungae.acs",
+    "release": "bungae",
+    "sha256": "ab947b3b99fb2803f35e592fd47005fa3769b69fa4f3140fee60ac1669865a23",
+    "size": 1620372,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Bungae.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/bungae/Bungae-ccc6b328.acs"
+  },
   "bungae-voiced": {
     "dir": "char",
     "file": "Bungae_Voiced-7c305968.acs",
@@ -19546,6 +19689,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/Character2.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/character2-char/Character2-97053f21.acs"
+  },
+  "character2-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Character2-1587749d.acs",
+    "image": "Character2-1587749d.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/character2-classic-ms-agents/Character2-1587749d.png",
+    "name": "Character2.acs",
+    "release": "character2-classic-ms-agents",
+    "sha256": "3af0f7d434f116d0e6f075a4babe77a3c36662f5982d7f6159fc884be5be355f",
+    "size": 2544,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Character2.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/character2-classic-ms-agents/Character2-1587749d.acs"
   },
   "character3": {
     "dir": "char",
@@ -24636,6 +24792,19 @@
     "upstream": "https://tmafemirror.org/classic-ms-agents/Computer.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/computer-classic-ms-agents/Computer-12ae62c9.acs"
   },
+  "computer-guy": {
+    "dir": "classic-ms-agents",
+    "file": "Computer_Guy-8d3a0112.acs",
+    "image": "Computer_Guy-8d3a0112.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/computer-guy/Computer_Guy-8d3a0112.png",
+    "name": "Computer Guy.acs",
+    "release": "computer-guy",
+    "sha256": "95f1d6d92afc18ebef55c1beb748c28e65bc0f7f99051d7e66f4e93797eeabf4",
+    "size": 219260,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Computer%20Guy.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/computer-guy/Computer_Guy-8d3a0112.acs"
+  },
   "computer-guy1": {
     "dir": "classic-ms-agents",
     "file": "Computer_Guy1-2e725af4.acs",
@@ -24819,6 +24988,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/Coney.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/coney/Coney-bd789a02.acs"
+  },
+  "coney-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "coney-a060780e.acs",
+    "image": "coney-a060780e.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/coney-classic-ms-agents/coney-a060780e.png",
+    "name": "coney.acs",
+    "release": "coney-classic-ms-agents",
+    "sha256": "abfbac2d645963b7e70574a8b1a1c6dd1d7b3b69494b91e474c8125afd09e36d",
+    "size": 154042,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/coney.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/coney-classic-ms-agents/coney-a060780e.acs"
   },
   "coney-remake": {
     "dir": "char",
@@ -33924,6 +34106,19 @@
     "upstream": "https://tmafe.com/char/DoctorMike.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/doctormike/DoctorMike-6a19c94f.acs"
   },
+  "doctormike-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "DoctorMike-20f28adb.acs",
+    "image": "DoctorMike-20f28adb.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/doctormike-classic-ms-agents/DoctorMike-20f28adb.png",
+    "name": "DoctorMike.acs",
+    "release": "doctormike-classic-ms-agents",
+    "sha256": "0798a1bba27ef73697de6cf55eecadc86350879be3027c93fd99eba77675713f",
+    "size": 3768457,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/DoctorMike.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/doctormike-classic-ms-agents/DoctorMike-20f28adb.acs"
+  },
   "doctormike-fixed-4-animations": {
     "dir": "char",
     "file": "DoctorMike_FIXED_4_Animations-f39026f9.acs",
@@ -38092,6 +38287,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/EdyRemake.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/edyremake/EdyRemake-821cad0f.acs"
+  },
+  "eevee-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Eevee-daf7c2d8.acs",
+    "image": "Eevee-daf7c2d8.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/eevee-classic-ms-agents/Eevee-daf7c2d8.png",
+    "name": "Eevee.acs",
+    "release": "eevee-classic-ms-agents",
+    "sha256": "23f2e002cd5b06b89c8c5d2f6a571e3b4ff80cde37d0321cfea93851052aad36",
+    "size": 1256941,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Eevee.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/eevee-classic-ms-agents/Eevee-daf7c2d8.acs"
   },
   "eezee-tv": {
     "dir": "char",
@@ -43335,6 +43543,19 @@
     "upstream": "https://tmafe.com/char/Feethandy.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/feethandy/Feethandy-cd09f563.acs"
   },
+  "feethandy-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Feethandy-58606f05.acs",
+    "image": "Feethandy-58606f05.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/feethandy-classic-ms-agents/Feethandy-58606f05.png",
+    "name": "Feethandy.acs",
+    "release": "feethandy-classic-ms-agents",
+    "sha256": "9cf09fa4f61d043421ce517e8fb264571c4993610f562b0fc1971561011abc39",
+    "size": 123598,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Feethandy.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/feethandy-classic-ms-agents/Feethandy-58606f05.acs"
+  },
   "feethandywithvoice": {
     "dir": "char",
     "file": "FeethandywithVoice-640ac361.acs",
@@ -45366,6 +45587,19 @@
     "upstream": "https://tmafe.com/char/Food.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/food/Food-21f7b56d.acs"
   },
+  "food-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Food-082751c2.acs",
+    "image": "Food-082751c2.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/food-classic-ms-agents/Food-082751c2.png",
+    "name": "Food.acs",
+    "release": "food-classic-ms-agents",
+    "sha256": "df01790712ce41076edaa55fe08d6cce0becfcc41942cd1c4d9462d8f9a036be",
+    "size": 207636,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Food.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/food-classic-ms-agents/Food-082751c2.acs"
+  },
   "foodie": {
     "dir": "char",
     "file": "Foodie-314ca396.acs",
@@ -46593,6 +46827,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/fred.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/fred-char/fred-704165fe.acs"
+  },
+  "fred-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Fred-5779714f.acs",
+    "image": "Fred-5779714f.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/fred-classic-ms-agents/Fred-5779714f.png",
+    "name": "Fred.acs",
+    "release": "fred-classic-ms-agents",
+    "sha256": "e1d23e7537ddffbdfe7943c5fecd4806a91f94a53525a73e5d3ebc48f967ac31",
+    "size": 203037,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Fred.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/fred-classic-ms-agents/Fred-5779714f.acs"
   },
   "freddy": {
     "dir": "char",
@@ -55259,6 +55506,19 @@
     "upstream": "https://tmafe.com/char/Hailey.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/hailey/Hailey-5b8a62ab.acs"
   },
+  "hairy": {
+    "dir": "classic-ms-agents",
+    "file": "hairy-f476f7dc.acs",
+    "image": "hairy-f476f7dc.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/hairy/hairy-f476f7dc.png",
+    "name": "hairy.acs",
+    "release": "hairy",
+    "sha256": "fe2a4b20b3d68e2f5b718b1425bbd279540276d47416244a5c3791dd3900a781",
+    "size": 1399570,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/hairy.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/hairy/hairy-f476f7dc.acs"
+  },
   "hairyt": {
     "dir": "char",
     "file": "HairyT-f967187a.acs",
@@ -55363,6 +55623,19 @@
     "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Hal1M.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/hal1m-classic-ms-agents/Hal1M-87e6d2db.acs"
+  },
+  "hal9000": {
+    "dir": "classic-ms-agents",
+    "file": "Hal9000-1cd2a07e.acs",
+    "image": "Hal9000-1cd2a07e.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/hal9000/Hal9000-1cd2a07e.png",
+    "name": "Hal9000.acs",
+    "release": "hal9000",
+    "sha256": "5843429b31a08b6261822e71c0e9db29be8c5e624337f3a6ffe95fa1cc871ce5",
+    "size": 38929,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Hal9000.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/hal9000/Hal9000-1cd2a07e.acs"
   },
   "hala": {
     "dir": "char",
@@ -63390,6 +63663,19 @@
     "upstream": "https://tmafe.com/char/JakeSM.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/jakesm/JakeSM-1135e4fc.acs"
   },
+  "jakesm-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "JakeSM-16505bf5.acs",
+    "image": "JakeSM-16505bf5.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/jakesm-classic-ms-agents/JakeSM-16505bf5.png",
+    "name": "JakeSM.acs",
+    "release": "jakesm-classic-ms-agents",
+    "sha256": "27f752d542b32518bc37282fdf9a3d1464e5f137c4c51b332d0d434c186fe860",
+    "size": 1163616,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/JakeSM.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/jakesm-classic-ms-agents/JakeSM-16505bf5.acs"
+  },
   "jakub-bug": {
     "dir": "char",
     "file": "Jakub_Bug-39bbdff7.acs",
@@ -66427,6 +66713,19 @@
     "upstream": "https://tmafe.com/char/Johnny%20Old%20Boy.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/johnny-old-boy/Johnny_Old_Boy-f5edd19b.acs"
   },
+  "johnnyreb": {
+    "dir": "classic-ms-agents",
+    "file": "JohnnyReb-17a1cd2c.acs",
+    "image": "JohnnyReb-17a1cd2c.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/johnnyreb/JohnnyReb-17a1cd2c.png",
+    "name": "JohnnyReb.acs",
+    "release": "johnnyreb",
+    "sha256": "96a838fa7a8c65f6d8dd5e73bcd9c6050acb0185fcc1fbd7357c8c6fdd6d47fd",
+    "size": 34371,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/JohnnyReb.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/johnnyreb/JohnnyReb-17a1cd2c.acs"
+  },
   "johnnyv2": {
     "dir": "char",
     "file": "JohnnyV2-3ee94fb2.acs",
@@ -67185,6 +67484,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/Joy.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/joy/Joy-81baac05.acs"
+  },
+  "joy-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Joy-342ee949.acs",
+    "image": "Joy-342ee949.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/joy-classic-ms-agents/Joy-342ee949.png",
+    "name": "Joy.acs",
+    "release": "joy-classic-ms-agents",
+    "sha256": "5fb6850fbc33a81433e76584e6ffe3975eb81af3a3b244387bca6d2d29733a52",
+    "size": 2857071,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Joy.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/joy-classic-ms-agents/Joy-342ee949.acs"
   },
   "joyous": {
     "dir": "char",
@@ -78874,6 +79186,19 @@
     "upstream": "https://tmafe.com/char/lily%281%29.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/lily-1/lily_1-f680b42c.acs"
   },
+  "lily-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "lily-2856f069.acs",
+    "image": "lily-2856f069.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/lily-classic-ms-agents/lily-2856f069.png",
+    "name": "lily.acs",
+    "release": "lily-classic-ms-agents",
+    "sha256": "25b27f73e889b531e011c3c2756b56f6a1f4f2ad0bb65c38b16133215393cfb3",
+    "size": 108197,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/lily.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/lily-classic-ms-agents/lily-2856f069.acs"
+  },
   "lily-pad": {
     "dir": "char",
     "file": "Lily_Pad-8213b225.acs",
@@ -80472,6 +80797,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/Loki%281%29.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/loki-1/Loki_1-fd971278.acs"
+  },
+  "lokie": {
+    "dir": "classic-ms-agents",
+    "file": "Lokie-d0c62c40.acs",
+    "image": "Lokie-d0c62c40.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/lokie/Lokie-d0c62c40.png",
+    "name": "Lokie.acs",
+    "release": "lokie",
+    "sha256": "53952427d772c1f49fec0f587bca52e05e2a51de37234141e55561d318e82993",
+    "size": 533462,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Lokie.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/lokie/Lokie-d0c62c40.acs"
   },
   "lol1": {
     "dir": "char",
@@ -84124,6 +84462,19 @@
     "upstream": "https://tmafe.com/char/manma.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/manma/manma-d85cf14a.acs"
   },
+  "manma-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "manma-1d9ebc09.acs",
+    "image": "manma-1d9ebc09.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/manma-classic-ms-agents/manma-1d9ebc09.png",
+    "name": "manma.acs",
+    "release": "manma-classic-ms-agents",
+    "sha256": "e40ad8f18d45195ed77fa19871ca863ee05d65efe92dceec94ec33b2db9a5211",
+    "size": 3992812,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/manma.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/manma-classic-ms-agents/manma-1d9ebc09.acs"
+  },
   "manma1": {
     "dir": "char",
     "file": "manma1-42137139.acs",
@@ -85401,6 +85752,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/MaryR.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/maryr/MaryR-73d244e4.acs"
+  },
+  "maryr-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "MaryR-c55b8ed9.acs",
+    "image": "MaryR-c55b8ed9.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/maryr-classic-ms-agents/MaryR-c55b8ed9.png",
+    "name": "MaryR.acs",
+    "release": "maryr-classic-ms-agents",
+    "sha256": "ef7e61088177829815c40ddcfadf65a3e3d1cf49e7bfb3cb68b51f357fc97bee",
+    "size": 38344,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/MaryR.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/maryr-classic-ms-agents/MaryR-c55b8ed9.acs"
   },
   "mascot": {
     "dir": "char",
@@ -93794,6 +94158,19 @@
     "upstream": "https://tmafe.com/char/mouth2.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/mouth2/mouth2-17152a35.acs"
   },
+  "mouth2-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "MOUTH2-681a4819.acs",
+    "image": "MOUTH2-681a4819.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/mouth2-classic-ms-agents/MOUTH2-681a4819.png",
+    "name": "MOUTH2.ACS",
+    "release": "mouth2-classic-ms-agents",
+    "sha256": "25282c62e86369c37d8deb1ead87e31af486128abfee46db5eb17bf808d317ac",
+    "size": 4179,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/MOUTH2.ACS",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/mouth2-classic-ms-agents/MOUTH2-681a4819.acs"
+  },
   "mouth3": {
     "dir": "classic-ms-agents",
     "file": "mouth3-ace3c928.acs",
@@ -97959,6 +98336,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/Nastasia.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/nastasia/Nastasia-519bfe66.acs"
+  },
+  "nastasia-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Nastasia-b6cba08c.acs",
+    "image": "Nastasia-b6cba08c.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/nastasia-classic-ms-agents/Nastasia-b6cba08c.png",
+    "name": "Nastasia.acs",
+    "release": "nastasia-classic-ms-agents",
+    "sha256": "c8d495dfb63e5acab3a97cacaec26750f509db5dacd8c545c40e2fa4b5daa887",
+    "size": 4002856,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Nastasia.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/nastasia-classic-ms-agents/Nastasia-b6cba08c.acs"
   },
   "nasu-grave": {
     "dir": "char",
@@ -103050,6 +103440,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/often_letter.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/often-letter/often_letter-27d88765.acs"
+  },
+  "often-letter-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Often_Letter-a2b1705d.acs",
+    "image": "Often_Letter-a2b1705d.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/often-letter-classic-ms-agents/Often_Letter-a2b1705d.png",
+    "name": "Often(Letter).acs",
+    "release": "often-letter-classic-ms-agents",
+    "sha256": "a39aebade6147b3592e9224607d84a58464ff5d9a1683c889ea239e0b2cd6964",
+    "size": 10038,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Often%28Letter%29.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/often-letter-classic-ms-agents/Often_Letter-a2b1705d.acs"
   },
   "often-sign": {
     "dir": "char",
@@ -109049,6 +109452,19 @@
     "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Raysa.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/raysa-classic-ms-agents/Raysa-459c765a.acs"
+  },
+  "reaper-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Reaper-b86130b9.acs",
+    "image": "Reaper-b86130b9.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/reaper-classic-ms-agents/Reaper-b86130b9.png",
+    "name": "Reaper.acs",
+    "release": "reaper-classic-ms-agents",
+    "sha256": "7965351fefdeb65c7be2f3cb68fd9131a9979f8cc567663447a80c56a0c29bf9",
+    "size": 452424,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Reaper.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/reaper-classic-ms-agents/Reaper-b86130b9.acs"
   },
   "rebecca": {
     "dir": "classic-ms-agents",
