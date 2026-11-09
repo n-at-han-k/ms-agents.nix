@@ -110369,6 +110369,19 @@
     "upstream": "https://tmafemirror.org/classic-ms-agents/Skull.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/skull-classic-ms-agents/Skull-63d5d466.acs"
   },
+  "skull1-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Skull1-3070c229.acs",
+    "image": "Skull1-3070c229.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/skull1-classic-ms-agents/Skull1-3070c229.png",
+    "name": "Skull1.acs",
+    "release": "skull1-classic-ms-agents",
+    "sha256": "0dc0ee0dbb8d36804b241b8164cde70d78d5b1c9a34afa0eff320e9bf511cc8d",
+    "size": 4090487,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Skull1.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/skull1-classic-ms-agents/Skull1-3070c229.acs"
+  },
   "skull2-classic-ms-agents": {
     "dir": "classic-ms-agents",
     "file": "Skull2-05e7118a.acs",
@@ -110422,6 +110435,20 @@
     "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/smallK.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/smallk-classic-ms-agents/smallK-12f4f5da.acs"
+  },
+  "smallsm-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "SMALLSM-1caa4648.acs",
+    "image": "SMALLSM-1caa4648.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/smallsm-classic-ms-agents/SMALLSM-1caa4648.png",
+    "name": "SMALLSM.ACS",
+    "release": "smallsm-classic-ms-agents",
+    "render_error": "bad signature 0xe011cfd0",
+    "sha256": "be45fad3bad3f0ae7c6895bce8b047f7ee4a2f0e3181db7c5262c68bfb98d8af",
+    "size": 544256,
+    "thumbnail": false,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/SMALLSM.ACS",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/smallsm-classic-ms-agents/SMALLSM-1caa4648.acs"
   },
   "smile-classic-ms-agents": {
     "dir": "classic-ms-agents",
