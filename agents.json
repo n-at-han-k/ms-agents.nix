@@ -1,4 +1,17 @@
 {
+  "000-bonzi": {
+    "dir": "char",
+    "file": "000_Bonzi-51152332.acs",
+    "image": "000_Bonzi-51152332.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/000-bonzi/000_Bonzi-51152332.png",
+    "name": "000_Bonzi.acs",
+    "release": "000-bonzi",
+    "sha256": "533b8f595eafd272d1e670c38b326ec7f59395e0d7fddf999a2876f4418bb187",
+    "size": 35941,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/000_Bonzi.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/000-bonzi/000_Bonzi-51152332.acs"
+  },
   "000-bonzi-fixed": {
     "dir": "char",
     "file": "000_Bonzi_Fixed-ab63fd40.acs",
@@ -11,6 +24,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/000_Bonzi_Fixed.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/000-bonzi-fixed/000_Bonzi_Fixed-ab63fd40.acs"
+  },
+  "0e": {
+    "dir": "char",
+    "file": "0E-9fde259d.acs",
+    "image": "0E-9fde259d.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/0e/0E-9fde259d.png",
+    "name": "0E.ACS",
+    "release": "0e",
+    "sha256": "d9cf01dac32ff86d9def36427feb786edcb7eff73adc1ad59fcee80566ae1af6",
+    "size": 247697,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/0E.ACS",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/0e/0E-9fde259d.acs"
   },
   "1-85-200": {
     "dir": "char",
@@ -39,6 +65,32 @@
     "thumbnail": false,
     "upstream": "https://tmafemirror.org/classic-ms-agents/1-85-200.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1-85-200-classic-ms-agents/1-85-200-8c985cd8.acs"
+  },
+  "11002": {
+    "dir": "char",
+    "file": "11002-255c939f.acs",
+    "image": "11002-255c939f.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/11002/11002-255c939f.png",
+    "name": "11002.acs",
+    "release": "11002",
+    "sha256": "4d14a9e4a3d650076e19cc7c1fb2b158c0a16dc495f29c1149dc5b351e77854f",
+    "size": 63764,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/11002.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/11002/11002-255c939f.acs"
+  },
+  "12th-doctor": {
+    "dir": "char",
+    "file": "12th_Doctor-a32ec4ce.acs",
+    "image": "12th_Doctor-a32ec4ce.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/12th-doctor/12th_Doctor-a32ec4ce.png",
+    "name": "12th Doctor.acs",
+    "release": "12th-doctor",
+    "sha256": "1764e2d47c2f5f84cea013266dd17e218fd1563c5c8a6215eb3d628086111b8f",
+    "size": 1282820,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/12th%20Doctor.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/12th-doctor/12th_Doctor-a32ec4ce.acs"
   },
   "1300": {
     "dir": "char",
@@ -26678,9 +26730,10 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/croonerclown/CroonerClown-6b2eeee0.png",
     "name": "CroonerClown.acs",
     "release": "croonerclown",
-    "sha256": "91a7efb1680f912569305029cf555bdb1662bcb76c0fe83e3da5c97e00fa9adc",
-    "size": 3210633,
-    "thumbnail": true,
+    "render_error": "no image table",
+    "sha256": "6aae8c0da48855756de6f71200defe4cf3bd21d2d230b7a066d1b50ec4d4c07e",
+    "size": 2883531,
+    "thumbnail": false,
     "upstream": "https://tmafemirror.org/classic-ms-agents/CroonerClown.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/croonerclown/CroonerClown-6b2eeee0.acs"
   },
@@ -57682,6 +57735,19 @@
     "upstream": "https://tmafe.com/char/Heny%20Sarah%20%28Tayans%20Version%29.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/heny-sarah-tayans-version/Heny_Sarah_Tayans_Version-ca29b03f.acs"
   },
+  "heraldry-1": {
+    "dir": "char",
+    "file": "heraldry_1-39615fe9.acs",
+    "image": "heraldry_1-39615fe9.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/heraldry-1/heraldry_1-39615fe9.png",
+    "name": "!!!heraldry!!!(1).acs",
+    "release": "heraldry-1",
+    "sha256": "9df3ae54fa2bb1a8c5bc03f399ccc865aaaa8e8c5f7ffb308ac7e32a7b8658e9",
+    "size": 13199,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/%21%21%21heraldry%21%21%21%281%29.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/heraldry-1/heraldry_1-39615fe9.acs"
+  },
   "hercules-corona-borealis-great-wall": {
     "dir": "char",
     "file": "Hercules_Corona_Borealis_Great_Wall-cf04a7bc.acs",
@@ -84024,9 +84090,10 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/maltin-classic-ms-agents/Maltin-6d7342c4.png",
     "name": "Maltin.acs",
     "release": "maltin-classic-ms-agents",
-    "sha256": "e274f2006f0b33eee4cbdad3a55fd768ecbcd2b11494faeafcfdb1b2f59c665e",
-    "size": 7621678,
-    "thumbnail": true,
+    "render_error": "no image table",
+    "sha256": "d9714c46a66b15161ac15a7e9e603caf3bbfa46b7d0ddb396641ba263b1aec40",
+    "size": 7102193,
+    "thumbnail": false,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Maltin.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/maltin-classic-ms-agents/Maltin-6d7342c4.acs"
   },
@@ -110582,6 +110649,20 @@
     "upstream": "https://tmafemirror.org/classic-ms-agents/Sniffles1.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/sniffles1/Sniffles1-b276c9ea.acs"
   },
+  "sniffles1b": {
+    "dir": "classic-ms-agents",
+    "file": "Sniffles1b-da6c0230.acs",
+    "image": "Sniffles1b-da6c0230.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/sniffles1b/Sniffles1b-da6c0230.png",
+    "name": "Sniffles1b.acs",
+    "release": "sniffles1b",
+    "render_error": "implausible frame 54105x20543",
+    "sha256": "e66109367b771fee658a16338467a432944d4299cb026ac382916ccbdbe246f2",
+    "size": 3766076,
+    "thumbnail": false,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Sniffles1b.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/sniffles1b/Sniffles1b-da6c0230.acs"
+  },
   "snow": {
     "dir": "classic-ms-agents",
     "file": "snow-bebb4f0b.acs",
@@ -110646,6 +110727,19 @@
     "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/SoberBob.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/soberbob-classic-ms-agents/SoberBob-98e95ae4.acs"
+  },
+  "soundproof-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "soundproof-f245b10c.acs",
+    "image": "soundproof-f245b10c.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/soundproof-classic-ms-agents/soundproof-f245b10c.png",
+    "name": "soundproof.acs",
+    "release": "soundproof-classic-ms-agents",
+    "sha256": "9a6b1439eaf24068cb08b6196335c8f18f1bc65d79949260f5eb23b7eda84dd0",
+    "size": 29851,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/soundproof.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/soundproof-classic-ms-agents/soundproof-f245b10c.acs"
   },
   "spaceman": {
     "dir": "classic-ms-agents",
@@ -111123,6 +111217,19 @@
     "upstream": "https://tmafemirror.org/classic-ms-agents/Sunny2.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/sunny2/Sunny2-fdf83533.acs"
   },
+  "sunny3-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Sunny3-0840ba79.acs",
+    "image": "Sunny3-0840ba79.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/sunny3-classic-ms-agents/Sunny3-0840ba79.png",
+    "name": "Sunny3.acs",
+    "release": "sunny3-classic-ms-agents",
+    "sha256": "f76aa6471324747f524446102c7da80967250874dcbed50a9132d06275a110ce",
+    "size": 6724335,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Sunny3.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/sunny3-classic-ms-agents/Sunny3-0840ba79.acs"
+  },
   "supergoogie-classic-ms-agents": {
     "dir": "classic-ms-agents",
     "file": "SuperGoogie-ff933e3b.acs",
@@ -111202,6 +111309,19 @@
     "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/sut.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/sut-classic-ms-agents/sut-2ebc87e0.acs"
+  },
+  "suzyef-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "SuzyEF-74ccf8a2.acs",
+    "image": "SuzyEF-74ccf8a2.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/suzyef-classic-ms-agents/SuzyEF-74ccf8a2.png",
+    "name": "SuzyEF.acs",
+    "release": "suzyef-classic-ms-agents",
+    "sha256": "dce7bbf9de1a3773083c45846d2c4bcd9a5358e1bce77378d14f004abde3188e",
+    "size": 1808027,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/SuzyEF.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/suzyef-classic-ms-agents/SuzyEF-74ccf8a2.acs"
   },
   "swan": {
     "dir": "classic-ms-agents",
@@ -112054,6 +112174,19 @@
     "upstream": "https://tmafemirror.org/classic-ms-agents/Vinnie.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/vinnie-classic-ms-agents/Vinnie-d2592ece.acs"
   },
+  "voyager-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Voyager-74a20682.acs",
+    "image": "Voyager-74a20682.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/voyager-classic-ms-agents/Voyager-74a20682.png",
+    "name": "Voyager.acs",
+    "release": "voyager-classic-ms-agents",
+    "sha256": "377e1f92c39e164528f4b629bd71fe0251cdc6112f5a204bf77f59eac4e915d0",
+    "size": 293785,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Voyager.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/voyager-classic-ms-agents/Voyager-74a20682.acs"
+  },
   "vrgirl": {
     "dir": "classic-ms-agents",
     "file": "vrgirl-47c4b136.acs",
@@ -112147,6 +112280,19 @@
     "upstream": "https://tmafemirror.org/classic-ms-agents/Walt.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/walt-classic-ms-agents/Walt-3a28ecc1.acs"
   },
+  "walter-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Walter-3a3aebdf.acs",
+    "image": "Walter-3a3aebdf.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/walter-classic-ms-agents/Walter-3a3aebdf.png",
+    "name": "Walter.acs",
+    "release": "walter-classic-ms-agents",
+    "sha256": "a942035dff6d6884877d76dc97c0492b566179717796c7e306503a54ef3cf3da",
+    "size": 5867,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Walter.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/walter-classic-ms-agents/Walter-3a3aebdf.acs"
+  },
   "walter2-classic-ms-agents": {
     "dir": "classic-ms-agents",
     "file": "Walter2-114dfac2.acs",
@@ -112185,6 +112331,19 @@
     "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Warning.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/warning/Warning-786416e4.acs"
+  },
+  "wartnose-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "WartNose-a15e1e77.acs",
+    "image": "WartNose-a15e1e77.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/wartnose-classic-ms-agents/WartNose-a15e1e77.png",
+    "name": "WartNose.acs",
+    "release": "wartnose-classic-ms-agents",
+    "sha256": "756942ad7b1d307d9be5bbe174142ceb910a0984c6a668c5941b460b3f126f32",
+    "size": 3109462,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/WartNose.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/wartnose-classic-ms-agents/WartNose-a15e1e77.acs"
   },
   "waxy": {
     "dir": "classic-ms-agents",
