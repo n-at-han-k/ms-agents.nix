@@ -131,6 +131,45 @@
     "upstream": "https://tmafe.com/char/15%20%288%29.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/15-8/15_8-4d69e770.acs"
   },
+  "16-bit-sonic": {
+    "dir": "char",
+    "file": "16-Bit_Sonic-8635e408.acs",
+    "image": "16-Bit_Sonic-8635e408.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/16-bit-sonic/16-Bit_Sonic-8635e408.png",
+    "name": "16-Bit Sonic.acs",
+    "release": "16-bit-sonic",
+    "sha256": "74847761441684f5edb922b812d3294a138705864416eb18037360674cb9a135",
+    "size": 1340944,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/16-Bit%20Sonic.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/16-bit-sonic/16-Bit_Sonic-8635e408.acs"
+  },
+  "16-bit-tails": {
+    "dir": "char",
+    "file": "16-Bit_Tails-7f22606f.acs",
+    "image": "16-Bit_Tails-7f22606f.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/16-bit-tails/16-Bit_Tails-7f22606f.png",
+    "name": "16-Bit Tails.acs",
+    "release": "16-bit-tails",
+    "sha256": "4904cb899241806d42bcd549eb09d0c3f0cd2bf15683dd0007db95134fb11f24",
+    "size": 10299,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/16-Bit%20Tails.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/16-bit-tails/16-Bit_Tails-7f22606f.acs"
+  },
+  "18-volt": {
+    "dir": "char",
+    "file": "18-Volt-1d10a310.acs",
+    "image": "18-Volt-1d10a310.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/18-volt/18-Volt-1d10a310.png",
+    "name": "18-Volt.acs",
+    "release": "18-volt",
+    "sha256": "55b5aae53e7174be5043336d7819a0c545f612789556d7ec9a0dc6ee7af728c5",
+    "size": 143942,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/18-Volt.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/18-volt/18-Volt-1d10a310.acs"
+  },
   "1819-dot": {
     "dir": "char",
     "file": "1819_dot-7a16b3f9.acs",
@@ -143,6 +182,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/1819_dot.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1819-dot/1819_dot-7a16b3f9.acs"
+  },
+  "1819-f1": {
+    "dir": "char",
+    "file": "1819_f1-7e6b8ae4.acs",
+    "image": "1819_f1-7e6b8ae4.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1819-f1/1819_f1-7e6b8ae4.png",
+    "name": "1819_f1.acs",
+    "release": "1819-f1",
+    "sha256": "0e5877d7bab70876531a0f873b2aae72f1c91f5cfe86a78edd679e9b82eb5e3a",
+    "size": 2534351,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/1819_f1.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1819-f1/1819_f1-7e6b8ae4.acs"
   },
   "1819-logo": {
     "dir": "char",
