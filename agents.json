@@ -25,6 +25,19 @@
     "upstream": "https://tmafe.com/char/000_Bonzi_Fixed.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/000-bonzi-fixed/000_Bonzi_Fixed-ab63fd40.acs"
   },
+  "007n7": {
+    "dir": "char",
+    "file": "007n7-84f2d11f.acs",
+    "image": "007n7-84f2d11f.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/007n7/007n7-84f2d11f.png",
+    "name": "007n7.acs",
+    "release": "007n7",
+    "sha256": "ab99724c8c2fab68955da411509fb2f237ac84f4a9a84d6baa12c422a735e93c",
+    "size": 1927602,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/007n7.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/007n7/007n7-84f2d11f.acs"
+  },
   "0e": {
     "dir": "char",
     "file": "0E-9fde259d.acs",
@@ -65,6 +78,19 @@
     "thumbnail": false,
     "upstream": "https://tmafemirror.org/classic-ms-agents/1-85-200.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1-85-200-classic-ms-agents/1-85-200-8c985cd8.acs"
+  },
+  "1-fun-asdde-doodland": {
+    "dir": "char",
+    "file": "1_fun_asdde_doodland-1528353f.acs",
+    "image": "1_fun_asdde_doodland-1528353f.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1-fun-asdde-doodland/1_fun_asdde_doodland-1528353f.png",
+    "name": "1 fun asdde doodland.acs",
+    "release": "1-fun-asdde-doodland",
+    "sha256": "ce5854120b30f4570f16c7ec4036937b7061dfc95ef58f71373d5933b66602ab",
+    "size": 437681,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/1%20fun%20asdde%20doodland.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1-fun-asdde-doodland/1_fun_asdde_doodland-1528353f.acs"
   },
   "11002": {
     "dir": "char",
@@ -112525,6 +112551,19 @@
     "upstream": "https://tmafemirror.org/classic-ms-agents/woodrow.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/woodrow-classic-ms-agents/woodrow-e5d44dfe.acs"
   },
+  "woohyuck": {
+    "dir": "classic-ms-agents",
+    "file": "WooHyuck-eed13247.acs",
+    "image": "WooHyuck-eed13247.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/woohyuck/WooHyuck-eed13247.png",
+    "name": "WooHyuck.acs",
+    "release": "woohyuck",
+    "sha256": "2853e947a4f4e70b3c5b052f7c7cf291f411d18b427306fb045845185b447767",
+    "size": 3522290,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/WooHyuck.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/woohyuck/WooHyuck-eed13247.acs"
+  },
   "wordster-classic-ms-agents": {
     "dir": "classic-ms-agents",
     "file": "Wordster-9d697c00.acs",
@@ -112604,6 +112643,19 @@
     "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/your%20next%20president%21.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/your-next-president-classic-ms-agents/your_next_president-a3a518a4.acs"
+  },
+  "yvette-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "yvette-9ac6b782.acs",
+    "image": "yvette-9ac6b782.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/yvette-classic-ms-agents/yvette-9ac6b782.png",
+    "name": "yvette.acs",
+    "release": "yvette-classic-ms-agents",
+    "sha256": "a0ac3d2c284792de760e1eb96e924cbc1c48dd1bc042be9adac95034df645291",
+    "size": 1570140,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/yvette.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/yvette-classic-ms-agents/yvette-9ac6b782.acs"
   },
   "zac-classic-ms-agents": {
     "dir": "classic-ms-agents",
@@ -112749,5 +112801,19 @@
     "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/zook_new.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/zook-new/zook_new-35e4f675.acs"
+  },
+  "zuppurr-new-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "zuppurr_new-2e0d81a7.acs",
+    "image": "zuppurr_new-2e0d81a7.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/zuppurr-new-classic-ms-agents/zuppurr_new-2e0d81a7.png",
+    "name": "zuppurr_new.acs",
+    "release": "zuppurr-new-classic-ms-agents",
+    "render_error": "short bitmap: 0 of 16384",
+    "sha256": "4db932b92e6204fb78112337867609d99c63a31870e5c9c851a2532b2c1bf0f4",
+    "size": 120895,
+    "thumbnail": false,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/zuppurr_new.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/zuppurr-new-classic-ms-agents/zuppurr_new-2e0d81a7.acs"
   }
 }
