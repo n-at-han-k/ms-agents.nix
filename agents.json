@@ -30814,10 +30814,9 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/dawn-classic-ms-agents/Dawn-dda948cf.png",
     "name": "Dawn.acs",
     "release": "dawn-classic-ms-agents",
-    "render_error": "no image table",
-    "sha256": "7538069ac6d445f64107f8bb637c11dc395ab56524bed9ba9ac3887ff7fad126",
-    "size": 14024704,
-    "thumbnail": false,
+    "sha256": "ed1668d036e396357d22413943d0475de96e4725b3e75f43cbdfdf05cfa78f79",
+    "size": 14422628,
+    "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Dawn.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/dawn-classic-ms-agents/Dawn-dda948cf.acs"
   },
