@@ -91153,10 +91153,9 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/mindstein-classic-ms-agents/Mindstein-3b71b30f.png",
     "name": "Mindstein.acs",
     "release": "mindstein-classic-ms-agents",
-    "render_error": "no image table",
-    "sha256": "b50b87ead243036c98142361b9f1e93e2888eb4c0552f8f730871d1545446acf",
-    "size": 942080,
-    "thumbnail": false,
+    "sha256": "7bd93465f8f5a588d4558019fac542f14fd8318f6ae79212443ea00b9ca7565c",
+    "size": 1962088,
+    "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Mindstein.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/mindstein-classic-ms-agents/Mindstein-3b71b30f.acs"
   },
