@@ -92,6 +92,19 @@
     "upstream": "https://tmafe.com/char/1%20fun%20asdde%20doodland.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1-fun-asdde-doodland/1_fun_asdde_doodland-1528353f.acs"
   },
+  "1-kitten-1": {
+    "dir": "char",
+    "file": "1_kitten_1-fd91f2c5.acs",
+    "image": "1_kitten_1-fd91f2c5.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1-kitten-1/1_kitten_1-fd91f2c5.png",
+    "name": "1_kitten(1).acs",
+    "release": "1-kitten-1",
+    "sha256": "73fc11574add742bb6593ab56876ff2528e4e64137aa8267f737d23fd4dbcca2",
+    "size": 1414758,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/1_kitten%281%29.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1-kitten-1/1_kitten_1-fd91f2c5.acs"
+  },
   "11002": {
     "dir": "char",
     "file": "11002-255c939f.acs",
@@ -235,6 +248,19 @@
     "upstream": "https://tmafe.com/char/1819_logo.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1819-logo/1819_logo-69f16078.acs"
   },
+  "1819-mnature": {
+    "dir": "char",
+    "file": "1819_mnature-2d5e5476.acs",
+    "image": "1819_mnature-2d5e5476.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1819-mnature/1819_mnature-2d5e5476.png",
+    "name": "1819_mnature.acs",
+    "release": "1819-mnature",
+    "sha256": "153c7d133ff41a243d2f093674fa9a790ab5f49c8341f8d484e8b630f78dd253",
+    "size": 1516797,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/1819_mnature.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1819-mnature/1819_mnature-2d5e5476.acs"
+  },
   "18volt": {
     "dir": "char",
     "file": "18Volt-0a0916e5.acs",
@@ -247,6 +273,32 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/18Volt.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/18volt/18Volt-0a0916e5.acs"
+  },
+  "1914": {
+    "dir": "char",
+    "file": "1914-78798b92.acs",
+    "image": "1914-78798b92.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1914/1914-78798b92.png",
+    "name": "1914.acs",
+    "release": "1914",
+    "sha256": "48cc0e6825761560a53f436e20fce101e0c3e3aa96b6f6fba72638dd141e6cda",
+    "size": 327411,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/1914.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1914/1914-78798b92.acs"
+  },
+  "1951caddy": {
+    "dir": "char",
+    "file": "1951CADDY-0c4d61c0.acs",
+    "image": "1951CADDY-0c4d61c0.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1951caddy/1951CADDY-0c4d61c0.png",
+    "name": "1951CADDY.acs",
+    "release": "1951caddy",
+    "sha256": "3872d73d17030b5c7ecfabbbf08b4df1235b01a213ce96121f7dfcd58ebd09fa",
+    "size": 550917,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/1951CADDY.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1951caddy/1951CADDY-0c4d61c0.acs"
   },
   "1951caddy2": {
     "dir": "char",
@@ -341,6 +393,19 @@
     "upstream": "https://tmafe.com/char/2%20Friends%281%29.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2-friends-1/2_Friends_1-7b92b892.acs"
   },
+  "2-joiners": {
+    "dir": "char",
+    "file": "2_Joiners-47183bd6.acs",
+    "image": "2_Joiners-47183bd6.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2-joiners/2_Joiners-47183bd6.png",
+    "name": "2 Joiners.acs",
+    "release": "2-joiners",
+    "sha256": "e8b891b86a6e8ceb3c69ad2f57be2f65960d2b96e55e8faa49facdc23da2ad1e",
+    "size": 555924,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/2%20Joiners.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2-joiners/2_Joiners-47183bd6.acs"
+  },
   "2004carfixed-1": {
     "dir": "char",
     "file": "2004carFixed_1-b4ac97db.acs",
@@ -367,6 +432,32 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/2022%20Circley.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2022-circley/2022_Circley-ce54ee36.acs"
+  },
+  "2022-leafy": {
+    "dir": "char",
+    "file": "2022_Leafy-b7ecdc4c.acs",
+    "image": "2022_Leafy-b7ecdc4c.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2022-leafy/2022_Leafy-b7ecdc4c.png",
+    "name": "2022 Leafy.acs",
+    "release": "2022-leafy",
+    "sha256": "d97b320e8c194f4d4f3db17cf9e29129c8849e1cbafb49beaf162bc1b32e4703",
+    "size": 1321607,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/2022%20Leafy.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2022-leafy/2022_Leafy-b7ecdc4c.acs"
+  },
+  "2023nerdblocky-concept": {
+    "dir": "char",
+    "file": "2023NerdBlocky_Concept-ac521fe9.acs",
+    "image": "2023NerdBlocky_Concept-ac521fe9.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2023nerdblocky-concept/2023NerdBlocky_Concept-ac521fe9.png",
+    "name": "2023NerdBlocky Concept.acs",
+    "release": "2023nerdblocky-concept",
+    "sha256": "33435776a9541e86c03a2fb01fa78b3046fe431f4e09904ceafde6e1152792c3",
+    "size": 3119,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/2023NerdBlocky%20Concept.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2023nerdblocky-concept/2023NerdBlocky_Concept-ac521fe9.acs"
   },
   "2026lcla-v2": {
     "dir": "char",
@@ -407,6 +498,32 @@
     "upstream": "https://tmafe.com/char/23rd%20Century%20Scary%20v1.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/23rd-century-scary-v1/23rd_Century_Scary_v1-981c1189.acs"
   },
+  "2410rover": {
+    "dir": "char",
+    "file": "2410ROVER-b70de902.acs",
+    "image": "2410ROVER-b70de902.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2410rover/2410ROVER-b70de902.png",
+    "name": "2410ROVER.ACS",
+    "release": "2410rover",
+    "sha256": "b6a6351c2389ea04b0d71552c83e078dd942d6a03d1ff3002d580e4d31cd5a40",
+    "size": 965518,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/2410ROVER.ACS",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2410rover/2410ROVER-b70de902.acs"
+  },
+  "2nd-peedy-1": {
+    "dir": "char",
+    "file": "2nd_Peedy_1-e6f0c2e0.acs",
+    "image": "2nd_Peedy_1-e6f0c2e0.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2nd-peedy-1/2nd_Peedy_1-e6f0c2e0.png",
+    "name": "2nd Peedy(1).acs",
+    "release": "2nd-peedy-1",
+    "sha256": "418bb694d77f6cfd1787ee67969d5a56a9274dc5cad817a942b92ef1f54d0e75",
+    "size": 4866,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/2nd%20Peedy%281%29.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2nd-peedy-1/2nd_Peedy_1-e6f0c2e0.acs"
+  },
   "2paperclips1-classic-ms-agents": {
     "dir": "classic-ms-agents",
     "file": "2Paperclips1-876beaa7.acs",
@@ -446,6 +563,19 @@
     "upstream": "https://tmafe.com/char/30man.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/30man/30man-0c9c0bbc.acs"
   },
+  "3d-builder": {
+    "dir": "char",
+    "file": "3D_Builder-ae5824ac.acs",
+    "image": "3D_Builder-ae5824ac.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-builder/3D_Builder-ae5824ac.png",
+    "name": "3D Builder.acs",
+    "release": "3d-builder",
+    "sha256": "38893df2fecfc81fc1acae62fd8d31a63471a836f7f40c11be5236c611ecb2cd",
+    "size": 2697746,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/3D%20Builder.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-builder/3D_Builder-ae5824ac.acs"
+  },
   "3d-man-1": {
     "dir": "char",
     "file": "3D_Man_1-15323c36.acs",
@@ -471,6 +601,19 @@
     "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/3D%20Man.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-man-classic-ms-agents/3D_Man-39d7c357.acs"
+  },
+  "3d-mickey-mouse-v3": {
+    "dir": "char",
+    "file": "3D_Mickey_Mouse_V3-7135feb2.acs",
+    "image": "3D_Mickey_Mouse_V3-7135feb2.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-mickey-mouse-v3/3D_Mickey_Mouse_V3-7135feb2.png",
+    "name": "3D Mickey Mouse V3.acs",
+    "release": "3d-mickey-mouse-v3",
+    "sha256": "a3b9d4418fc2012693b9f9499fd78def40fd1d8df41c6e8ad12b53ad498c9a90",
+    "size": 2515710,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/3D%20Mickey%20Mouse%20V3.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-mickey-mouse-v3/3D_Mickey_Mouse_V3-7135feb2.acs"
   },
   "3ds-nintendo": {
     "dir": "char",
@@ -91010,9 +91153,10 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/mindstein-classic-ms-agents/Mindstein-3b71b30f.png",
     "name": "Mindstein.acs",
     "release": "mindstein-classic-ms-agents",
-    "sha256": "7bd93465f8f5a588d4558019fac542f14fd8318f6ae79212443ea00b9ca7565c",
-    "size": 1962088,
-    "thumbnail": true,
+    "render_error": "no image table",
+    "sha256": "b50b87ead243036c98142361b9f1e93e2888eb4c0552f8f730871d1545446acf",
+    "size": 942080,
+    "thumbnail": false,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Mindstein.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/mindstein-classic-ms-agents/Mindstein-3b71b30f.acs"
   },
