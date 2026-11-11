@@ -65710,10 +65710,9 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/jenni/Jenni-d6f678c8.png",
     "name": "Jenni.acs",
     "release": "jenni",
-    "render_error": "no image table",
-    "sha256": "640828b2fce03ea1b846d7a4bc2899ae9004333015cd04535b91dfd0b5430148",
-    "size": 2883584,
-    "thumbnail": false,
+    "sha256": "a42822513adf5c9bf795d54321447c7b3e0cd2a1a96ee84c35ecede77c63afc2",
+    "size": 3391945,
+    "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Jenni.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/jenni/Jenni-d6f678c8.acs"
   },
