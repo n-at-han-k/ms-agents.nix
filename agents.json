@@ -31102,10 +31102,9 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/dawnevalutionpurposes-classic-ms-agents/DawnEvalutionPurposes-f4581325.png",
     "name": "DawnEvalutionPurposes.acs",
     "release": "dawnevalutionpurposes-classic-ms-agents",
-    "render_error": "no image table",
-    "sha256": "f816f093adab35f2d4eb17662afbf38b90769e6ed0c430a6fd317e65525014ad",
-    "size": 14917632,
-    "thumbnail": false,
+    "sha256": "0192c992793a2e8a9da6c3c6563c43efa2ec43907f348a411e8e2fa5ca6041d3",
+    "size": 15450979,
+    "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/DawnEvalutionPurposes.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/dawnevalutionpurposes-classic-ms-agents/DawnEvalutionPurposes-f4581325.acs"
   },
@@ -109910,6 +109909,19 @@
     "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/RedDog.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/reddog/RedDog-82463421.acs"
+  },
+  "reddog-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "RedDog-82463421.acs",
+    "image": "RedDog-82463421.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/reddog-classic-ms-agents/RedDog-82463421.png",
+    "name": "RedDog.acs",
+    "release": "reddog-classic-ms-agents",
+    "sha256": "49e2dff8bb336dfa77e050fe3cc3e97b47c5a3c8b4c1b49cc68177b894bbdf3b",
+    "size": 225441,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/RedDog.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/reddog-classic-ms-agents/RedDog-82463421.acs"
   },
   "reed-classic-ms-agents": {
     "dir": "classic-ms-agents",
