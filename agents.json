@@ -26951,9 +26951,10 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/croonerclown/CroonerClown-6b2eeee0.png",
     "name": "CroonerClown.acs",
     "release": "croonerclown",
-    "sha256": "91a7efb1680f912569305029cf555bdb1662bcb76c0fe83e3da5c97e00fa9adc",
-    "size": 3210633,
-    "thumbnail": true,
+    "render_error": "no image table",
+    "sha256": "6413fc78d6ea412a17fde5ac2f9f1109abc6ec5163114796ff1148b7b314e145",
+    "size": 2883584,
+    "thumbnail": false,
     "upstream": "https://tmafemirror.org/classic-ms-agents/CroonerClown.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/croonerclown/CroonerClown-6b2eeee0.acs"
   },
