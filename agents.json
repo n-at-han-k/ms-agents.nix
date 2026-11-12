@@ -170,6 +170,19 @@
     "upstream": "https://tmafe.com/char/15%20%288%29.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/15-8/15_8-4d69e770.acs"
   },
+  "15-9": {
+    "dir": "char",
+    "file": "15_9-e2778c5b.acs",
+    "image": "15_9-e2778c5b.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/15-9/15_9-e2778c5b.png",
+    "name": "15 (9).acs",
+    "release": "15-9",
+    "sha256": "cdbe8881301d27b820b498c2c8faf9452c1f5555be6cf461979c20a03421b3c2",
+    "size": 12708,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/15%20%289%29.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/15-9/15_9-e2778c5b.acs"
+  },
   "16-bit-sonic": {
     "dir": "char",
     "file": "16-Bit_Sonic-8635e408.acs",
@@ -234,6 +247,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/1819_f1.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1819-f1/1819_f1-7e6b8ae4.acs"
+  },
+  "1819-genius": {
+    "dir": "char",
+    "file": "1819_genius-a031e0ac.acs",
+    "image": "1819_genius-a031e0ac.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1819-genius/1819_genius-a031e0ac.png",
+    "name": "1819_genius.acs",
+    "release": "1819-genius",
+    "sha256": "ad0614b1b3906a36b9ce60436b5b6c89bc3084f8b3a1afed40be7742e84d3e0d",
+    "size": 2347623,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/1819_genius.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1819-genius/1819_genius-a031e0ac.acs"
   },
   "1819-logo": {
     "dir": "char",
@@ -312,6 +338,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/1951CADDY2.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1951caddy2/1951CADDY2-10cbc634.acs"
+  },
+  "1988-lunchtabels": {
+    "dir": "char",
+    "file": "1988_lunchtabels-fa01376e.acs",
+    "image": "1988_lunchtabels-fa01376e.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1988-lunchtabels/1988_lunchtabels-fa01376e.png",
+    "name": "1988 lunchtabels.acs",
+    "release": "1988-lunchtabels",
+    "sha256": "14798c242fdc4f13e0e5d478611d4f8105a41c54359fe1b07fb1273ed5d67e0b",
+    "size": 4954,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/1988%20lunchtabels.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/1988-lunchtabels/1988_lunchtabels-fa01376e.acs"
   },
   "1995caddy": {
     "dir": "char",
@@ -405,6 +444,34 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/2%20Joiners.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2-joiners/2_Joiners-47183bd6.acs"
+  },
+  "2004car-1995caddy-copyed": {
+    "dir": "char",
+    "file": "2004Car_1995Caddy_Copyed-f66bff30.acs",
+    "image": "2004Car_1995Caddy_Copyed-f66bff30.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2004car-1995caddy-copyed/2004Car_1995Caddy_Copyed-f66bff30.png",
+    "name": "2004Car (1995Caddy Copyed.).acs",
+    "release": "2004car-1995caddy-copyed",
+    "render_error": "bad signature 0xe011cfd0",
+    "sha256": "f30b184f67deb5075ed53c2f2e5684a23d4b98b8733a40b5f86876aefc2203e5",
+    "size": 78848,
+    "thumbnail": false,
+    "upstream": "https://tmafe.com/char/2004Car%20%281995Caddy%20Copyed.%29.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2004car-1995caddy-copyed/2004Car_1995Caddy_Copyed-f66bff30.acs"
+  },
+  "2004car-is-fake": {
+    "dir": "char",
+    "file": "2004CAR_is_fake-a94a0d06.acs",
+    "image": "2004CAR_is_fake-a94a0d06.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2004car-is-fake/2004CAR_is_fake-a94a0d06.png",
+    "name": "2004CAR_is_fake.acs",
+    "release": "2004car-is-fake",
+    "render_error": "bad signature 0xe011cfd0",
+    "sha256": "bcb620145fae77efe8e1ced79a44959c254f51d5e31a6d8f17cf5ebf351e98d4",
+    "size": 5632,
+    "thumbnail": false,
+    "upstream": "https://tmafe.com/char/2004CAR_is_fake.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2004car-is-fake/2004CAR_is_fake-a94a0d06.acs"
   },
   "2004carfixed-1": {
     "dir": "char",
@@ -510,6 +577,32 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/2410ROVER.ACS",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2410rover/2410ROVER-b70de902.acs"
+  },
+  "24th-century-pepsigod": {
+    "dir": "char",
+    "file": "24th_Century_PepsiGod-9c3eb745.acs",
+    "image": "24th_Century_PepsiGod-9c3eb745.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/24th-century-pepsigod/24th_Century_PepsiGod-9c3eb745.png",
+    "name": "24th Century PepsiGod.acs",
+    "release": "24th-century-pepsigod",
+    "sha256": "55f8b2bc66f99365216f9cb5002b3441094afbcdffe71206ed96a25ba5788c5a",
+    "size": 411046,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/24th%20Century%20PepsiGod.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/24th-century-pepsigod/24th_Century_PepsiGod-9c3eb745.acs"
+  },
+  "2nd-peedy": {
+    "dir": "char",
+    "file": "2nd_Peedy-bc26c28e.acs",
+    "image": "2nd_Peedy-bc26c28e.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2nd-peedy/2nd_Peedy-bc26c28e.png",
+    "name": "2nd Peedy.acs",
+    "release": "2nd-peedy",
+    "sha256": "418bb694d77f6cfd1787ee67969d5a56a9274dc5cad817a942b92ef1f54d0e75",
+    "size": 4866,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/2nd%20Peedy.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2nd-peedy/2nd_Peedy-bc26c28e.acs"
   },
   "2nd-peedy-1": {
     "dir": "char",
@@ -26951,10 +27044,9 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/croonerclown/CroonerClown-6b2eeee0.png",
     "name": "CroonerClown.acs",
     "release": "croonerclown",
-    "render_error": "no image table",
-    "sha256": "6413fc78d6ea412a17fde5ac2f9f1109abc6ec5163114796ff1148b7b314e145",
-    "size": 2883584,
-    "thumbnail": false,
+    "sha256": "91a7efb1680f912569305029cf555bdb1662bcb76c0fe83e3da5c97e00fa9adc",
+    "size": 3210633,
+    "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/CroonerClown.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/croonerclown/CroonerClown-6b2eeee0.acs"
   },
@@ -50705,9 +50797,10 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/germhi-classic-ms-agents/GermHi-f4541699.png",
     "name": "GermHi.acs",
     "release": "germhi-classic-ms-agents",
-    "sha256": "d941d0d628e3994b53f27ca23bb173fba710a690625e594b3ea6509664aff4f9",
-    "size": 33924507,
-    "thumbnail": true,
+    "render_error": "no image table",
+    "sha256": "80f4cc8fb327003f78ce17032e9b3de350ab77b83a227f8517633c3d6b93f523",
+    "size": 33628160,
+    "thumbnail": false,
     "upstream": "https://tmafemirror.org/classic-ms-agents/GermHi.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/germhi-classic-ms-agents/GermHi-f4541699.acs"
   },
@@ -80739,9 +80832,10 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/lizardhi-classic-ms-agents/LizardHi-cc55cf7c.png",
     "name": "LizardHi.acs",
     "release": "lizardhi-classic-ms-agents",
-    "sha256": "c1ffd0e907550e4cdde60852c1e5419f39f89d7d3fad5c96bdca66ef1fbd874f",
-    "size": 46003440,
-    "thumbnail": true,
+    "render_error": "no image table",
+    "sha256": "4b8a89ab07c9a0f23603b226eb5efee06dd4b6f9e14d7c54f278c7c48eeb3e9b",
+    "size": 44826624,
+    "thumbnail": false,
     "upstream": "https://tmafemirror.org/classic-ms-agents/LizardHi.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/lizardhi-classic-ms-agents/LizardHi-cc55cf7c.acs"
   },
