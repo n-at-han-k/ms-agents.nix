@@ -13968,10 +13968,9 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/brocklee-classic-ms-agents/brocklee-a1ef6430.png",
     "name": "brocklee.acs",
     "release": "brocklee-classic-ms-agents",
-    "render_error": "no image table",
-    "sha256": "1ed894a0e45d24dabd2721863558e85bada3becc6aea24c1bb0d85314e5b7eec",
-    "size": 2883584,
-    "thumbnail": false,
+    "sha256": "6619424c8cc7b577bdcff9e0cf3385bfbc6feda138e0a908f5e02f03c2e83610",
+    "size": 3614596,
+    "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/brocklee.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/brocklee-classic-ms-agents/brocklee-a1ef6430.acs"
   },
