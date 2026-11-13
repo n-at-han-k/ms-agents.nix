@@ -25767,9 +25767,10 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/cop-classic-ms-agents/Cop-280241b3.png",
     "name": "Cop.acs",
     "release": "cop-classic-ms-agents",
-    "sha256": "df71abe50abf9adf21979a8a42d4834ee805ac497df51d429adc5196e24d56b3",
-    "size": 5815512,
-    "thumbnail": true,
+    "render_error": "no image table",
+    "sha256": "28b27a5a2c156d951b9ed75467c99f7c0069690a4c3a27b6554e7b336f02d727",
+    "size": 5611520,
+    "thumbnail": false,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Cop.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/cop-classic-ms-agents/Cop-280241b3.acs"
   },
