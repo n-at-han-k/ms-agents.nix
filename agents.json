@@ -669,6 +669,19 @@
     "upstream": "https://tmafe.com/char/3D%20Builder.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-builder/3D_Builder-ae5824ac.acs"
   },
+  "3d-cone": {
+    "dir": "char",
+    "file": "3D_Cone-1a7a6b5e.acs",
+    "image": "3D_Cone-1a7a6b5e.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-cone/3D_Cone-1a7a6b5e.png",
+    "name": "3D Cone.acs",
+    "release": "3d-cone",
+    "sha256": "ebc999c98656bc2de03494f5535860c5c5d3910268ba0da1f370e75dd5cab680",
+    "size": 16840,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/3D%20Cone.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-cone/3D_Cone-1a7a6b5e.acs"
+  },
   "3d-man-1": {
     "dir": "char",
     "file": "3D_Man_1-15323c36.acs",
@@ -694,6 +707,19 @@
     "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/3D%20Man.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-man-classic-ms-agents/3D_Man-39d7c357.acs"
+  },
+  "3d-merlin": {
+    "dir": "char",
+    "file": "3D_Merlin-71731866.acs",
+    "image": "3D_Merlin-71731866.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-merlin/3D_Merlin-71731866.png",
+    "name": "3D Merlin.acs",
+    "release": "3d-merlin",
+    "sha256": "d5271173989a37baf17dd58c9a52c052031ae30f41acf3dfd71ea8807732c481",
+    "size": 90202,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/3D%20Merlin.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-merlin/3D_Merlin-71731866.acs"
   },
   "3d-mickey-mouse-v3": {
     "dir": "char",
@@ -25767,10 +25793,9 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/cop-classic-ms-agents/Cop-280241b3.png",
     "name": "Cop.acs",
     "release": "cop-classic-ms-agents",
-    "render_error": "no image table",
-    "sha256": "28b27a5a2c156d951b9ed75467c99f7c0069690a4c3a27b6554e7b336f02d727",
-    "size": 5611520,
-    "thumbnail": false,
+    "sha256": "df71abe50abf9adf21979a8a42d4834ee805ac497df51d429adc5196e24d56b3",
+    "size": 5815512,
+    "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Cop.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/cop-classic-ms-agents/Cop-280241b3.acs"
   },
@@ -80845,9 +80870,10 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/lizardhi-classic-ms-agents/LizardHi-cc55cf7c.png",
     "name": "LizardHi.acs",
     "release": "lizardhi-classic-ms-agents",
-    "sha256": "c1ffd0e907550e4cdde60852c1e5419f39f89d7d3fad5c96bdca66ef1fbd874f",
-    "size": 46003440,
-    "thumbnail": true,
+    "render_error": "no image table",
+    "sha256": "fff5f2e45459a91b0b265af3dce34001f210b296a25ef210d53542023b128606",
+    "size": 44982272,
+    "thumbnail": false,
     "upstream": "https://tmafemirror.org/classic-ms-agents/LizardHi.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/lizardhi-classic-ms-agents/LizardHi-cc55cf7c.acs"
   },
