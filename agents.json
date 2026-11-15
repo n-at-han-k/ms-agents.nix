@@ -14810,6 +14810,19 @@
     "upstream": "https://tmafemirror.org/classic-ms-agents/bubbles.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/bubbles/bubbles-c643a33d.acs"
   },
+  "bubbles-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "bubbles-c643a33d.acs",
+    "image": "bubbles-c643a33d.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/bubbles-classic-ms-agents/bubbles-c643a33d.png",
+    "name": "bubbles.acs",
+    "release": "bubbles-classic-ms-agents",
+    "sha256": "a98641062e4f52aa041e1b670cc7c88b4f975d5bcb3357b56b181171486d068a",
+    "size": 34001,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/bubbles.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/bubbles-classic-ms-agents/bubbles-c643a33d.acs"
+  },
   "bubbles-v2": {
     "dir": "char",
     "file": "Bubbles_V2-0eeb363d.acs",
