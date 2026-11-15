@@ -1,4 +1,30 @@
 {
+  "0-1-20-3-30-8-43": {
+    "dir": "char",
+    "file": "0_1_20_3_30_8_43-0ddad58c.acs",
+    "image": "0_1_20_3_30_8_43-0ddad58c.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/0-1-20-3-30-8-43/0_1_20_3_30_8_43-0ddad58c.png",
+    "name": "0 1 20 3 30 8 43.acs",
+    "release": "0-1-20-3-30-8-43",
+    "sha256": "bc33c2c6051f738809fe0c0e973c96f9d920c72ceed6d767a8fb859472332d80",
+    "size": 662988,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/0%201%2020%203%2030%208%2043.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/0-1-20-3-30-8-43/0_1_20_3_30_8_43-0ddad58c.acs"
+  },
+  "0-1-20-3-30-8-43-1": {
+    "dir": "char",
+    "file": "0_1_20_3_30_8_43_1-375d3643.acs",
+    "image": "0_1_20_3_30_8_43_1-375d3643.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/0-1-20-3-30-8-43-1/0_1_20_3_30_8_43_1-375d3643.png",
+    "name": "0 1 20 3 30 8 43(1).acs",
+    "release": "0-1-20-3-30-8-43-1",
+    "sha256": "bc33c2c6051f738809fe0c0e973c96f9d920c72ceed6d767a8fb859472332d80",
+    "size": 662988,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/0%201%2020%203%2030%208%2043%281%29.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/0-1-20-3-30-8-43-1/0_1_20_3_30_8_43_1-375d3643.acs"
+  },
   "000-bonzi": {
     "dir": "char",
     "file": "000_Bonzi-51152332.acs",
@@ -1584,6 +1610,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/AFP%20Direct.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/afp-direct/AFP_Direct-4a733251.acs"
+  },
+  "agent": {
+    "dir": "char",
+    "file": "agent-263b4f92.acs",
+    "image": "agent-263b4f92.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/agent/agent-263b4f92.png",
+    "name": "!.acs",
+    "release": "agent",
+    "sha256": "700b5c177b4c4867c29d67189d4f275a39621a1c6964857e65eea8d3727557ae",
+    "size": 21123,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/%21.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/agent/agent-263b4f92.acs"
   },
   "agent-1": {
     "dir": "char",
