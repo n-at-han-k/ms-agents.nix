@@ -721,6 +721,19 @@
     "upstream": "https://tmafe.com/char/3D%20Merlin.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-merlin/3D_Merlin-71731866.acs"
   },
+  "3d-mickey-mouse": {
+    "dir": "char",
+    "file": "3D_Mickey_Mouse-656c7097.acs",
+    "image": "3D_Mickey_Mouse-656c7097.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-mickey-mouse/3D_Mickey_Mouse-656c7097.png",
+    "name": "3D Mickey Mouse.acs",
+    "release": "3d-mickey-mouse",
+    "sha256": "4ec216d8f4aa3a1e2afc8ee112245884c0569e7da35c2e346d44e091013c0ef3",
+    "size": 7035928,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/3D%20Mickey%20Mouse.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-mickey-mouse/3D_Mickey_Mouse-656c7097.acs"
+  },
   "3d-mickey-mouse-v3": {
     "dir": "char",
     "file": "3D_Mickey_Mouse_V3-7135feb2.acs",
@@ -733,6 +746,32 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/3D%20Mickey%20Mouse%20V3.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-mickey-mouse-v3/3D_Mickey_Mouse_V3-7135feb2.acs"
+  },
+  "3d-mickey-mouse-v3-1": {
+    "dir": "char",
+    "file": "3D_Mickey_Mouse_V3_1-b6030fc3.acs",
+    "image": "3D_Mickey_Mouse_V3_1-b6030fc3.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-mickey-mouse-v3-1/3D_Mickey_Mouse_V3_1-b6030fc3.png",
+    "name": "3D Mickey Mouse V3(1).acs",
+    "release": "3d-mickey-mouse-v3-1",
+    "sha256": "a3b9d4418fc2012693b9f9499fd78def40fd1d8df41c6e8ad12b53ad498c9a90",
+    "size": 2515710,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/3D%20Mickey%20Mouse%20V3%281%29.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-mickey-mouse-v3-1/3D_Mickey_Mouse_V3_1-b6030fc3.acs"
+  },
+  "3d-sponge": {
+    "dir": "char",
+    "file": "3d_Sponge-4c52410d.acs",
+    "image": "3d_Sponge-4c52410d.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-sponge/3d_Sponge-4c52410d.png",
+    "name": "3d Sponge.acs",
+    "release": "3d-sponge",
+    "sha256": "e7493c7761d966cb4eb93a2b6b6b52b143909d99b12c822390110682a9456969",
+    "size": 4336,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/3d%20Sponge.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3d-sponge/3d_Sponge-4c52410d.acs"
   },
   "3ds-nintendo": {
     "dir": "char",
@@ -747,6 +786,19 @@
     "thumbnail": false,
     "upstream": "https://tmafe.com/char/3DS_nintendo.acd",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3ds-nintendo/3DS_nintendo-9d85ad7f.acd"
+  },
+  "3dspongy": {
+    "dir": "char",
+    "file": "3dspongy-e6ea0356.acs",
+    "image": "3dspongy-e6ea0356.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3dspongy/3dspongy-e6ea0356.png",
+    "name": "3dspongy.acs",
+    "release": "3dspongy",
+    "sha256": "a0b29cac39a69015f8fe047293f583b839d7b2f9e852ed7f20d0ddb645fbdd5b",
+    "size": 9640,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/3dspongy.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/3dspongy/3dspongy-e6ea0356.acs"
   },
   "3lamestudio": {
     "dir": "char",
@@ -839,6 +891,19 @@
     "upstream": "https://tmafe.com/char/41.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/41/41-52466185.acs"
   },
+  "43chars": {
+    "dir": "char",
+    "file": "43chars-edb1e7e4.acs",
+    "image": "43chars-edb1e7e4.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/43chars/43chars-edb1e7e4.png",
+    "name": "43chars.acs",
+    "release": "43chars",
+    "sha256": "40402f6c60dcdfc814fc301a921445389af72b513ae849b96d5c3f020aeacb95",
+    "size": 208787,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/43chars.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/43chars/43chars-edb1e7e4.acs"
+  },
   "4k-lime-cookies-demo": {
     "dir": "char",
     "file": "4K_Lime_Cookies_Demo-4c63b861.acs",
@@ -878,6 +943,45 @@
     "upstream": "https://tmafe.com/char/52MX.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/52mx/52MX-3393e416.acs"
   },
+  "55-cancri-e": {
+    "dir": "char",
+    "file": "55_Cancri_e-8006f381.acs",
+    "image": "55_Cancri_e-8006f381.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/55-cancri-e/55_Cancri_e-8006f381.png",
+    "name": "55 Cancri e.acs",
+    "release": "55-cancri-e",
+    "sha256": "620896d27c794f54efa6bc0e951e999b02fc8e15b1a3469f5f76e5239114ff0a",
+    "size": 7231,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/55%20Cancri%20e.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/55-cancri-e/55_Cancri_e-8006f381.acs"
+  },
+  "6-lavender-star": {
+    "dir": "char",
+    "file": "6_Lavender_Star-6994168d.acs",
+    "image": "6_Lavender_Star-6994168d.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/6-lavender-star/6_Lavender_Star-6994168d.png",
+    "name": "6 Lavender Star.acs",
+    "release": "6-lavender-star",
+    "sha256": "9beb06f385dcb97a19c25ece296feffb22f00b187fd9e25b8b7836697a6a3c9e",
+    "size": 489391,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/6%20Lavender%20Star.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/6-lavender-star/6_Lavender_Star-6994168d.acs"
+  },
+  "60-pocoyo-2": {
+    "dir": "char",
+    "file": "60_pocoyo_2-f0d5a703.acs",
+    "image": "60_pocoyo_2-f0d5a703.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/60-pocoyo-2/60_pocoyo_2-f0d5a703.png",
+    "name": "60+ pocoyo(2).acs",
+    "release": "60-pocoyo-2",
+    "sha256": "93bbe4a7f6a98f0404c8fa5c91256e40b30e7e89e6e982a8b1b50d1d0f44341a",
+    "size": 3037566,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/60%2B%20pocoyo%282%29.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/60-pocoyo-2/60_pocoyo_2-f0d5a703.acs"
+  },
   "6ter": {
     "dir": "char",
     "file": "6ter-b61d58d4.acs",
@@ -904,6 +1008,71 @@
     "upstream": "https://tmafe.com/char/6ter_.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/6ter-char/6ter-f1314361.acs"
   },
+  "786-ds-films": {
+    "dir": "char",
+    "file": "786_ds_films-173d0c5d.acs",
+    "image": "786_ds_films-173d0c5d.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/786-ds-films/786_ds_films-173d0c5d.png",
+    "name": "786 ds films.acs",
+    "release": "786-ds-films",
+    "sha256": "c2890eab328e6de9785d540ee83aa519bc0a80d82d329aad69afa30cdbbe9ec9",
+    "size": 14677,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/786%20ds%20films.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/786-ds-films/786_ds_films-173d0c5d.acs"
+  },
+  "88-9-noticias": {
+    "dir": "char",
+    "file": "88.9_Noticias-11e09521.acs",
+    "image": "88.9_Noticias-11e09521.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/88-9-noticias/88.9_Noticias-11e09521.png",
+    "name": "88.9 Noticias.acs",
+    "release": "88-9-noticias",
+    "sha256": "95036abcb316dc2ed0b36f5137bb1219bcfe858a3259396e589a5b3206946e9a",
+    "size": 824619,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/88.9%20Noticias.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/88-9-noticias/88.9_Noticias-11e09521.acs"
+  },
+  "9-ate-7-productions": {
+    "dir": "char",
+    "file": "9_Ate_7_Productions-6032aa1e.acs",
+    "image": "9_Ate_7_Productions-6032aa1e.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/9-ate-7-productions/9_Ate_7_Productions-6032aa1e.png",
+    "name": "9_Ate_7_Productions.acs",
+    "release": "9-ate-7-productions",
+    "sha256": "f007ec8932d5c9cb7f9fe7cf8e478a46fe4a682f100a13acdeb16d056f73d9a7",
+    "size": 117671,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/9_Ate_7_Productions.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/9-ate-7-productions/9_Ate_7_Productions-6032aa1e.acs"
+  },
+  "961talkbot": {
+    "dir": "char",
+    "file": "961talkbot-7762f41a.acs",
+    "image": "961talkbot-7762f41a.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/961talkbot/961talkbot-7762f41a.png",
+    "name": "961talkbot.acs",
+    "release": "961talkbot",
+    "sha256": "669ae52286be0dd793cf3d773bb8610c9c92f12817b63bc1a5b9667c9fa798e6",
+    "size": 15060,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/961talkbot.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/961talkbot/961talkbot-7762f41a.acs"
+  },
+  "9volt": {
+    "dir": "char",
+    "file": "9Volt-cf91dfc5.acs",
+    "image": "9Volt-cf91dfc5.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/9volt/9Volt-cf91dfc5.png",
+    "name": "9Volt.acs",
+    "release": "9volt",
+    "sha256": "4d85b9174eaabb543717db8b42ae0158ba2b7ef0b1164a68a5128200a20fc5ec",
+    "size": 2597816,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/9Volt.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/9volt/9Volt-cf91dfc5.acs"
+  },
   "a-ase": {
     "dir": "char",
     "file": "A_Ase-33536d9a.acs",
@@ -916,6 +1085,33 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/A%20Ase.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-ase/A_Ase-33536d9a.acs"
+  },
+  "a-bonzi": {
+    "dir": "char",
+    "file": "a_Bonzi-3f8e44ba.acs",
+    "image": "a_Bonzi-3f8e44ba.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-bonzi/a_Bonzi-3f8e44ba.png",
+    "name": "a_Bonzi.acs",
+    "release": "a-bonzi",
+    "sha256": "f3d4425238b5f68b4d41ed5be271d2f4118a245baf808a62dc1a9e6e619b2f95",
+    "size": 5249795,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/a_Bonzi.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-bonzi/a_Bonzi-3f8e44ba.acs"
+  },
+  "a-char": {
+    "dir": "char",
+    "file": "a-54d7e371.acd",
+    "image": "a-54d7e371.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-char/a-54d7e371.png",
+    "name": "a.acd",
+    "release": "a-char",
+    "render_error": "bad signature 0x2d2d2f2f",
+    "sha256": "0dd464df5d702c37a21357278615d6c138e80657caa863e24988bab1ebaa3cfd",
+    "size": 2414,
+    "thumbnail": false,
+    "upstream": "https://tmafe.com/char/a.acd",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-char/a-54d7e371.acd"
   },
   "a-e": {
     "dir": "char",
@@ -956,6 +1152,19 @@
     "upstream": "https://tmafemirror.org/classic-ms-agents/a%20rose%20for%20you%21%21%21.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-rose-for-you-classic-ms-agents/a_rose_for_you-79d7784f.acs"
   },
+  "a-with-music": {
+    "dir": "char",
+    "file": "a_with_music-991cdef7.acs",
+    "image": "a_with_music-991cdef7.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-with-music/a_with_music-991cdef7.png",
+    "name": "a with music.acs",
+    "release": "a-with-music",
+    "sha256": "349b5437fdc8745077c3588c254fa3db24803986ad87563626479c5d29c4dde9",
+    "size": 3245,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/a%20with%20music.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-with-music/a_with_music-991cdef7.acs"
+  },
   "a09": {
     "dir": "char",
     "file": "a09-8d35033a.acs",
@@ -968,6 +1177,32 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/a09.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a09/a09-8d35033a.acs"
+  },
+  "a2z-philippines": {
+    "dir": "char",
+    "file": "A2Z_Philippines-4ff3a1d2.acs",
+    "image": "A2Z_Philippines-4ff3a1d2.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a2z-philippines/A2Z_Philippines-4ff3a1d2.png",
+    "name": "A2Z Philippines.acs",
+    "release": "a2z-philippines",
+    "sha256": "f9f6a9bf40101d1ffe4de43328c2e5e54210e5a9fbc18edc6b8d8c278bb0247b",
+    "size": 163228,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/A2Z%20Philippines.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a2z-philippines/A2Z_Philippines-4ff3a1d2.acs"
+  },
+  "aaaaaaaaaagfuhbgleyifgwevfbgkhyiwegf8yiuvgwdsukhgvdyukweshyghiwqavgsdwqvcdkjyutgwqvfcdjubshidhweiudg": {
+    "dir": "char",
+    "file": "aaaaaaaaaagfuhbgleyifgwevfbgkhyiwegf8yiuvgwdsukhgvdyukweshyghiwqavgsdwqvcdkjyutgwqvfcdjubshidhweiudgkywiehfuge239er2bdcl-ad7e3769.acs",
+    "image": "aaaaaaaaaagfuhbgleyifgwevfbgkhyiwegf8yiuvgwdsukhgvdyukweshyghiwqavgsdwqvcdkjyutgwqvfcdjubshidhweiudgkywiehfuge239er2bdcl-ad7e3769.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/aaaaaaaaaagfuhbgleyifgwevfbgkhyiwegf8yiuvgwdsukhgvdyukweshyghiwqavgsdwqvcdkjyutgwqvfcdjubshidhweiudg/aaaaaaaaaagfuhbgleyifgwevfbgkhyiwegf8yiuvgwdsukhgvdyukweshyghiwqavgsdwqvcdkjyutgwqvfcdjubshidhweiudgkywiehfuge239er2bdcl-ad7e3769.png",
+    "name": "aaaaaaaaaagfuhbgleyifgwevfbgkhyiwegf8yiuvgwdsukhgvdyukweshyghiwqavgsdwqvcdkjyutgwqvfcdjubshidhweiudgkywiehfuge239er2bdclhiwesgdkuwebduiwvqkhidhqwgdliy3hyer9721libdwqivcdgxlqiwbfdyiwqgdliwqhbkuycdgbwqivdkuyw2qgludbwqhdy8k1.acs",
+    "release": "aaaaaaaaaagfuhbgleyifgwevfbgkhyiwegf8yiuvgwdsukhgvdyukweshyghiwqavgsdwqvcdkjyutgwqvfcdjubshidhweiudg",
+    "sha256": "b62f2bd2d614ab35b9c18307c0ee80642ad8f4a8e334ac4df8abdac123dd3e6c",
+    "size": 4729,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/aaaaaaaaaagfuhbgleyifgwevfbgkhyiwegf8yiuvgwdsukhgvdyukweshyghiwqavgsdwqvcdkjyutgwqvfcdjubshidhweiudgkywiehfuge239er2bdclhiwesgdkuwebduiwvqkhidhqwgdliy3hyer9721libdwqivcdgxlqiwbfdyiwqgdliwqhbkuycdgbwqivdkuyw2qgludbwqhdy8k1.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/aaaaaaaaaagfuhbgleyifgwevfbgkhyiwegf8yiuvgwdsukhgvdyukweshyghiwqavgsdwqvcdkjyutgwqvfcdjubshidhweiudg/aaaaaaaaaagfuhbgleyifgwevfbgkhyiwegf8yiuvgwdsukhgvdyukweshyghiwqavgsdwqvcdkjyutgwqvfcdjubshidhweiudgkywiehfuge239er2bdcl-ad7e3769.acs"
   },
   "aantje-classic-ms-agents": {
     "dir": "classic-ms-agents",
@@ -48014,6 +48249,20 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/FujitsuVilaghiradoJan1939_fixed.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/fujitsuvilaghiradojan1939-fixed/FujitsuVilaghiradoJan1939_fixed-7ca9a83d.acs"
+  },
+  "fuk-this-shit-buddy": {
+    "dir": "char",
+    "file": "FUK_THIS_SHIT_BUDDY-64af5ac5.acs",
+    "image": "FUK_THIS_SHIT_BUDDY-64af5ac5.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/fuk-this-shit-buddy/FUK_THIS_SHIT_BUDDY-64af5ac5.png",
+    "name": "_FUK THIS SHIT BUDDY.acs",
+    "release": "fuk-this-shit-buddy",
+    "render_error": "bad signature 0x53434189",
+    "sha256": "0f4c5004ec76e663e49b2d0aa92ad5b4b62df310c4eef59141beb0e4648749f0",
+    "size": 44099,
+    "thumbnail": false,
+    "upstream": "https://tmafe.com/char/_FUK%20THIS%20SHIT%20BUDDY.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/fuk-this-shit-buddy/FUK_THIS_SHIT_BUDDY-64af5ac5.acs"
   },
   "fulfil": {
     "dir": "char",
@@ -112695,6 +112944,19 @@
     "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Warning.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/warning/Warning-786416e4.acs"
+  },
+  "warning-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "Warning-786416e4.acs",
+    "image": "Warning-786416e4.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/warning-classic-ms-agents/Warning-786416e4.png",
+    "name": "Warning.acs",
+    "release": "warning-classic-ms-agents",
+    "sha256": "8fa14f4dccadd87c668827caac8f0e2e4fefd259d6c9342aab86bc5da00b7a9f",
+    "size": 3212,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/Warning.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/warning-classic-ms-agents/Warning-786416e4.acs"
   },
   "wartnose-classic-ms-agents": {
     "dir": "classic-ms-agents",
