@@ -51885,8 +51885,8 @@
     "name": "GermHi.acs",
     "release": "germhi-classic-ms-agents",
     "render_error": "no image table",
-    "sha256": "5b7cd6149c74718b1ab7be0332d781a0b4ce3c717a4b0ee667727f7c9f5d9646",
-    "size": 33650560,
+    "sha256": "66512b1b65b78b922c82f7c899e84328ee159306c7140c344ecdc0f51e92f69e",
+    "size": 33529856,
     "thumbnail": false,
     "upstream": "https://tmafemirror.org/classic-ms-agents/GermHi.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/germhi-classic-ms-agents/GermHi-f4541699.acs"
