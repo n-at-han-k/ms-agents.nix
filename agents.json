@@ -51884,10 +51884,9 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/germhi-classic-ms-agents/GermHi-f4541699.png",
     "name": "GermHi.acs",
     "release": "germhi-classic-ms-agents",
-    "render_error": "no image table",
-    "sha256": "66512b1b65b78b922c82f7c899e84328ee159306c7140c344ecdc0f51e92f69e",
-    "size": 33529856,
-    "thumbnail": false,
+    "sha256": "d941d0d628e3994b53f27ca23bb173fba710a690625e594b3ea6509664aff4f9",
+    "size": 33924507,
+    "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/GermHi.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/germhi-classic-ms-agents/GermHi-f4541699.acs"
   },
