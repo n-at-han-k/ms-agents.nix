@@ -106873,9 +106873,10 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/otto1/Otto1-b7e63504.png",
     "name": "Otto1.acs",
     "release": "otto1",
-    "sha256": "1c0bb245fe806937a3604ed92dd78a8a4c73234e72c0314375b96c8d96a474ff",
-    "size": 14756208,
-    "thumbnail": true,
+    "render_error": "no image table",
+    "sha256": "940d8766c6a095f94c9a9b7ef9b1c3539bfeb937c640514fb8f6e98a9f6d1661",
+    "size": 14014336,
+    "thumbnail": false,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Otto1.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/otto1/Otto1-b7e63504.acs"
   },
