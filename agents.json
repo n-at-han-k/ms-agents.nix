@@ -75572,9 +75572,10 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/kumi/Kumi-0a205862.png",
     "name": "Kumi.acs",
     "release": "kumi",
-    "sha256": "dc6fca18287c2f6eabf559b252e1c7d504475f5fc07776ffe1757b3a467d5a92",
-    "size": 2736237,
-    "thumbnail": true,
+    "render_error": "no image table",
+    "sha256": "5ff68f3f165a96c0ce21f86e5c5a4b52221bd222b1325fde94f35bdd9ea8ea80",
+    "size": 2629632,
+    "thumbnail": false,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Kumi.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/kumi/Kumi-0a205862.acs"
   },
