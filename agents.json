@@ -96147,9 +96147,10 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/mookmookechidna-classic-ms-agents/MookMookEchidna-abca15fe.png",
     "name": "MookMookEchidna.acs",
     "release": "mookmookechidna-classic-ms-agents",
-    "sha256": "57932f857a0a69e86cf6ae6ff9bc44de40360d73c4543282b359b50f418ec22a",
-    "size": 8916564,
-    "thumbnail": true,
+    "render_error": "no image table",
+    "sha256": "3a8684bfe57197823746ab11c3f53f8978cc159b5d88d6282680407f5ff130e6",
+    "size": 8445681,
+    "thumbnail": false,
     "upstream": "https://tmafemirror.org/classic-ms-agents/MookMookEchidna.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/mookmookechidna-classic-ms-agents/MookMookEchidna-abca15fe.acs"
   },
