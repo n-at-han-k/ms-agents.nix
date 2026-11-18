@@ -2658,6 +2658,32 @@
     "upstream": "https://tmafe.com/char/ABC4Kids.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/abc4kids/ABC4Kids-1610675f.acs"
   },
+  "abdullah": {
+    "dir": "char",
+    "file": "abdullah-b9d19539.acs",
+    "image": "abdullah-b9d19539.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/abdullah/abdullah-b9d19539.png",
+    "name": "abdullah.acs",
+    "release": "abdullah",
+    "sha256": "4dec2d73943fbe5d3ad436ce86e86273aae6e8539da3cbf44d741c0eedc0ca8c",
+    "size": 19563,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/abdullah.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/abdullah/abdullah-b9d19539.acs"
+  },
+  "abdullah2": {
+    "dir": "char",
+    "file": "Abdullah2-9d0d4ef2.acs",
+    "image": "Abdullah2-9d0d4ef2.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/abdullah2/Abdullah2-9d0d4ef2.png",
+    "name": "Abdullah2.acs",
+    "release": "abdullah2",
+    "sha256": "f4695740727fb2914d5a82753a491e4623435af6964c07021e07a8ace538a784",
+    "size": 918453,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/Abdullah2.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/abdullah2/Abdullah2-9d0d4ef2.acs"
+  },
   "abe-lincoln": {
     "dir": "char",
     "file": "Abe_Lincoln-c7673796.acs",
@@ -2683,6 +2709,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/Abel%20Lance.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/abel-lance/Abel_Lance-953b68d5.acs"
+  },
+  "abel-lance-abe-lincoln-copyed": {
+    "dir": "char",
+    "file": "Abel_Lance_Abe_Lincoln_Copyed-021bdaed.acs",
+    "image": "Abel_Lance_Abe_Lincoln_Copyed-021bdaed.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/abel-lance-abe-lincoln-copyed/Abel_Lance_Abe_Lincoln_Copyed-021bdaed.png",
+    "name": "Abel Lance (Abe Lincoln Copyed.).acs",
+    "release": "abel-lance-abe-lincoln-copyed",
+    "sha256": "9758a7ac792d99d477aad0057242d89d5d908c78f2bc4ce8789a486788512e4b",
+    "size": 12963,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/Abel%20Lance%20%28Abe%20Lincoln%20Copyed.%29.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/abel-lance-abe-lincoln-copyed/Abel_Lance_Abe_Lincoln_Copyed-021bdaed.acs"
   },
   "abell-78": {
     "dir": "char",
@@ -2886,6 +2925,19 @@
     "upstream": "https://tmafe.com/char/Ace%281%29.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/ace-1/Ace_1-9371c090.acs"
   },
+  "ace-char": {
+    "dir": "char",
+    "file": "ace-b5c819cc.acs",
+    "image": "ace-b5c819cc.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/ace-char/ace-b5c819cc.png",
+    "name": "ace.acs",
+    "release": "ace-char",
+    "sha256": "eff7f32c3d1d47bf0dd769448609aba65de3b0aff25fe3a218434259e0303c6b",
+    "size": 4263,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/ace.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/ace-char/ace-b5c819cc.acs"
+  },
   "ace-classic-ms-agents": {
     "dir": "classic-ms-agents",
     "file": "Ace-94f345c6.acs",
@@ -2899,6 +2951,19 @@
     "upstream": "https://tmafemirror.org/classic-ms-agents/Ace.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/ace-classic-ms-agents/Ace-94f345c6.acs"
   },
+  "ace-is-fake": {
+    "dir": "char",
+    "file": "ace_is_fake-25a6ef31.acs",
+    "image": "ace_is_fake-25a6ef31.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/ace-is-fake/ace_is_fake-25a6ef31.png",
+    "name": "ace_is_fake.acs",
+    "release": "ace-is-fake",
+    "sha256": "26febb819132d3677c26e102742677db68619c63a4db4ce6e7c4a8772c71f0f2",
+    "size": 3054,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/ace_is_fake.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/ace-is-fake/ace_is_fake-25a6ef31.acs"
+  },
   "ace2": {
     "dir": "char",
     "file": "Ace2-92b92c8e.acs",
@@ -2911,6 +2976,19 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/Ace2.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/ace2/Ace2-92b92c8e.acs"
+  },
+  "acecard-is-fake": {
+    "dir": "char",
+    "file": "acecard_is_fake-6322b7fb.acs",
+    "image": "acecard_is_fake-6322b7fb.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/acecard-is-fake/acecard_is_fake-6322b7fb.png",
+    "name": "acecard_is_fake.acs",
+    "release": "acecard-is-fake",
+    "sha256": "26e00413a75c54e37f8f72d4160073e34320c976431d8320603344c26dc87472",
+    "size": 3160,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/acecard_is_fake.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/acecard-is-fake/acecard_is_fake-6322b7fb.acs"
   },
   "acer": {
     "dir": "char",
@@ -96147,10 +96225,9 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/mookmookechidna-classic-ms-agents/MookMookEchidna-abca15fe.png",
     "name": "MookMookEchidna.acs",
     "release": "mookmookechidna-classic-ms-agents",
-    "render_error": "no image table",
-    "sha256": "3a8684bfe57197823746ab11c3f53f8978cc159b5d88d6282680407f5ff130e6",
-    "size": 8445681,
-    "thumbnail": false,
+    "sha256": "57932f857a0a69e86cf6ae6ff9bc44de40360d73c4543282b359b50f418ec22a",
+    "size": 8916564,
+    "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/MookMookEchidna.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/mookmookechidna-classic-ms-agents/MookMookEchidna-abca15fe.acs"
   },
