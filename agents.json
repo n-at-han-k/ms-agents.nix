@@ -83790,9 +83790,10 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/lizardhi-classic-ms-agents/LizardHi-cc55cf7c.png",
     "name": "LizardHi.acs",
     "release": "lizardhi-classic-ms-agents",
-    "sha256": "c1ffd0e907550e4cdde60852c1e5419f39f89d7d3fad5c96bdca66ef1fbd874f",
-    "size": 46003440,
-    "thumbnail": true,
+    "render_error": "no image table",
+    "sha256": "7c58835e1921df46994ee0bdd2b6a7288fae4a435f245d3ff49b8bae32ad2678",
+    "size": 45819910,
+    "thumbnail": false,
     "upstream": "https://tmafemirror.org/classic-ms-agents/LizardHi.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/lizardhi-classic-ms-agents/LizardHi-cc55cf7c.acs"
   },
