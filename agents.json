@@ -33995,10 +33995,9 @@
     "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/dawne-classic-ms-agents/dawne-ea8e08e6.png",
     "name": "dawne.acs",
     "release": "dawne-classic-ms-agents",
-    "render_error": "no image table",
-    "sha256": "940838af52423a5593f99dfbae633c127ec1c1a97029ae2de9eb27f6d8b71383",
-    "size": 11172358,
-    "thumbnail": false,
+    "sha256": "4e588e83c480585b921535d465f080f4678a9dc5681c7294b4e34587a5f59f2f",
+    "size": 13131218,
+    "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/dawne.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/dawne-classic-ms-agents/dawne-ea8e08e6.acs"
   },
