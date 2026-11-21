@@ -2159,6 +2159,19 @@
     "upstream": "https://tmafe.com/char/A_letter.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-letter/A_letter-63c629aa.acs"
   },
+  "a-letter-anvsoft": {
+    "dir": "char",
+    "file": "A_Letter_Anvsoft-17b62f5c.acs",
+    "image": "A_Letter_Anvsoft-17b62f5c.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-letter-anvsoft/A_Letter_Anvsoft-17b62f5c.png",
+    "name": "(A Letter) Anvsoft.acs",
+    "release": "a-letter-anvsoft",
+    "sha256": "1962df159caf8fa901f9d4448320b3e31b2439c7724c2d273c2ce4a0dd448a63",
+    "size": 410601,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/%28A%20Letter%29%20Anvsoft.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-letter-anvsoft/A_Letter_Anvsoft-17b62f5c.acs"
+  },
   "a-mas": {
     "dir": "char",
     "file": "A_mas-2189869a.acs",
