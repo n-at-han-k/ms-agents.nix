@@ -64665,6 +64665,34 @@
     "upstream": "https://tmafe.com/char/INEGI.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/inegi/INEGI-2adb67c7.acs"
   },
+  "inetsdk-samples-msagent-chars-genie": {
+    "dir": "char",
+    "file": "inetsdk_samples_msagent_chars_genie-ab4e6888.acs",
+    "image": "inetsdk_samples_msagent_chars_genie-ab4e6888.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/inetsdk-samples-msagent-chars-genie/inetsdk_samples_msagent_chars_genie-ab4e6888.png",
+    "name": "_inetsdk_samples_msagent_chars_genie.acs",
+    "release": "inetsdk-samples-msagent-chars-genie",
+    "render_error": "bad signature 0xe011cfd0",
+    "sha256": "8b3c7d77434b8085eb69e07fb436bed8193a41589e45893cb62153bb7ddc4a46",
+    "size": 2786304,
+    "thumbnail": false,
+    "upstream": "https://tmafe.com/char/_inetsdk_samples_msagent_chars_genie.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/inetsdk-samples-msagent-chars-genie/inetsdk_samples_msagent_chars_genie-ab4e6888.acs"
+  },
+  "inetsdk-samples-msagent-chars-robby": {
+    "dir": "char",
+    "file": "inetsdk_samples_msagent_chars_robby-60c1f379.acs",
+    "image": "inetsdk_samples_msagent_chars_robby-60c1f379.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/inetsdk-samples-msagent-chars-robby/inetsdk_samples_msagent_chars_robby-60c1f379.png",
+    "name": "_inetsdk_samples_msagent_chars_robby.acs",
+    "release": "inetsdk-samples-msagent-chars-robby",
+    "render_error": "bad signature 0xe011cfd0",
+    "sha256": "4829afd9d69994fe50598777a42d75a64b828798fda1ae667ee6bc55d1148969",
+    "size": 3318784,
+    "thumbnail": false,
+    "upstream": "https://tmafe.com/char/_inetsdk_samples_msagent_chars_robby.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/inetsdk-samples-msagent-chars-robby/inetsdk_samples_msagent_chars_robby-60c1f379.acs"
+  },
   "infinito": {
     "dir": "char",
     "file": "Infinito-1b9a9de8.acs",
