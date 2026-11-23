@@ -2160,17 +2160,16 @@
   },
   "a-letter": {
     "dir": "char",
-    "file": "A_letter-63c629aa.acs",
-    "image": "A_letter-63c629aa.png",
-    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-letter/A_letter-63c629aa.png",
-    "name": "A_letter.acs",
+    "file": "A_Letter-2e47b8fa.acs",
+    "image": "A_Letter-2e47b8fa.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-letter/A_Letter-2e47b8fa.png",
+    "name": "A Letter.acs",
     "release": "a-letter",
-    "render_error": "no colour table found",
-    "sha256": "bf12dd236d196ea02830dce6ddf30a722dc765cdf227cea54292278e31d8a592",
-    "size": 118194,
-    "thumbnail": false,
-    "upstream": "https://tmafe.com/char/A_letter.acs",
-    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-letter/A_letter-63c629aa.acs"
+    "sha256": "a4af267aece18a3d03aea057282237fb95e652d2cf7c691546d1a739c044f94b",
+    "size": 2339,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/A%20Letter.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-letter/A_Letter-2e47b8fa.acs"
   },
   "a-letter-anvsoft": {
     "dir": "char",
