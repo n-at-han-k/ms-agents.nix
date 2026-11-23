@@ -905,6 +905,19 @@
     "upstream": "https://tmafe.com/char/2022%20Leafy.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2022-leafy/2022_Leafy-b7ecdc4c.acs"
   },
+  "2022-milkshake-bug": {
+    "dir": "char",
+    "file": "2022_Milkshake_Bug-35ae3daf.acs",
+    "image": "2022_Milkshake_Bug-35ae3daf.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2022-milkshake-bug/2022_Milkshake_Bug-35ae3daf.png",
+    "name": "2022 Milkshake Bug.acs",
+    "release": "2022-milkshake-bug",
+    "sha256": "7da8c1c72eb86e14e27f13a1c738a9f924ca3ee7ffbf41fcb00eef68f4f35d89",
+    "size": 368899,
+    "thumbnail": true,
+    "upstream": "https://tmafe.com/char/2022%20Milkshake%20Bug.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/2022-milkshake-bug/2022_Milkshake_Bug-35ae3daf.acs"
+  },
   "2023nerdblocky-concept": {
     "dir": "char",
     "file": "2023NerdBlocky_Concept-ac521fe9.acs",
@@ -2171,6 +2184,20 @@
     "thumbnail": true,
     "upstream": "https://tmafe.com/char/%28A%20Letter%29%20Anvsoft.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-letter-anvsoft/A_Letter_Anvsoft-17b62f5c.acs"
+  },
+  "a-letter-char": {
+    "dir": "char",
+    "file": "A_letter-63c629aa.acs",
+    "image": "A_letter-63c629aa.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-letter-char/A_letter-63c629aa.png",
+    "name": "A_letter.acs",
+    "release": "a-letter-char",
+    "render_error": "no colour table found",
+    "sha256": "bf12dd236d196ea02830dce6ddf30a722dc765cdf227cea54292278e31d8a592",
+    "size": 118194,
+    "thumbnail": false,
+    "upstream": "https://tmafe.com/char/A_letter.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/a-letter-char/A_letter-63c629aa.acs"
   },
   "a-mas": {
     "dir": "char",
@@ -64691,6 +64718,20 @@
     "thumbnail": false,
     "upstream": "https://tmafe.com/char/_inetsdk_samples_msagent_chars_genie.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/inetsdk-samples-msagent-chars-genie/inetsdk_samples_msagent_chars_genie-ab4e6888.acs"
+  },
+  "inetsdk-samples-msagent-chars-merlin": {
+    "dir": "char",
+    "file": "inetsdk_samples_msagent_chars_merlin-8cd8df6f.acs",
+    "image": "inetsdk_samples_msagent_chars_merlin-8cd8df6f.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/inetsdk-samples-msagent-chars-merlin/inetsdk_samples_msagent_chars_merlin-8cd8df6f.png",
+    "name": "_inetsdk_samples_msagent_chars_merlin.acs",
+    "release": "inetsdk-samples-msagent-chars-merlin",
+    "render_error": "bad signature 0xe011cfd0",
+    "sha256": "c7e8e80dd8fab1f2315f7b4b60dca12e081e35eb5dcc0b97f659819cfccc21a8",
+    "size": 2920960,
+    "thumbnail": false,
+    "upstream": "https://tmafe.com/char/_inetsdk_samples_msagent_chars_merlin.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/inetsdk-samples-msagent-chars-merlin/inetsdk_samples_msagent_chars_merlin-8cd8df6f.acs"
   },
   "inetsdk-samples-msagent-chars-robby": {
     "dir": "char",
