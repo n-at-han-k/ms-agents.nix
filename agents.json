@@ -77925,6 +77925,19 @@
     "upstream": "https://tmafemirror.org/classic-ms-agents/L1Grace7F.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/l1grace7f/L1Grace7F-2fb50972.acs"
   },
+  "l1grace7f-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "L1Grace7F-2fb50972.acs",
+    "image": "L1Grace7F-2fb50972.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/l1grace7f-classic-ms-agents/L1Grace7F-2fb50972.png",
+    "name": "L1Grace7F.acs",
+    "release": "l1grace7f-classic-ms-agents",
+    "sha256": "f297617087e46755a185f0c10968ccbc706efeb71522d8bbd8cbe3532b587f2b",
+    "size": 1478666,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/L1Grace7F.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/l1grace7f-classic-ms-agents/L1Grace7F-2fb50972.acs"
+  },
   "l3hunter3m": {
     "dir": "classic-ms-agents",
     "file": "L3Hunter3M-94bc0ec9.acs",
@@ -77938,6 +77951,19 @@
     "upstream": "https://tmafemirror.org/classic-ms-agents/L3Hunter3M.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/l3hunter3m/L3Hunter3M-94bc0ec9.acs"
   },
+  "l3hunter3m-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "L3Hunter3M-94bc0ec9.acs",
+    "image": "L3Hunter3M-94bc0ec9.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/l3hunter3m-classic-ms-agents/L3Hunter3M-94bc0ec9.png",
+    "name": "L3Hunter3M.acs",
+    "release": "l3hunter3m-classic-ms-agents",
+    "sha256": "eabe6d49550f766d775ca9cf3d22b789e6fcbf3f1a19e531c48f9af074a5eb51",
+    "size": 1996770,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/L3Hunter3M.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/l3hunter3m-classic-ms-agents/L3Hunter3M-94bc0ec9.acs"
+  },
   "l5barney6m": {
     "dir": "classic-ms-agents",
     "file": "L5Barney6M-41fc99ad.acs",
@@ -77950,6 +77976,19 @@
     "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/L5Barney6M.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/l5barney6m/L5Barney6M-41fc99ad.acs"
+  },
+  "l5barney6m-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "L5Barney6M-41fc99ad.acs",
+    "image": "L5Barney6M-41fc99ad.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/l5barney6m-classic-ms-agents/L5Barney6M-41fc99ad.png",
+    "name": "L5Barney6M.acs",
+    "release": "l5barney6m-classic-ms-agents",
+    "sha256": "92174a1f1e6e145ecf74eb919f48278431d9dde339e518b59ac37841f38988ca",
+    "size": 1598443,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/L5Barney6M.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/l5barney6m-classic-ms-agents/L5Barney6M-41fc99ad.acs"
   },
   "la-2-spain": {
     "dir": "char",
@@ -114806,6 +114845,19 @@
     "thumbnail": true,
     "upstream": "https://tmafemirror.org/classic-ms-agents/T5Ellen5F.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/t5ellen5f/T5Ellen5F-680d98bd.acs"
+  },
+  "t5ellen5f-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "T5Ellen5F-680d98bd.acs",
+    "image": "T5Ellen5F-680d98bd.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/t5ellen5f-classic-ms-agents/T5Ellen5F-680d98bd.png",
+    "name": "T5Ellen5F.acs",
+    "release": "t5ellen5f-classic-ms-agents",
+    "sha256": "3b181381c875823cd286972e6b6bc1f62136ce788769db54620b863544d76fb3",
+    "size": 1239013,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/T5Ellen5F.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/t5ellen5f-classic-ms-agents/T5Ellen5F-680d98bd.acs"
   },
   "take-your-temp-classic-ms-agents": {
     "dir": "classic-ms-agents",
