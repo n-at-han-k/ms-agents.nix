@@ -55356,8 +55356,8 @@
     "name": "Gooddy.acs",
     "release": "gooddy-classic-ms-agents",
     "render_error": "bad signature 0xe011cfd0",
-    "sha256": "3a10659d57e26ea0c1963fc57c974dd5114b208fe05ee39aec7a864d4c86ff7e",
-    "size": 2859008,
+    "sha256": "082eda1e76f5702a0c6851048566a0fe0d88ae64ca6c55d2d20ab36ae5992e60",
+    "size": 3085312,
     "thumbnail": false,
     "upstream": "https://tmafemirror.org/classic-ms-agents/Gooddy.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/gooddy-classic-ms-agents/Gooddy-126d7a58.acs"
