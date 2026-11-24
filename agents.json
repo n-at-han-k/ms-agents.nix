@@ -114807,6 +114807,19 @@
     "upstream": "https://tmafemirror.org/classic-ms-agents/T0Margie2F.acs",
     "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/t0margie2f/T0Margie2F-9cbba228.acs"
   },
+  "t0margie2f-classic-ms-agents": {
+    "dir": "classic-ms-agents",
+    "file": "T0Margie2F-9cbba228.acs",
+    "image": "T0Margie2F-9cbba228.png",
+    "image_url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/t0margie2f-classic-ms-agents/T0Margie2F-9cbba228.png",
+    "name": "T0Margie2F.acs",
+    "release": "t0margie2f-classic-ms-agents",
+    "sha256": "d85bf4c53dfa7e1ae0444363470c108b24387e1d50b56ee8a483ee681761df06",
+    "size": 1748008,
+    "thumbnail": true,
+    "upstream": "https://tmafemirror.org/classic-ms-agents/T0Margie2F.acs",
+    "url": "https://github.com/n-at-han-k/ms-agents.nix/releases/download/t0margie2f-classic-ms-agents/T0Margie2F-9cbba228.acs"
+  },
   "t1clarence4m-classic-ms-agents": {
     "dir": "classic-ms-agents",
     "file": "T1Clarence4M-a1aef8e7.acs",
